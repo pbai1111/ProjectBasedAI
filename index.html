@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProjectBased.AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF8;
+    --bg-section: #F3F2EE;
+    --text: #1a1a1a;
+    --text-mid: #3a3a3a;
+    --text-muted: #7a7775;
+    --plum: #5A2650;
+    --plum-bright: #6E3363;
+    --plum-hover: #703566;
+    --plum-light: rgba(90,38,80,0.06);
+    --border: rgba(26,26,26,0.1);
+    --border-faint: rgba(26,26,26,0.05);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* =================== HERO =================== */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    padding: 6vh 6vw;
+    position: relative;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 6vw;
+  }
+
+  .name {
+    font-weight: 400;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    letter-spacing: -0.02em;
+    color: var(--plum);
+    line-height: 1.1;
+    margin-bottom: 2rem;
+  }
+
+  .name span { display: block; }
+
+  .differentiator {
+    font-weight: 700;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    line-height: 1.15;
+    color: var(--text);
+    margin-bottom: 2.2rem;
+    max-width: 600px;
+    letter-spacing: -0.03em;
+  }
+
+  .throughline {
+    font-weight: 300;
+    font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+    line-height: 1.8;
+    color: var(--text-muted);
+    max-width: 460px;
+  }
+
+  .throughline .ai-first {
+    color: var(--text-mid);
+    font-weight: 400;
+  }
+
+  /* Right column */
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 4vw;
+    border-left: 2px solid var(--plum);
+  }
+
+  .section-header {
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1.6;
+    color: #000000;
+    margin-bottom: 1.2rem;
+  }
+
+  .section-header-ai {
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1.6;
+    color: #000000;
+    margin-top: 2.2rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .chapter-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .chapter-item {
+    position: relative;
+    padding: 1.1rem 1.2rem;
+    margin-left: -1.2rem;
+    margin-right: -1.2rem;
+    border-bottom: 1px solid var(--border-faint);
+    cursor: pointer;
+    transition: all 0.35s ease;
+    border-radius: 4px;
+  }
+
+  .chapter-number {
+    font-weight: 300;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    margin-bottom: 0.3rem;
+    transition: color 0.35s ease;
+  }
+
+  .chapter-title {
+    font-weight: 400;
+    font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+    color: var(--text-muted);
+    transition: all 0.35s ease;
+    letter-spacing: -0.01em;
+  }
+
+  .chapter-item:hover {
+    background: var(--plum-light);
+  }
+
+  .chapter-item:hover .chapter-title {
+    color: var(--text);
+  }
+
+  .chapter-item:hover .chapter-number {
+    color: var(--plum);
+  }
+
+  .chapter-item::after {
+    content: '→';
+    position: absolute;
+    right: 1.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    color: var(--plum);
+    opacity: 0.35;
+    transition: all 0.35s ease;
+  }
+
+  .chapter-item:hover::after {
+    opacity: 1;
+    transform: translateY(-50%) translateX(4px);
+  }
+
+  /* AI section items */
+  .chapter-list-ai .chapter-item:hover .chapter-title {
+    color: var(--text);
+  }
+
+  /* Chapter 05 — the future */
+  .chapter-item.future {
+    border-bottom: none;
+    background: linear-gradient(135deg, rgba(90,38,80,0.05) 0%, rgba(110,51,99,0.03) 100%);
+    border-left: 3px solid var(--plum);
+    padding-left: calc(1.2rem + 3px);
+    margin-top: 0.3rem;
+  }
+
+  .chapter-item.future .chapter-title {
+    color: var(--plum);
+    font-weight: 600;
+  }
+
+  .chapter-item.future .future-tag {
+    display: inline-block;
+    font-weight: 500;
+    font-size: 0.52rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--plum-bright);
+    background: rgba(90,38,80,0.08);
+    padding: 0.2rem 0.55rem;
+    border-radius: 2px;
+    margin-left: 0.7rem;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+  }
+
+  .chapter-item.future:hover {
+    background: linear-gradient(135deg, rgba(90,38,80,0.1) 0%, rgba(110,51,99,0.06) 100%);
+    border-left-color: var(--plum-bright);
+  }
+
+  .chapter-item.future:hover .chapter-title {
+    color: var(--plum-hover);
+  }
+
+  /* =================== SCROLL SECTION =================== */
+  .scroll-section {
+    min-height: 100vh;
+    padding: 14vh 6vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: var(--bg-section);
+    position: relative;
+  }
+
+  .scroll-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 6vw;
+    right: 6vw;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .scroll-label {
+    font-weight: 400;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 3rem;
+  }
+
+  .scroll-intro {
+    font-weight: 300;
+    font-size: clamp(1.25rem, 1.9vw, 1.7rem);
+    line-height: 1.8;
+    color: var(--text-mid);
+    max-width: 620px;
+    margin-bottom: 6rem;
+  }
+
+  .scroll-intro strong {
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .scroll-intro em {
+    font-style: italic;
+    color: var(--plum);
+  }
+
+  .scroll-intro .break {
+    display: block;
+    margin-top: 1.5rem;
+  }
+
+  /* Triad */
+  .triad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3vw;
+    max-width: 940px;
+    width: 100%;
+  }
+
+  .triad-item {
+    text-align: left;
+    padding: 2.2rem 0 0;
+    border-top: 2px solid var(--text);
+  }
+
+  .triad-label {
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--plum);
+    margin-bottom: 1.1rem;
+  }
+
+  .triad-desc {
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--text-muted);
+  }
+
+  /* =================== SCROLL HINT =================== */
+  .scroll-hint {
+    position: absolute;
+    bottom: 4vh;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.5;
+    animation: pulse 3s ease-in-out infinite;
+    z-index: 1;
+  }
+
+  .scroll-hint span {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .scroll-hint .arrow {
+    width: 2px;
+    height: 28px;
+    background: linear-gradient(to bottom, var(--text-muted), transparent);
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.35; }
+    50% { opacity: 0.65; }
+  }
+
+  /* =================== CONTACT =================== */
+  .contact-bar {
+    padding: 4rem 6vw;
+    text-align: center;
+    background: var(--bg);
+    border-top: 1px solid var(--border-faint);
+  }
+
+  .contact-bar a {
+    font-weight: 400;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    color: var(--plum);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+  }
+
+  .contact-bar a:hover {
+    color: var(--plum-hover);
+    border-bottom-color: var(--plum-hover);
+  }
+
+  /* =================== RESPONSIVE =================== */
+  @media (max-width: 768px) {
+    .hero {
+      grid-template-columns: 1fr;
+      gap: 5vh;
+      padding: 10vh 7vw 6vh;
+    }
+    .hero-left { padding-right: 0; }
+    .hero-right {
+      border-left: none;
+      padding-left: 0;
+      border-top: 2px solid var(--plum);
+      padding-top: 4vh;
+    }
+    .triad {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .chapter-item {
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .chapter-item.future {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="hero-left">
+      <h1 class="name">
+        <span>Kathryn</span>
+        <span>Jones</span>
+      </h1>
+      <p class="differentiator">AI surfaces the connections.<br>Humans experience the meaning.</p>
+    </div>
+
+    <div class="hero-right">
+
+      <p class="section-header">15 years leading teams at the intersection of technology and creativity</p>
+      <ul class="chapter-list">
+        <li class="chapter-item">
+          <div class="chapter-number">01</div>
+          <div class="chapter-title"><a href="theater.html" style="color:inherit;text-decoration:none">Theater & Immersive Arts</a></div>
+        </li>
+        <li class="chapter-item">
+          <div class="chapter-number">02</div>
+          <div class="chapter-title"><a href="agency.html" style="color:inherit;text-decoration:none">Digital Media Agency</a></div>
+        </li>
+        <li class="chapter-item">
+          <div class="chapter-number">03</div>
+          <div class="chapter-title"><a href="interactive.html" style="color:inherit;text-decoration:none">Live Interactive Production</a></div>
+        </li>
+      </ul>
+
+      <p class="section-header-ai">Now AI-first across everything</p>
+      <ul class="chapter-list chapter-list-ai">
+        <li class="chapter-item">
+          <div class="chapter-number">04</div>
+          <div class="chapter-title"><a href="ai-systems.html" style="color:inherit;text-decoration:none">AI Creative Production & Workflows</a></div>
+        </li>
+        <li class="chapter-item future">
+          <div class="chapter-number">05</div>
+          <div class="chapter-title"><a href="experiential-knowledge.html" style="color:inherit;text-decoration:none">Experiential Knowledge Design <span class="future-tag">Current Focus</span></a></div>
+        </li>
+      </ul>
+
+    </div>
+
+    <div class="scroll-hint">
+      <span>More</span>
+      <div class="arrow"></div>
+    </div>
+  </section>
+
+  <section class="scroll-section">
+    <p class="scroll-label">Technology · Storytelling · Experience Design</p>
+    <p class="scroll-intro">
+      <strong>Different mediums. Same instinct.</strong>
+      <span class="break">I see connections between ideas, technologies, and human experiences that other people don't see yet. Then I build the systems to make those connections real. Then I design them into something people <em>actually want to experience</em>.</span>
+    </p>
+
+    <div class="triad">
+      <div class="triad-item">
+        <div class="triad-label">Conceive</div>
+        <p class="triad-desc">I've understood since 2007 that content wants to be interactive. Every medium I've worked in, I saw the convergence before the industry did — and built it.</p>
+      </div>
+      <div class="triad-item">
+        <div class="triad-label">Build</div>
+        <p class="triad-desc">Full-stack development, AI systems, production pipelines. Solo-built, end to end.</p>
+      </div>
+      <div class="triad-item">
+        <div class="triad-label">Design</div>
+        <p class="triad-desc">The methodology to turn any of it into something a human being wants to interact with.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="contact-bar">
+    <a href="mailto:kathryn@projectbased.ai">kathryn@projectbased.ai</a>
+    <p style="margin-top: 1.5rem; font-size: 0.7rem; color: var(--text-muted); letter-spacing: 0.08em;">&copy; <script>document.write(new Date().getFullYear())</script> Kathryn Jones</p>
+  </div>
+
+</body>
+</html>

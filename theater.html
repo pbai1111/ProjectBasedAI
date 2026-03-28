@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Theater & Immersive Arts — Kathryn Jones</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF8;
+    --bg-section: #F3F2EE;
+    --text: #1a1a1a;
+    --text-mid: #3a3a3a;
+    --text-muted: #7a7775;
+    --plum: #5A2650;
+    --plum-bright: #6E3363;
+    --plum-hover: #703566;
+    --plum-light: rgba(90,38,80,0.06);
+    --border: rgba(26,26,26,0.1);
+    --border-faint: rgba(26,26,26,0.05);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* =================== NAV =================== */
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1.5rem 6vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(250,250,248,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-faint);
+  }
+
+  .nav-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--plum);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+
+  .nav-back {
+    font-weight: 400;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+  }
+
+  .nav-back:hover { color: var(--plum); }
+
+  /* =================== PAGE HEADER =================== */
+  .page-header {
+    padding: 16vh 6vw 4vh;
+    max-width: 900px;
+  }
+
+  .page-chapter {
+    font-weight: 400;
+    font-size: 0.68rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--plum);
+    margin-bottom: 1.5rem;
+  }
+
+  .page-title {
+    font-weight: 700;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    letter-spacing: -0.03em;
+    color: var(--text);
+    line-height: 1.1;
+  }
+
+  /* =================== TWO COLUMN LAYOUT =================== */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5vw;
+    padding: 6vh 6vw 10vh;
+    align-items: start;
+  }
+
+  /* LEFT COLUMN — Story + Clients */
+  .col-left {
+    position: sticky;
+    top: 10vh;
+  }
+
+  .story {
+    font-weight: 300;
+    font-size: clamp(0.95rem, 1.15vw, 1.08rem);
+    line-height: 1.85;
+    color: var(--text-mid);
+    margin-bottom: 2rem;
+  }
+
+  .story .highlight {
+    color: var(--text);
+    font-weight: 400;
+  }
+
+  .story p + p {
+    margin-top: 1.2rem;
+  }
+
+  .era-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 3.5rem;
+  }
+
+  /* Client sections */
+  .clients-block {
+    border-top: 1px solid var(--border);
+    padding-top: 2.5rem;
+  }
+
+  .clients-section {
+    margin-bottom: 2.5rem;
+  }
+
+  .clients-label {
+    font-weight: 500;
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--plum);
+    margin-bottom: 1rem;
+  }
+
+  .clients-list {
+    font-weight: 300;
+    font-size: 0.88rem;
+    line-height: 2;
+    color: var(--text-muted);
+  }
+
+  .clients-list .client-name {
+    display: inline;
+  }
+
+  .clients-list .separator {
+    color: var(--border);
+    margin: 0 0.3rem;
+  }
+
+  .client-highlight {
+    color: var(--text-mid);
+    font-weight: 400;
+  }
+
+  .clients-note {
+    font-weight: 300;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: 0.5rem;
+    line-height: 1.5;
+  }
+
+  /* RIGHT COLUMN — Videos */
+  .col-right {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .video-item {
+    aspect-ratio: 16/9;
+    background: #e8e5e0;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.35s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .video-item:hover {
+    border-color: var(--plum);
+    box-shadow: 0 4px 24px rgba(90,38,80,0.08);
+  }
+
+  .video-play {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--plum);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.8rem;
+    opacity: 0.8;
+    transition: opacity 0.35s ease;
+  }
+
+  .video-item:hover .video-play {
+    opacity: 1;
+  }
+
+  .video-play::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 8px 0 8px 15px;
+    border-color: transparent transparent transparent white;
+    margin-left: 3px;
+  }
+
+  .video-label {
+    font-weight: 500;
+    font-size: 0.85rem;
+    color: var(--text-mid);
+  }
+
+  .video-sub {
+    font-weight: 300;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-top: 0.3rem;
+  }
+
+  /* Embedded video with caption */
+  .video-embed-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .video-embed-wrapper {
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .video-headline {
+    display: block;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--text);
+    text-decoration: none;
+    line-height: 1.4;
+    margin-top: 0.5rem;
+    transition: color 0.3s ease;
+  }
+
+  .video-headline:hover {
+    color: var(--plum);
+  }
+
+  .video-headline-meta {
+    font-weight: 300;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-top: 0.2rem;
+  }
+
+  .video-headline-byline {
+    font-weight: 500;
+    color: var(--plum);
+  }
+
+  /* =================== IMPACT =================== */
+  .impact-section {
+    padding: 8vh 6vw;
+    background: var(--bg-section);
+    border-top: 1px solid var(--border);
+  }
+
+  .impact-label {
+    font-weight: 400;
+    font-size: 0.68rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 3rem;
+  }
+
+  .impact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem 4vw;
+    margin-bottom: 4rem;
+  }
+
+  .impact-item {
+    border-left: 2px solid var(--plum);
+    padding-left: 1.5rem;
+  }
+
+  .impact-stat {
+    font-weight: 600;
+    font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+    color: var(--text);
+    margin-bottom: 0.4rem;
+    letter-spacing: -0.01em;
+  }
+
+  .impact-desc {
+    font-weight: 300;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  .throughline-col {
+    max-width: 640px;
+  }
+
+  .throughline-text {
+    font-weight: 300;
+    font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+    line-height: 1.8;
+    color: var(--text-mid);
+    margin-bottom: 3rem;
+  }
+
+  .throughline-text em {
+    font-style: italic;
+    color: var(--plum);
+  }
+
+  .next-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--plum);
+    text-decoration: none;
+    transition: gap 0.3s ease;
+  }
+
+  .next-link:hover {
+    gap: 1.2rem;
+  }
+
+  /* =================== RESPONSIVE =================== */
+  @media (max-width: 768px) {
+    .two-col {
+      grid-template-columns: 1fr;
+      gap: 4vh;
+    }
+    .col-left {
+      position: static;
+    }
+    .impact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <!-- =================== NAV =================== -->
+  <nav class="nav">
+    <a href="index.html" class="nav-name">Kathryn Jones</a>
+    <a href="index.html" class="nav-back">← Back to Home</a>
+  </nav>
+
+  <!-- =================== PAGE HEADER =================== -->
+  <section class="page-header">
+    <p class="page-chapter">01 — Where Technology Meets Creativity</p>
+    <h1 class="page-title">Theater & Immersive Arts</h1>
+  </section>
+
+  <!-- =================== TWO COLUMN =================== -->
+  <section class="two-col">
+
+    <!-- LEFT: Story + Clients -->
+    <div class="col-left">
+      <div class="clients-block" style="border-top:none; padding-top:0; margin-bottom:2.5rem;">
+        <div class="clients-section">
+          <p class="clients-label">Artists & Cultural Partners</p>
+          <div class="clients-list">
+            <span class="client-highlight">Alicia Keys</span><span class="separator">·</span>
+            <span class="client-highlight">Amanda Palmer</span><span class="separator">·</span>
+            <span class="client-name">Exit 12 Dance Company</span><span class="separator">·</span>
+            <span class="client-name">White With Some Color</span><span class="separator">·</span>
+            <span class="client-name">Fathom Events</span>
+            <p class="clients-note">Plus dozens of independent theater, dance, and music companies across the U.S. and internationally</p>
+          </div>
+        </div>
+
+        <div class="clients-section">
+          <p class="clients-label">Brand & Agency Partners</p>
+          <div class="clients-list">
+            <span class="client-highlight">Apple</span><span class="separator">·</span>
+            <span class="client-highlight">Amazon</span><span class="separator">·</span>
+            <span class="client-highlight">BMW</span><span class="separator">·</span>
+            <span class="client-highlight">Mercedes</span><span class="separator">·</span>
+            <span class="client-highlight">LG</span><span class="separator">·</span>
+            <span class="client-highlight">Michelob Ultra</span><span class="separator">·</span>
+            <span class="client-highlight">TNT</span>
+            <p class="clients-note">Via Cycle / Wasserman / The Team</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="story" style="border-top: 1px solid rgba(26,26,26,0.1); padding-top: 2.5rem;">
+        <p><span class="highlight">In 2007, I asked a question almost no one in the arts was asking:</span> what happens when live performance meets the internet — not as a recording, but as a real-time, interactive, global experience?</p>
+        <p>I spent the next decade answering it. I founded <span class="highlight">VirtualArtsTV</span> — the first company dedicated to live-streaming the performing arts to audiences worldwide while integrating social media into the real-time experience. We produced the first live-streamed digital play. We launched the first ever live-streamed performing arts festival. We built educational programs. We shot and directed live theatrical broadcasts for national distribution.</p>
+        <p>Years before the pandemic forced every theater company onto Zoom, we had already built the model, tested the technology, and proven the audience was there.</p>
+      </div>
+      <span class="era-tag">VirtualArtsTV · 2007–2016</span>
+    </div>
+
+    <!-- RIGHT: Videos -->
+    <div class="col-right">
+      <div class="video-embed-block">
+        <div class="video-embed-wrapper">
+          <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1177475721?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;title=0&amp;byline=0&amp;portrait=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="WiredArtsFest: Theater Gets a Tech Twist"></iframe></div>
+        </div>
+        <a href="https://abcnews.com/Technology/wiredarts-fest-theater-video-streaming-social-media-twist/story?id=18563597" target="_blank" rel="noopener" class="video-headline">WiredArts Fest: Theater With Video Streaming and a Social Media Twist</a>
+        <div class="video-headline-meta">It's okay to tweet, post to Facebook and take photos at this theater. — <span class="video-headline-byline">Joanna Stern</span></div>
+      </div>
+      <script src="https://player.vimeo.com/api/player.js"></script>
+      <div class="video-embed-block">
+        <div class="video-embed-wrapper">
+          <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1177517469?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;title=0&amp;byline=0&amp;portrait=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="VATV Rough Cut Trailer"></iframe></div>
+        </div>
+        <span class="video-headline">Ancient Rough Cut Sizzle - Alicia Keys, Amanda Palmer, David Bowie Tribute, Bedlam Theater Company, Flea Theater Company, Arc Theater, Major League Hackers, Apple Store.....</span>
+      </div>
+      <div class="video-embed-block">
+        <div class="video-embed-wrapper">
+          <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://www.youtube.com/embed/fv60-3ELmcc?modestbranding=1&rel=0&showinfo=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Education Program Trailer"></iframe></div>
+        </div>
+        <span class="video-headline">The Thrill of Interactive Live Theater in Your Classroom</span>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- =================== IMPACT + THROUGHLINE =================== -->
+  <section class="impact-section">
+    <p class="impact-label">By the Numbers</p>
+    <div class="impact-grid">
+      <div class="impact-item">
+        <div class="impact-stat">First of its kind</div>
+        <div class="impact-desc">The first company dedicated to live-streaming the performing arts globally with integrated real-time audience interaction</div>
+      </div>
+      <div class="impact-item">
+        <div class="impact-stat">50,000+ viewers</div>
+        <div class="impact-desc">For a single live-streamed digital play — audiences across the globe, participating in real time</div>
+      </div>
+      <div class="impact-item">
+        <div class="impact-stat">First live-streamed arts festival</div>
+        <div class="impact-desc">The WiredArts Fest — 13 companies spanning theater, dance, and music, performing for a global audience</div>
+      </div>
+      <div class="impact-item">
+        <div class="impact-stat">A decade of building</div>
+        <div class="impact-desc">2007–2016: pioneering interactive live performance long before the pandemic made it urgent</div>
+      </div>
+    </div>
+    <div class="throughline-col">
+      <p class="throughline-text">
+        VirtualArtsTV proved that audiences don't just want to watch — they want to <em>participate</em>. Every medium I've worked in since has been built on that same principle.
+      </p>
+      <a href="agency.html" class="next-link">Next: Digital Media Agency →</a>
+    </div>
+  </section>
+
+</body>
+</html>

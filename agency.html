@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Media Agency — Kathryn Jones</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF8;
+    --bg-section: #F3F2EE;
+    --text: #1a1a1a;
+    --text-mid: #3a3a3a;
+    --text-muted: #7a7775;
+    --plum: #5A2650;
+    --plum-bright: #6E3363;
+    --plum-hover: #703566;
+    --plum-light: rgba(90,38,80,0.06);
+    --border: rgba(26,26,26,0.1);
+    --border-faint: rgba(26,26,26,0.05);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1.5rem 6vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(250,250,248,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-faint);
+  }
+
+  .nav-name { font-weight: 600; font-size: 0.9rem; color: var(--plum); text-decoration: none; }
+  .nav-back { font-weight: 400; font-size: 0.75rem; color: var(--text-muted); text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.3s ease; }
+  .nav-back:hover { color: var(--plum); }
+
+  .page-header { padding: 16vh 6vw 4vh; max-width: 900px; }
+  .page-chapter { font-weight: 400; font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--plum); margin-bottom: 1.5rem; }
+  .page-title { font-weight: 700; font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em; color: var(--text); line-height: 1.1; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 5vw; padding: 6vh 6vw 10vh; align-items: start; }
+
+  .col-left { position: sticky; top: 10vh; }
+
+  .story { font-weight: 300; font-size: clamp(0.95rem, 1.15vw, 1.08rem); line-height: 1.85; color: var(--text-mid); margin-bottom: 2rem; }
+  .story .highlight { color: var(--text); font-weight: 400; }
+  .story p + p { margin-top: 1.2rem; }
+
+  .era-tag { display: inline-block; font-size: 0.75rem; font-weight: 400; color: var(--text-muted); letter-spacing: 0.1em; margin-bottom: 3.5rem; }
+
+  .capabilities-block { border-top: 1px solid var(--border); padding-top: 2.5rem; margin-bottom: 2.5rem; }
+  .capabilities-label { font-weight: 500; font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--plum); margin-bottom: 1rem; }
+  .capabilities-list { font-weight: 300; font-size: 0.88rem; line-height: 2; color: var(--text-muted); }
+  .capabilities-list .separator { color: var(--border); margin: 0 0.3rem; }
+
+  .clients-block { border-top: 1px solid var(--border); padding-top: 2.5rem; }
+  .clients-section { margin-bottom: 2.5rem; }
+  .clients-label { font-weight: 500; font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--plum); margin-bottom: 1rem; }
+  .clients-list { font-weight: 300; font-size: 0.88rem; line-height: 2; color: var(--text-muted); }
+  .client-highlight { color: var(--text-mid); font-weight: 400; }
+  .clients-list .separator { color: var(--border); margin: 0 0.3rem; }
+
+  .col-right { padding-top: 0.5rem; }
+
+  .logo-grid-label { font-weight: 500; font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--plum); margin-bottom: 1.5rem; }
+  .logo-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border-faint); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+  .logo-cell { aspect-ratio: 3/2; background: var(--bg); display: flex; align-items: center; justify-content: center; padding: 1.2rem; transition: all 0.35s ease; }
+  .logo-cell:hover { background: var(--plum-light); }
+  .logo-cell img { max-width: 80%; max-height: 60%; object-fit: contain; filter: grayscale(100%) opacity(0.5); transition: filter 0.35s ease; }
+  .logo-cell:hover img { filter: grayscale(0%) opacity(1); }
+  .logo-placeholder { font-weight: 300; font-size: 0.65rem; color: var(--text-muted); letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.4; }
+
+  .impact-section { padding: 8vh 6vw; background: var(--bg-section); border-top: 1px solid var(--border); }
+  .impact-label { font-weight: 400; font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 3rem; }
+  .impact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem 4vw; }
+  .impact-item { border-left: 2px solid var(--plum); padding-left: 1.5rem; }
+  .impact-stat { font-weight: 600; font-size: clamp(0.95rem, 1.2vw, 1.1rem); color: var(--text); margin-bottom: 0.4rem; letter-spacing: -0.01em; }
+  .impact-desc { font-weight: 300; font-size: 0.85rem; line-height: 1.6; color: var(--text-muted); }
+
+  .press-row { display: flex; gap: 3rem; align-items: center; margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--border-faint); max-width: 900px; }
+  .press-label-inline { font-weight: 300; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); white-space: nowrap; }
+  .press-logos { display: flex; gap: 2.5rem; align-items: center; flex-wrap: wrap; }
+  .press-logo { font-weight: 600; font-size: 0.8rem; color: var(--text-muted); letter-spacing: 0.02em; opacity: 0.5; }
+
+  .throughline-section { padding: 8vh 6vw; border-top: 1px solid var(--border); }
+  .throughline-text { font-weight: 300; font-size: clamp(1.1rem, 1.5vw, 1.3rem); line-height: 1.8; color: var(--text-mid); margin-bottom: 3rem; max-width: 640px; }
+  .throughline-text em { font-style: italic; color: var(--plum); }
+  .next-link { display: inline-flex; align-items: center; gap: 0.8rem; font-weight: 500; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--plum); text-decoration: none; transition: gap 0.3s ease; }
+  .next-link:hover { gap: 1.2rem; }
+
+  @media (max-width: 768px) {
+    .two-col { grid-template-columns: 1fr; gap: 4vh; }
+    .col-left { position: static; }
+    .impact-grid { grid-template-columns: 1fr; }
+    .press-row { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+    .logo-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-name">Kathryn Jones</a>
+    <a href="index.html" class="nav-back">← Back to Home</a>
+  </nav>
+
+  <section class="page-header">
+    <p class="page-chapter">02 — Where Technology Meets Creativity</p>
+    <h1 class="page-title">Digital Media Agency</h1>
+  </section>
+
+  <section class="two-col">
+    <div class="col-left">
+      <div class="capabilities-block" style="border-top:none; padding-top:0; margin-bottom:2.5rem;">
+        <p class="capabilities-label">Capabilities</p>
+        <div class="capabilities-list">
+          <span>Custom Video Production</span><span class="separator">·</span>
+          <span>Multi-Camera Shoots</span><span class="separator">·</span>
+          <span>Motion Graphics & Animation</span><span class="separator">·</span>
+          <span>Social-First Content</span><span class="separator">·</span>
+          <span>Rapid Response Video</span><span class="separator">·</span>
+          <span>Graphic Design</span><span class="separator">·</span>
+          <span>Content Strategy</span><span class="separator">·</span>
+          <span>Distribution Strategy</span>
+        </div>
+      </div>
+
+      <div class="story" style="border-top: 1px solid rgba(26,26,26,0.1); padding-top: 2.5rem;">
+        <p><span class="highlight">In 2016, I founded Collective Agency</span> — a full-service digital media agency built for organizations doing work that mattered. For six years I led strategy, creative direction, and production across video, social content, motion graphics, and rapid-response media.</p>
+        <p>The clients ranged from national nonprofits to political campaigns to Fortune 500 companies. The work ranged from multi-camera shoots to animated explainers to full content strategy. What held it all together was the same principle: <span class="highlight">every piece of content is an opportunity to build an experience</span>, not just deliver a message.</p>
+        <p>Building the agency taught me how to run a business, manage clients at scale, deliver under relentless deadlines, and see every production challenge as a design problem.</p>
+      </div>
+      <span class="era-tag">Collective Agency · 2016–2022</span>
+    </div>
+
+    <div class="col-right">
+      <p class="logo-grid-label">Selected Clients</p>
+      <div class="logo-grid">
+        <!-- PLACEHOLDER: Replace each logo-cell's content with <img src="logos/client.svg" alt="Client Name"> -->
+        <div class="logo-cell"><span class="logo-placeholder">Logo</span></div>
+        <div class="logo-cell"><span class="logo-placeholder">Logo</span></div>
+        <div class="logo-cell"><span class="logo-placeholder">Logo</span></div>
+        <div class="logo-cell"><span class="logo-placeholder">Logo</span></div>
+        <div class="logo-cell"><span class="logo-placeholder">Logo</span></div>
+        <div class="logo-cell"><span class="logo-placeholder">Logo</span></div>
+        <div class="logo-cell"><span class="logo-placeholder">Logo</span></div>
+        <div class="logo-cell"><span class="logo-placeholder">Logo</span></div>
+        <div class="logo-cell"><span class="logo-placeholder">Logo</span></div>
+        <div class="logo-cell"><span class="logo-placeholder">Logo</span></div>
+        <div class="logo-cell"><span class="logo-placeholder">Logo</span></div>
+        <div class="logo-cell"><span class="logo-placeholder">Logo</span></div>
+        <div class="logo-cell"><span class="logo-placeholder">Logo</span></div>
+        <div class="logo-cell"><span class="logo-placeholder">Logo</span></div>
+        <div class="logo-cell"><span class="logo-placeholder">Logo</span></div>
+        <div class="logo-cell"><span class="logo-placeholder">Logo</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="impact-section">
+    <p class="impact-label">The Agency</p>
+    <div class="impact-grid">
+      <div class="impact-item">
+        <div class="impact-stat">Founded & led for 6 years</div>
+        <div class="impact-desc">Full P&L ownership, client management, creative direction, and team leadership from startup to sustained operation</div>
+      </div>
+      <div class="impact-item">
+        <div class="impact-stat">Full-service production</div>
+        <div class="impact-desc">Video, graphic design, motion graphics, social content, rapid response — all under one roof</div>
+      </div>
+      <div class="impact-item">
+        <div class="impact-stat">National reach</div>
+        <div class="impact-desc">Clients ranging from Fortune 500 companies to political campaigns to grassroots organizations</div>
+      </div>
+      <div class="impact-item">
+        <div class="impact-stat">Mission-driven by design</div>
+        <div class="impact-desc">Built the agency to serve organizations working toward collective good — the mission shaped every creative decision</div>
+      </div>
+    </div>
+
+    <div class="press-row">
+      <span class="press-label-inline">Featured in</span>
+      <div class="press-logos">
+        <span class="press-logo">Fast Company</span>
+        <span class="press-logo">AdWeek</span>
+        <span class="press-logo">LA Times</span>
+        <span class="press-logo">Boston Globe</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="throughline-section">
+    <p class="throughline-text">
+      Running an agency for six years taught me that the best production work isn't just <em>content</em> — it's <em>experience design under deadline</em>. Every project was a system: audience, message, medium, moment. The next chapter took that thinking and pushed it further.
+    </p>
+    <a href="interactive.html" class="next-link">Next: Live Interactive Production →</a>
+  </section>
+
+</body>
+</html>

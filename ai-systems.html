@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Production & Systems — Kathryn Jones</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF8;
+    --bg-section: #F3F2EE;
+    --text: #1a1a1a;
+    --text-mid: #3a3a3a;
+    --text-muted: #7a7775;
+    --plum: #5A2650;
+    --plum-bright: #6E3363;
+    --plum-hover: #703566;
+    --plum-light: rgba(90,38,80,0.06);
+    --border: rgba(26,26,26,0.1);
+    --border-faint: rgba(26,26,26,0.05);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1.5rem 6vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(250,250,248,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-faint);
+  }
+
+  .nav-name { font-weight: 600; font-size: 0.9rem; color: var(--plum); text-decoration: none; }
+  .nav-back { font-weight: 400; font-size: 0.75rem; color: var(--text-muted); text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.3s ease; }
+  .nav-back:hover { color: var(--plum); }
+
+  .page-header { padding: 16vh 6vw 4vh; max-width: 900px; }
+  .page-chapter { font-weight: 400; font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--plum); margin-bottom: 1.5rem; }
+  .page-title { font-weight: 700; font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em; color: var(--text); line-height: 1.1; }
+
+  /* =================== TWO COLUMN =================== */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5vw;
+    padding: 6vh 6vw 10vh;
+    align-items: start;
+  }
+
+  /* LEFT: Story + Credential */
+  .col-left {
+    position: sticky;
+    top: 10vh;
+  }
+
+  .story { font-weight: 300; font-size: clamp(0.95rem, 1.15vw, 1.08rem); line-height: 1.85; color: var(--text-mid); margin-bottom: 2.5rem; }
+  .story .highlight { color: var(--text); font-weight: 400; }
+  .story p + p { margin-top: 1.2rem; }
+
+  .credential-block {
+    background: var(--plum-light);
+    border-left: 3px solid var(--plum);
+    padding: 1.8rem 2rem;
+    border-radius: 4px;
+  }
+
+  .credential-label {
+    font-weight: 500;
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--plum);
+    margin-bottom: 0.8rem;
+  }
+
+  .credential-title {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+  }
+
+  .credential-source {
+    font-weight: 300;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  /* RIGHT: Approach + Cards */
+  .col-right {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .approach-block {
+    margin-bottom: 1rem;
+  }
+
+  .approach-label {
+    font-weight: 500;
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--plum);
+    margin-bottom: 1rem;
+  }
+
+  .approach-text {
+    font-weight: 300;
+    font-size: 0.92rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .approach-text .highlight {
+    color: var(--text-mid);
+    font-weight: 400;
+  }
+
+  /* Flip cards */
+  .case-card {
+    perspective: 1000px;
+    height: 280px;
+  }
+
+  .case-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s ease;
+    transform-style: preserve-3d;
+  }
+
+  .case-card:hover .case-card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .case-card-front,
+  .case-card-back {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 6px;
+    padding: 2rem 1.8rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .case-card-front {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    justify-content: center;
+    gap: 1.2rem;
+  }
+
+  .case-card-back {
+    background: var(--plum);
+    transform: rotateY(180deg);
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .case-card-title {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+
+  .case-label {
+    font-weight: 600;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--plum);
+  }
+
+  .case-text {
+    font-weight: 400;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--text-mid);
+  }
+
+  .case-card-back .case-label {
+    color: rgba(255,255,255,0.5);
+  }
+
+  .case-card-back .case-text {
+    color: rgba(255,255,255,0.9);
+  }
+
+  .case-card-back .case-result {
+    font-weight: 400;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #fff;
+  }
+
+  .case-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .flip-hint {
+    font-weight: 300;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    opacity: 0.5;
+    margin-top: auto;
+  }
+
+  /* =================== THROUGHLINE =================== */
+  .throughline-section {
+    padding: 8vh 6vw;
+    border-top: 1px solid var(--border);
+  }
+
+  .throughline-text {
+    font-weight: 300;
+    font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+    line-height: 1.8;
+    color: var(--text-mid);
+    margin-bottom: 3rem;
+    max-width: 640px;
+  }
+
+  .throughline-text em { font-style: italic; color: var(--plum); }
+
+  .next-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--plum);
+    text-decoration: none;
+    transition: gap 0.3s ease;
+  }
+
+  .next-link:hover { gap: 1.2rem; }
+
+  @media (max-width: 768px) {
+    .two-col { grid-template-columns: 1fr; gap: 4vh; }
+    .col-left { position: static; }
+    .case-card { height: auto; perspective: none; }
+    .case-card-inner { transform-style: flat; }
+    .case-card:hover .case-card-inner { transform: none; }
+    .case-card-front, .case-card-back { position: static; backface-visibility: visible; transform: none; height: auto; }
+    .case-card-back { border-radius: 0 0 6px 6px; }
+    .case-card-front { border-radius: 6px 6px 0 0; border-bottom: none; }
+    .flip-hint { display: none; }
+    .case-card-title { font-size: 1.1rem; margin-bottom: 0.3rem; }
+  }
+</style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-name">Kathryn Jones</a>
+    <a href="index.html" class="nav-back">← Back to Home</a>
+  </nav>
+
+  <section class="page-header">
+    <p class="page-chapter">04 — Where AI Meets Experience</p>
+    <h1 class="page-title">AI Production & Systems</h1>
+  </section>
+
+  <section class="two-col">
+
+    <!-- LEFT: Story + Credential -->
+    <div class="col-left">
+      <div class="story">
+        <p><span class="highlight">AI isn't a new direction for me. It's a new tool for a career-long obsession:</span> building systems at the intersection of technology and creativity that turn manual, fragmented processes into something elegant, automated, and human.</p>
+        <p>I've spent nearly two decades finding the convergence between emerging technology and real-world experience — in theater, in live production, in digital media. AI is the most powerful version of that convergence yet. I build AI-native production pipelines, workflow automation systems, and analytical tools that don't just save time — they <span class="highlight">surface insights and connections that manual processes miss entirely.</span></p>
+      </div>
+
+      <div class="credential-block">
+        <p class="credential-label">Credential</p>
+        <div class="credential-title">Certificate in Applied Generative AI</div>
+        <div class="credential-source">Massachusetts Institute of Technology (MIT)</div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Approach + Cards -->
+    <div class="col-right">
+
+      <div class="approach-block">
+        <p class="approach-label">The Approach</p>
+        <div class="approach-text">
+          Every system starts the same way: <span class="highlight">someone is losing time, insight, or quality to a manual process that doesn't need to be manual.</span> I identify the pattern, architect the AI solution, build it end to end, and deliver it as a production tool — not a prototype.
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-card-inner">
+          <div class="case-card-front">
+            <div class="case-card-title">AI Video Production</div>
+            <div class="case-section">
+              <span class="case-label">Problem</span>
+              <p class="case-text">Companies need video content that competes. Traditional production timelines are long and expensive.</p>
+            </div>
+            <span class="flip-hint">Hover for solution →</span>
+          </div>
+          <div class="case-card-back">
+            <div class="case-section">
+              <span class="case-label">Solution</span>
+              <p class="case-text">AI-native video production — from storyboard to final cut. A fundamentally different workflow that delivers broadcast-quality work at a fraction of the cost and timeline.</p>
+            </div>
+            <div class="case-section">
+              <span class="case-label">Result</span>
+              <p class="case-result">Broadcast-quality deliverables. Radically compressed timelines. Delivered across independent clients and as part of a production team.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-card-inner">
+          <div class="case-card-front">
+            <div class="case-card-title">Media Analytics Automation</div>
+            <div class="case-section">
+              <span class="case-label">Problem</span>
+              <p class="case-text">Performance data lived on multiple platforms. Formats were inconsistent. It took hours every week to manually pull and reconcile numbers.</p>
+            </div>
+            <span class="flip-hint">Hover for solution →</span>
+          </div>
+          <div class="case-card-back">
+            <div class="case-section">
+              <span class="case-label">Solution</span>
+              <p class="case-text">Built an automated system that pulls data from all platforms, merges inconsistent formats, and generates performance insights automatically.</p>
+            </div>
+            <div class="case-section">
+              <span class="case-label">Result</span>
+              <p class="case-result">What took hours every week now runs on its own — and surfaces insights that manual reviews missed. Designed to scale.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-card-inner">
+          <div class="case-card-front">
+            <div class="case-card-title">Live Event Operations Automation</div>
+            <div class="case-section">
+              <span class="case-label">Problem</span>
+              <p class="case-text">Major international sporting event. Dozens of stakeholders. Staff spent days every year pulling data from old spreadsheets, rebuilding documents from scratch.</p>
+            </div>
+            <span class="flip-hint">Hover for solution →</span>
+          </div>
+          <div class="case-card-back">
+            <div class="case-section">
+              <span class="case-label">Solution</span>
+              <p class="case-text">Built an automated system that pulls historical data and generates ready-to-use briefing documents.</p>
+            </div>
+            <div class="case-section">
+              <span class="case-label">Result</span>
+              <p class="case-result">What took days now takes minutes. Errors eliminated. The team got their time back.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-card-inner">
+          <div class="case-card-front">
+            <div class="case-card-title">Content Strategy Deep Dive</div>
+            <div class="case-section">
+              <span class="case-label">Problem</span>
+              <p class="case-text">Downloads were in decline. Leadership needed a recovery plan.</p>
+            </div>
+            <span class="flip-hint">Hover for solution →</span>
+          </div>
+          <div class="case-card-back">
+            <div class="case-section">
+              <span class="case-label">Solution</span>
+              <p class="case-text">Used AI to analyze 2+ years of performance data — analysis that would have taken a team weeks. Discovered the real problem: the content had never built an organic audience. Reframed the entire strategy from recovery to first-time growth.</p>
+            </div>
+            <div class="case-section">
+              <span class="case-label">Result</span>
+              <p class="case-result">Delivered a 55-page deck with actionable recommendations. Changed the strategic direction entirely.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-card-inner">
+          <div class="case-card-front">
+            <div class="case-card-title">Creative Production Automation</div>
+            <div class="case-section">
+              <span class="case-label">Problem</span>
+              <p class="case-text">55 transcripts to search. 120+ quotes to cut, shape, and structure into a 5-act story. Multiple tracks of music to source. One-person team.</p>
+            </div>
+            <span class="flip-hint">Hover for solution →</span>
+          </div>
+          <div class="case-card-back">
+            <div class="case-section">
+              <span class="case-label">Solution</span>
+              <p class="case-text">Built AI tools that handled the tedious parts — transcript searching, organizing quotes into a paper edit, writing music prompts, building meta tags. What remained was the creative work: culling 120+ quotes into 26, shaping the narrative, editing the episode.</p>
+            </div>
+            <div class="case-section">
+              <span class="case-label">Result</span>
+              <p class="case-result">Delivered in a fraction of the usual timeline. AI handled the labor. The human made the art.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- =================== THROUGHLINE =================== -->
+  <section class="throughline-section">
+    <p class="throughline-text">
+      Every one of these systems follows the same principle: <em>AI handles the labor so the human can focus on the meaning.</em> The final chapter takes that principle to its furthest conclusion yet.
+    </p>
+    <a href="experiential-knowledge.html" class="next-link">Next: Experiential Knowledge Design →</a>
+  </section>
+
+</body>
+</html>

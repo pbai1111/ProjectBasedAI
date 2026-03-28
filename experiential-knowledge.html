@@ -1,0 +1,3152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insatiable Mind · A Personal Practice</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:          #070707;
+      --surface:     #0f0f0f;
+      --text:        #e8e4df;
+      --muted:       #b5a88e;
+      --dim:         #4a5260;
+      --gold:        #c9a96e;
+      --gold-faint:  rgba(201,169,110,0.12);
+      --gold-line:   rgba(201,169,110,0.22);
+      --blue:        #7a9bb5;
+      --blue-faint:  rgba(122,155,181,0.12);
+      --serif:       'Cormorant Garamond', Georgia, serif;
+      --sans:        'DM Sans', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+      cursor: default;
+    }
+
+    /* ── Reveal ── */
+    .r {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 1.1s ease, transform 1.1s ease;
+    }
+    .r.in { opacity: 1; transform: none; }
+    .r-d1 { transition-delay: 0.25s; }
+    .r-d2 { transition-delay: 0.5s; }
+    .r-d3 { transition-delay: 0.75s; }
+    .r-d4 { transition-delay: 1s; }
+    .r-slow { opacity: 0; transition: opacity 2.4s ease; }
+    .r-slow.in { opacity: 1; }
+
+    /* ══════════════════════════════════════
+       SECTION 1 · PROBLEM / THESIS
+    ══════════════════════════════════════ */
+
+    .s-thesis {
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: 1fr auto 1fr;
+      padding: 0 40px;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .thesis-eyebrow {
+      padding-top: 80px;
+      font-family: var(--sans);
+      font-size: 0.58rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      align-self: end;
+      padding-bottom: 52px;
+    }
+
+    .thesis-body {
+      /* center row */
+    }
+
+    .thesis-p {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(1.25rem, 2.8vw, 1.75rem);
+      line-height: 1.75;
+      color: #ffffff;
+      margin-bottom: 2.2em;
+    }
+
+    .thesis-p:last-child { margin-bottom: 0; }
+
+    .thesis-p em {
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    .thesis-p strong {
+      font-weight: 400;
+      color: var(--text);
+    }
+
+    .thesis-brand {
+      font-family: var(--serif);
+      font-weight: 400;
+      letter-spacing: 0.04em;
+    }
+
+    .scroll-cue {
+      align-self: center;
+      padding-bottom: 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.7;
+    }
+
+    .scroll-cue::after {
+      content: '';
+      width: 1px;
+      height: 52px;
+      background: linear-gradient(to bottom, var(--dim), transparent);
+      animation: drip 2.6s ease-in-out infinite;
+    }
+
+    @keyframes drip {
+      0%   { opacity: 0; transform: scaleY(0); transform-origin: top; }
+      45%  { opacity: 1; transform: scaleY(1); }
+      100% { opacity: 0; }
+    }
+
+    /* ══════════════════════════════════════
+       DIVIDER
+    ══════════════════════════════════════ */
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold-line), transparent);
+      margin: 0;
+    }
+
+    /* ══════════════════════════════════════
+       SECTION 2 · THE SYSTEM
+    ══════════════════════════════════════ */
+
+    .s-system {
+      padding: 120px 40px 100px;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: var(--sans);
+      font-size: 0.58rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 52px;
+    }
+
+    .system-intro {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+      line-height: 1.75;
+      color: var(--muted);
+      max-width: 640px;
+      margin-bottom: 72px;
+    }
+
+    .system-intro strong {
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    /* Book shelf */
+    .bookshelf {
+      display: flex;
+      gap: 6px;
+      align-items: flex-end;
+      margin-bottom: 80px;
+      height: 140px;
+      overflow: hidden;
+    }
+
+    .spine {
+      flex: 1;
+      height: 100%;
+      border-radius: 2px 2px 0 0;
+      position: relative;
+      transition: flex 0.4s ease, transform 0.3s ease;
+      cursor: default;
+      min-width: 0;
+    }
+
+    .spine:hover {
+      transform: translateY(-8px);
+    }
+
+    .spine-text {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-90deg);
+      white-space: nowrap;
+      font-family: var(--serif);
+      font-size: 0.5rem;
+      color: rgba(255,255,255,0.5);
+      transform-origin: center;
+      writing-mode: vertical-rl;
+      transform: none;
+      left: 4px;
+      bottom: 8px;
+      right: 4px;
+      text-align: center;
+      font-size: 0.45rem;
+      line-height: 1.3;
+      overflow: hidden;
+    }
+
+    .spine.featured {
+      flex: 2.5;
+      border: 1px solid rgba(201,169,110,0.3);
+    }
+
+    .spine.featured .spine-text {
+      color: rgba(201,169,110,0.8);
+      font-size: 0.55rem;
+    }
+
+    /* App screenshot placeholder */
+    .app-placeholder {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 0;
+    }
+
+    .app-screen {
+      aspect-ratio: 9/16;
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .app-screen::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(to right, transparent, var(--gold-line), transparent);
+    }
+
+    .app-screen-label {
+      font-size: 0.5rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dim);
+      text-align: center;
+    }
+
+    .app-screen-hint {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 0.75rem;
+      color: rgba(201,169,110,0.35);
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .app-note {
+      margin-top: 14px;
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--dim);
+      text-align: center;
+    }
+
+    /* ══════════════════════════════════════
+       SECTION 3 · THE ENCOUNTER
+    ══════════════════════════════════════ */
+
+    /* Gallery entrance */
+    .s-gallery {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .s-gallery img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      animation: kb-in 28s ease-in-out forwards;
+    }
+
+    @keyframes kb-in {
+      from { transform: scale(1); }
+      to   { transform: scale(1.07); }
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(7,7,7,0.25) 0%,
+        transparent 30%,
+        rgba(7,7,7,0.6) 65%,
+        rgba(7,7,7,0.97) 100%
+      );
+    }
+
+    .gallery-caption {
+      position: absolute;
+      bottom: 60px;
+      left: 48px;
+      right: 48px;
+    }
+
+    .gallery-label {
+      font-size: 0.58rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+
+    .gallery-text {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      line-height: 1.35;
+      max-width: 560px;
+      color: var(--text);
+    }
+
+    /* Voices */
+    .s-voices {
+      padding: 100px 48px;
+      max-width: 740px;
+      margin: 0 auto;
+    }
+
+    .voice-block {
+      margin-bottom: 64px;
+      padding-left: 24px;
+      position: relative;
+    }
+
+    .voice-block::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 4px; bottom: 4px;
+      width: 1px;
+    }
+
+    .voice-block.v-narrator::before { background: var(--gold-line); }
+    .voice-block.v-met::before      { background: rgba(122,155,181,0.3); }
+    .voice-block.v-kandel::before   { background: rgba(122,155,181,0.5); }
+
+    .voice-tag {
+      font-size: 0.55rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .v-narrator .voice-tag { color: var(--gold); }
+    .v-met      .voice-tag { color: var(--blue); }
+    .v-kandel   .voice-tag { color: var(--blue); }
+
+    .voice-text {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(1.1rem, 2.3vw, 1.45rem);
+      line-height: 1.78;
+      color: var(--text);
+    }
+
+    /* Painting zoom */
+    .s-painting {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .s-painting img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform-origin: 65% 25%;
+      animation: zoom-door 36s ease-out forwards;
+    }
+
+    @keyframes zoom-door {
+      from { transform: scale(1); }
+      to   { transform: scale(1.8); }
+    }
+
+    .s-painting .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(7,7,7,0.15) 0%,
+        transparent 25%,
+        rgba(7,7,7,0.7) 75%,
+        rgba(7,7,7,0.97) 100%
+      );
+    }
+
+    .painting-caption {
+      position: absolute;
+      bottom: 56px;
+      left: 48px;
+      right: 48px;
+    }
+
+    .painting-label {
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .painting-note {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      color: var(--muted);
+      max-width: 500px;
+    }
+
+    /* Kandel block */
+    .s-kandel {
+      padding: 100px 48px;
+      max-width: 740px;
+      margin: 0 auto;
+    }
+
+    .kandel-book {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 110px;
+      height: 158px;
+      background: linear-gradient(145deg, #131d28, #1c2d40);
+      border: 1px solid rgba(122,155,181,0.2);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.7), 0 0 40px rgba(122,155,181,0.06);
+      padding: 16px 12px;
+      margin-bottom: 56px;
+    }
+
+    .kandel-book-author {
+      font-size: 0.45rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(122,155,181,0.6);
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .kandel-book-title {
+      font-family: var(--serif);
+      font-size: 0.78rem;
+      line-height: 1.45;
+      color: var(--text);
+      text-align: center;
+    }
+
+    /* McEwan peak */
+    .s-mcewan {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 40px;
+      text-align: center;
+      position: relative;
+    }
+
+    .s-mcewan::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 45%, rgba(55,42,22,0.18) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .mcewan-cover {
+      width: clamp(100px, 14vw, 150px);
+      box-shadow: 0 28px 90px rgba(0,0,0,0.85), 0 0 0 1px rgba(255,255,255,0.04);
+      margin-bottom: 56px;
+    }
+
+    .gold-line {
+      width: 32px;
+      height: 1px;
+      background: var(--gold-line);
+      margin: 0 auto 52px;
+    }
+
+    .peak-quote {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(1.8rem, 4.5vw, 3.2rem);
+      line-height: 1.38;
+      max-width: 600px;
+      color: var(--text);
+      letter-spacing: 0.01em;
+      margin-bottom: 28px;
+    }
+
+    .peak-attrib {
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dim);
+    }
+
+    /* Transport */
+    .s-transport {
+      padding: 80px 48px;
+      max-width: 660px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .transport-text {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+      line-height: 1.9;
+      color: var(--muted);
+    }
+
+    /* Video */
+    .s-video {
+      padding: 20px 40px 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .video-container {
+      width: 400px;
+      max-width: 100%;
+      aspect-ratio: 400 / 458;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .video-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .video-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: radial-gradient(ellipse at 40% 50%, rgba(80,62,32,0.1) 0%, transparent 55%),
+                  radial-gradient(ellipse at 65% 55%, rgba(40,58,36,0.07) 0%, transparent 55%);
+    }
+
+    .video-container:has(video) .video-placeholder { display: none; }
+
+    .vp-tag {
+      font-size: 0.55rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .vp-title {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(0.9rem, 2vw, 1.2rem);
+      color: var(--muted);
+      max-width: 360px;
+      text-align: center;
+    }
+
+    .video-note {
+      margin-top: 12px;
+      font-size: 0.52rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--dim);
+      text-align: center;
+    }
+
+    /* Return */
+    .s-return {
+      position: relative;
+      height: 92vh;
+      overflow: hidden;
+    }
+
+    .s-return img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      animation: kb-return 22s ease-in-out infinite alternate;
+    }
+
+    @keyframes kb-return {
+      from { transform: scale(1.05); }
+      to   { transform: scale(1); }
+    }
+
+    .s-return .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(7,7,7,0.45) 0%,
+        transparent 28%,
+        rgba(7,7,7,0.72) 68%,
+        rgba(7,7,7,0.97) 100%
+      );
+    }
+
+    .return-caption {
+      position: absolute;
+      bottom: 64px;
+      left: 48px;
+      right: 48px;
+      max-width: 620px;
+    }
+
+    .return-line1 {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1rem, 2.2vw, 1.4rem);
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .return-line2 {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(1.3rem, 2.8vw, 1.85rem);
+      line-height: 1.42;
+      color: var(--text);
+    }
+
+    /* ══════════════════════════════════════
+       SECTION 4 · THE STAKES
+    ══════════════════════════════════════ */
+
+    .s-stakes {
+      padding: 120px 48px 100px;
+      max-width: 740px;
+      margin: 0 auto;
+    }
+
+    .stakes-text {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(1.1rem, 2.3vw, 1.5rem);
+      line-height: 1.85;
+      color: var(--muted);
+      margin-bottom: 2em;
+    }
+
+    .stakes-text strong {
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    .stakes-examples {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-top: 64px;
+    }
+
+    .stakes-ex {
+      padding: 32px 28px;
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .stakes-ex-who {
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .stakes-ex-what {
+      font-family: var(--serif);
+      font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    .stakes-ex-what strong {
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    /* ══════════════════════════════════════
+       SECTION 5 · THE PERSON
+    ══════════════════════════════════════ */
+
+    .s-person {
+      padding: 120px 48px 100px;
+      max-width: 740px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    @media (max-width: 640px) {
+      .s-person { grid-template-columns: 1fr; gap: 48px; }
+      .stakes-examples { grid-template-columns: 1fr; }
+      .app-placeholder { grid-template-columns: 1fr 1fr; }
+      .s-thesis { padding: 0 24px; }
+      .s-voices, .s-kandel, .s-stakes, .s-person, .s-closing { padding-left: 24px; padding-right: 24px; }
+      .gallery-caption, .painting-caption, .return-caption { left: 24px; right: 24px; }
+    }
+
+    .person-name {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      letter-spacing: 0.04em;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .person-title {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 36px;
+    }
+
+    .person-bio {
+      font-family: var(--serif);
+      font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    .person-bio strong {
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    .person-mantra {
+      padding: 32px;
+      border: 1px solid var(--gold-line);
+      background: var(--gold-faint);
+    }
+
+    .mantra-label {
+      font-size: 0.52rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 16px;
+    }
+
+    .mantra-text {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    /* ══════════════════════════════════════
+       SECTION 6 · THE DOOR
+    ══════════════════════════════════════ */
+
+    .s-closing {
+      padding: 100px 48px 160px;
+      max-width: 740px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .closing-rule {
+      width: 1px;
+      height: 80px;
+      background: linear-gradient(to bottom, transparent, var(--gold-line), transparent);
+      margin: 0 auto 80px;
+    }
+
+    .closing-name {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      letter-spacing: 0.1em;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .closing-sub {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 52px;
+    }
+
+    .closing-contact {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      color: var(--dim);
+      margin-bottom: 6px;
+    }
+
+    .closing-email {
+      font-family: var(--serif);
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--gold-line);
+      padding-bottom: 2px;
+      transition: color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .closing-email:hover {
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+
+    .closing-credit {
+      margin-top: 80px;
+      font-size: 0.55rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--dim);
+      line-height: 2.2;
+    }
+
+
+    /* ── Book covers — real images ── */
+    .bookcovers {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+      margin-bottom: 80px;
+    }
+
+    @media (max-width: 640px) {
+      .bookcovers { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .book-cover-img {
+      aspect-ratio: 2/3;
+      position: relative;
+      border-radius: 2px;
+      overflow: hidden;
+      box-shadow: 4px 8px 28px rgba(0,0,0,0.75);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .book-cover-img:hover {
+      transform: translateY(-8px) rotate(0.8deg);
+      box-shadow: 8px 20px 48px rgba(0,0,0,0.85);
+    }
+
+    .book-cover-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .featured-cover-img {
+      box-shadow: 4px 8px 28px rgba(201,169,110,0.25), 4px 8px 28px rgba(0,0,0,0.75);
+    }
+
+    .featured-cover-img:hover {
+      box-shadow: 8px 20px 48px rgba(201,169,110,0.3), 8px 20px 48px rgba(0,0,0,0.85);
+    }
+
+    /* ── EXPERIENCE break ── */
+    .s-experience-break {
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 40px;
+      text-align: center;
+      position: relative;
+    }
+
+    .s-experience-break::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 50%, rgba(201,169,110,0.05) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .exp-small {
+      font-family: var(--sans);
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 28px;
+    }
+
+    .exp-knowledge {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(1.8rem, 5vw, 3.5rem);
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      margin-bottom: 12px;
+    }
+
+    .exp-arrow {
+      font-family: var(--sans);
+      font-size: clamp(1rem, 2.5vw, 1.6rem);
+      color: var(--dim);
+      margin: 8px 0;
+      letter-spacing: 0.2em;
+    }
+
+    .exp-experience {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: clamp(2.2rem, 7vw, 5.5rem);
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      line-height: 1;
+    }
+
+    .exp-tagline {
+      margin-top: 36px;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(0.95rem, 1.8vw, 1.2rem);
+      color: var(--dim);
+      max-width: 440px;
+    }
+
+
+    /* ── System narrative pieces ── */
+    .system-into-layer {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(1.3rem, 3vw, 2.2rem);
+      color: var(--muted);
+      margin-bottom: 52px;
+      font-style: italic;
+    }
+
+    .system-wild-text {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(1rem, 2.2vw, 1.4rem);
+      line-height: 1.75;
+      color: var(--muted);
+      max-width: 560px;
+      margin-bottom: 52px;
+    }
+
+    /* ── Bridge ── */
+    .s-bridge {
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 40px;
+      text-align: center;
+    }
+
+    .bridge-text {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(2rem, 5vw, 4rem);
+      color: var(--text);
+      letter-spacing: 0.02em;
+      margin-bottom: 24px;
+    }
+
+    .bridge-sub {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.1rem, 2.5vw, 1.7rem);
+      line-height: 1.6;
+      color: var(--muted);
+      max-width: 580px;
+    }
+
+
+    /* ── Living layer reveal ── */
+    .s-layer-reveal {
+      position: relative;
+      padding-bottom: 80px;
+    }
+
+    .layer-text-top {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 40px 60px;
+      font-family: var(--serif);
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(1.3rem, 3vw, 2.2rem);
+      color: var(--muted);
+    }
+
+    .layer-dash {
+      color: var(--gold);
+      margin-right: 6px;
+    }
+
+    .layer-stage {
+      position: relative;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow: visible;
+    }
+
+    .layer-met {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    .layer-met img {
+      width: 100%;
+      display: block;
+      height: auto;
+      border-radius: 2px;
+    }
+
+    .layer-met-fade {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(7,7,7,0.0) 0%,
+        rgba(7,7,7,0.0) 60%,
+        rgba(7,7,7,0.4) 88%,
+        rgba(7,7,7,0.7) 100%
+      );
+      border-radius: 2px;
+    }
+
+    .layer-books {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      transform: translateY(-130%);
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: clamp(4px, 1.2vw, 10px);
+      padding: clamp(8px, 1.5vw, 16px);
+      opacity: 0;
+      visibility: hidden;
+      transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1),
+                  opacity 0.6s ease 0.3s,
+                  visibility 0s linear 0s;
+      z-index: 10;
+    }
+
+    .layer-books.dropped {
+      transform: translateY(0%);
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .layer-books .book-cover-img {
+      opacity: 0.35;
+      box-shadow: 2px 6px 18px rgba(0,0,0,0.8);
+      transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .layer-books .book-cover-img:hover {
+      opacity: 0.55;
+      transform: translateY(-4px);
+      box-shadow: 4px 12px 28px rgba(0,0,0,0.9);
+    }
+
+    @media (max-width: 500px) {
+      .layer-books { grid-template-columns: repeat(4, 1fr); }
+    }
+
+
+    /* ── App screens ── */
+    .app-screens {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+      align-items: end;
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 600px) {
+      .app-screens { grid-template-columns: 1fr 1fr; }
+      .app-phone:last-child { display: none; }
+    }
+
+    .app-phone {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .app-phone > img {
+      outline: 1px solid rgba(255,255,255,0.22);
+      outline-offset: 0px;
+    }
+
+    .app-phone img {
+      width: 100%;
+      border-radius: 16px;
+      display: block;
+    }
+
+    .app-phone-label {
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dim);
+      text-align: center;
+    }
+
+    .app-phone-featured .app-phone-label {
+      color: var(--gold);
+    }
+
+
+    .app-proven {
+      margin-top: 36px;
+      font-family: var(--serif);
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      line-height: 1.7;
+      color: var(--muted);
+      text-align: center;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+
+    /* ── Two-column Vermeer split ── */
+    .s-vermeer-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 80px 40px;
+      align-items: start;
+    }
+
+    @media (max-width: 700px) {
+      .s-vermeer-split {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 60px 24px;
+      }
+      .vermeer-right .voice-block {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+
+    .vermeer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .vermeer-img-wrap {
+      width: 100%;
+      overflow: hidden;
+      border-radius: 2px;
+      box-shadow: 8px 16px 48px rgba(0,0,0,0.7);
+    }
+
+    .vermeer-img-wrap img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .painting-label-inline {
+      font-family: var(--sans);
+      font-size: 0.55rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--dim);
+      line-height: 1.8;
+    }
+
+    .vermeer-img-note {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+      line-height: 1.7;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    .vermeer-right {
+      padding-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+
+    /* ── Hinge interrupt ── */
+    .s-hinge {
+      padding: 80px 40px;
+      background: linear-gradient(to bottom, var(--bg), #150e04, #1a1005, #150e04, var(--bg));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hinge-inner {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      color: var(--gold);
+      text-align: center;
+      max-width: 620px;
+      line-height: 1.5;
+      letter-spacing: 0.01em;
+    }
+
+    /* ── Kandel two-column ── */
+    .s-kandel-split {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 52px;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 60px 40px 100px;
+      align-items: start;
+      background: linear-gradient(to bottom, #1a1005, #150e04, var(--bg));
+    }
+
+    @media (max-width: 700px) {
+      .s-kandel-split {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 40px 24px 80px;
+      }
+      .kandel-cover-col {
+        position: static;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 20px;
+      }
+      .kandel-cover-img {
+        max-width: 120px;
+        transform: scale(1) translateX(0) !important;
+        opacity: 1 !important;
+      }
+      .kandel-cover-img.resolved {
+        transform: scale(1) translateX(0);
+      }
+    }
+
+    .kandel-cover-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      position: sticky;
+      top: 80px;
+    }
+
+    /* The full-bleed wrapper that shrinks */
+    .kandel-cover-stage {
+      position: relative;
+      /* starts spanning both columns via negative margins */
+    }
+
+    .kandel-cover-img {
+      width: 100%;
+      max-width: 180px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 40px rgba(122,155,181,0.15);
+      border-radius: 2px;
+      opacity: 0;
+      /* Start: huge, centered over both columns */
+      position: relative;
+      transform: scale(4.5) translateX(55%);
+      transform-origin: top left;
+      transition: opacity 0.3s ease,
+                  transform 1.3s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 1.3s ease;
+      z-index: 20;
+    }
+
+    .kandel-cover-img.resolved {
+      opacity: 1;
+      transform: scale(1) translateX(0);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 40px rgba(122,155,181,0.15);
+    }
+
+    .kandel-cover-label {
+      font-size: 0.52rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--dim);
+      text-align: center;
+      line-height: 1.9;
+      opacity: 0;
+      transition: opacity 0.6s ease 1s;
+    }
+
+    .kandel-cover-label.resolved { opacity: 1; }
+
+    .kandel-quotes-col {
+      padding-top: 4px;
+      opacity: 0;
+      transition: opacity 0.8s ease 1.1s;
+    }
+
+    .kandel-quotes-col.resolved { opacity: 1; }
+
+
+    /* ── McEwan two-column (reversed) ── */
+    .s-mcewan-split {
+      display: grid;
+      grid-template-columns: 1fr 200px;
+      gap: 52px;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 60px 40px 100px;
+      align-items: start;
+      background: linear-gradient(to bottom, #1a1005, #150e04, var(--bg));
+    }
+
+    @media (max-width: 700px) {
+      .s-mcewan-split {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 40px 24px 80px;
+      }
+      .mcewan-cover-col {
+        order: -1;
+        position: static;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 20px;
+      }
+      .mcewan-cover-img {
+        max-width: 120px;
+        transform: scale(1) translateX(0) !important;
+        opacity: 1 !important;
+      }
+      .mcewan-cover-img.resolved {
+        transform: scale(1) translateX(0);
+      }
+      .mcewan-quotes-col {
+        opacity: 1 !important;
+      }
+      .kandel-quotes-col {
+        opacity: 1 !important;
+      }
+    }
+
+    .mcewan-quotes-col {
+      padding-top: 4px;
+      opacity: 0;
+      transition: opacity 0.8s ease 1.1s;
+    }
+
+    .mcewan-quotes-col.resolved { opacity: 1; }
+
+    .mcewan-cover-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      position: sticky;
+      top: 80px;
+    }
+
+    .mcewan-cover-img {
+      width: 100%;
+      max-width: 180px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 40px rgba(201,169,110,0.15);
+      border-radius: 2px;
+      opacity: 0;
+      transform: scale(4.5) translateX(-55%);
+      transform-origin: top right;
+      transition: opacity 0.3s ease,
+                  transform 1.3s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 1.3s ease;
+      z-index: 20;
+    }
+
+    .mcewan-cover-img.resolved {
+      opacity: 1;
+      transform: scale(1) translateX(0);
+    }
+
+    .mcewan-cover-label {
+      font-size: 0.52rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--dim);
+      text-align: center;
+      line-height: 1.9;
+      opacity: 0;
+      transition: opacity 0.6s ease 1s;
+    }
+
+    .mcewan-cover-label.resolved { opacity: 1; }
+
+
+    /* ── Centered video ── */
+    .s-video-center {
+      padding: 0 40px 100px;
+      display: flex;
+      justify-content: center;
+      background: linear-gradient(to bottom, #1a1005, var(--bg));
+    }
+
+    .video-center-wrap {
+      width: 400px;
+      max-width: 100%;
+      aspect-ratio: 400 / 458;
+      overflow: hidden;
+      box-shadow: 0 40px 120px rgba(0,0,0,0.9), 0 0 60px rgba(201,169,110,0.08);
+    }
+
+    .video-center-wrap video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+
+    /* ── Lost quote full screen ── */
+    .s-lost-quote {
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 48px;
+      background: linear-gradient(to bottom, var(--bg), #150e04);
+    }
+
+    .s-lost-quote-inner {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(1.2rem, 2.8vw, 1.9rem);
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 660px;
+      text-align: center;
+    }
+
+    /* ── Three things ── */
+    .s-three-things {
+      padding: 80px 48px 120px;
+      max-width: 660px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .three-thing {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(1.1rem, 2.4vw, 1.55rem);
+      line-height: 1.65;
+      color: var(--text);
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .three-thing-close {
+      font-style: italic;
+      color: var(--gold);
+      border-bottom: none;
+      padding-top: 32px;
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      letter-spacing: 0.03em;
+    }
+
+
+    /* ── Transport passage ── */
+    .s-transport-passage {
+      max-width: 660px;
+      margin: 0 auto;
+      padding: 80px 48px 120px;
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+
+    .transport-intro {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(1.1rem, 2.3vw, 1.45rem);
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .transport-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-left: 1px solid var(--gold-line);
+    }
+
+    .transport-item {
+      padding: 24px 0 24px 28px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .transport-item:last-child {
+      border-bottom: none;
+    }
+
+    .transport-item-tag {
+      font-family: var(--sans);
+      font-size: 0.55rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .transport-item-text {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(1rem, 2.2vw, 1.3rem);
+      line-height: 1.78;
+      color: var(--text);
+    }
+
+    .transport-close {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      color: var(--gold);
+      letter-spacing: 0.03em;
+      padding-left: 28px;
+      border-left: 1px solid var(--gold-line);
+    }
+
+
+    /* ── Video + Transport two-column ── */
+    .s-video-transport {
+      display: grid;
+      grid-template-columns: 400px 1fr;
+      gap: 52px;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 60px 40px 100px;
+      align-items: start;
+    }
+
+    @media (max-width: 780px) {
+      .s-video-transport {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 40px 24px 80px;
+      }
+      .vt-video-col video {
+        max-width: 300px;
+        margin: 0 auto;
+        display: block;
+      }
+    }
+
+    .vt-video-col {
+      position: sticky;
+      top: 80px;
+    }
+
+    .vt-video-col video {
+      width: 100%;
+      aspect-ratio: 400 / 458;
+      object-fit: cover;
+      display: block;
+      box-shadow: 0 40px 120px rgba(0,0,0,0.9), 0 0 60px rgba(201,169,110,0.08);
+    }
+
+    .vt-text-col {
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+      padding-top: 8px;
+    }
+
+
+    /* ── Three columns ── */
+    .s-three-cols {
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr 1px 1fr;
+      gap: 0;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 100px 40px;
+      align-items: start;
+      background: linear-gradient(to bottom, var(--bg), #150e04);
+    }
+
+    @media (max-width: 700px) {
+      .s-three-cols {
+        grid-template-columns: 1fr;
+        padding: 60px 24px;
+      }
+      .three-col-divider { display: none; }
+      .three-col { border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 40px; }
+      .three-col:last-child { border-bottom: none; padding-bottom: 0; }
+    }
+
+    .three-col-divider {
+      width: 1px;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent, var(--gold-line), transparent);
+      align-self: stretch;
+    }
+
+    .three-col {
+      padding: 0 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .three-col:first-child { padding-left: 0; }
+    .three-col:last-child { padding-right: 0; }
+
+    .three-col-number {
+      font-family: var(--serif);
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+
+    .three-col-text {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .three-col-text em {
+      font-style: normal;
+      color: var(--text);
+    }
+
+    .three-col-source {
+      font-family: var(--sans);
+      font-size: 0.52rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      line-height: 1.8;
+      margin-top: auto;
+      padding-top: 16px;
+    }
+
+
+    /* ── Voice key ── */
+    .voice-key {
+      margin-bottom: 36px;
+      padding: 16px 20px;
+      border: 1px solid rgba(255,255,255,0.05);
+      background: rgba(255,255,255,0.02);
+      display: inline-flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .voice-key-label {
+      font-family: var(--sans);
+      font-size: 0.52rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .voice-key-voices {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .voice-key-voices span {
+      font-family: var(--sans);
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+    }
+
+    .vk-dot {
+      color: var(--dim) !important;
+    }
+
+
+    /* ── Thesis buttons ── */
+    .thesis-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin: 48px 0 0;
+    }
+
+    @media (min-width: 600px) {
+      .thesis-buttons {
+        flex-direction: row;
+        gap: 20px;
+      }
+    }
+
+    @keyframes btnPulse {
+      0%   { border-color: rgba(201,169,110,0.22); box-shadow: 0 0 0 0 rgba(201,169,110,0); }
+      50%  { border-color: rgba(201,169,110,0.55); box-shadow: 0 0 0 4px rgba(201,169,110,0.06); }
+      100% { border-color: rgba(201,169,110,0.22); box-shadow: 0 0 0 0 rgba(201,169,110,0); }
+    }
+
+    .thesis-btn {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(0.95rem, 1.8vw, 1.2rem);
+      color: #e8e4df;
+      background: transparent;
+      border: 1.5px solid var(--gold-line);
+      padding: 22px 52px 22px 28px;
+      cursor: pointer;
+      text-align: left;
+      line-height: 1.5;
+      transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+      flex: 1;
+      position: relative;
+      animation: btnPulse 3s ease-in-out infinite;
+    }
+
+    .thesis-btn::after {
+      content: '→';
+      position: absolute;
+      right: 22px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gold);
+      opacity: 0.5;
+      font-style: normal;
+      font-size: 1rem;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .thesis-btn:hover {
+      color: var(--text);
+      border-color: rgba(201,169,110,0.6);
+      background: var(--gold-faint);
+      animation: none;
+    }
+
+    .thesis-btn:hover::after {
+      opacity: 1;
+      transform: translateY(-50%) translateX(4px);
+    }
+
+    .thesis-btn:active {
+      background: rgba(201,169,110,0.15);
+    }
+
+    /* Resolution — hidden until button clicked */
+    .thesis-resolution {
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height 0.8s ease, opacity 0.8s ease;
+    }
+
+    .thesis-resolution.revealed {
+      max-height: 200vh;
+      opacity: 1;
+    }
+
+
+    /* ── Fade on scroll ── */
+    .fade-scroll {
+      opacity: 1;
+      transition: opacity 0.15s ease;
+    }
+
+
+    .thesis-bright {
+      color: #ffffff !important;
+    }
+    .thesis-bright em {
+      color: #ffffff !important;
+      font-style: italic;
+    }
+
+
+    /* ── Radial spread ── */
+    .radial-spread {
+      position: relative;
+      width: 300px;
+      height: 200px;
+      margin: 32px auto 48px;
+    }
+
+    .radial-center {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+    }
+
+    .radial-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      box-shadow: 0 0 12px rgba(201,169,110,0.4);
+    }
+
+    .radial-dot.visible { opacity: 1; }
+
+    .radial-lines {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .radial-line {
+      stroke: rgba(201,169,110,0.25);
+      stroke-width: 1;
+      stroke-dasharray: 200;
+      stroke-dashoffset: 200;
+      transition: stroke-dashoffset 0.6s ease;
+    }
+
+    .radial-line.visible { stroke-dashoffset: 0; }
+
+    .radial-item {
+      position: absolute;
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+      color: var(--gold);
+      opacity: 0;
+      transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+      white-space: nowrap;
+    }
+
+    .radial-top    { top: 0;    left: 50%; transform: translate(-50%, 0); }
+    .radial-right  { top: 50%; right: 0;  transform: translate(0, -50%); }
+    .radial-bottom { bottom: 0; left: 50%; transform: translate(-50%, 0); }
+    .radial-left   { top: 50%; left: 0;  transform: translate(0, -50%); }
+
+    .radial-top.visible    { opacity: 1; }
+    .radial-right.visible  { opacity: 1; }
+    .radial-bottom.visible { opacity: 1; }
+    .radial-left.visible   { opacity: 1; }
+
+
+    /* ── Connection list ── */
+    .connection-list {
+      margin: 8px 0 2em 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    @keyframes connIn {
+      0%   { opacity: 0; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .conn-item {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(1.2rem, 2.6vw, 1.65rem);
+      color: var(--gold);
+      padding: 4px 0 4px 0;
+      border-left: 1px solid var(--gold-line);
+      padding-left: 20px;
+      line-height: 1.6;
+      animation: connIn 0.7s ease both;
+    }
+
+    #conn1 { animation-delay: 0.1s; }
+    #conn2 { animation-delay: 0.4s; }
+    #conn3 { animation-delay: 0.7s; }
+    #conn4 { animation-delay: 1.0s; }
+
+
+    .thesis-climax {
+      color: var(--gold);
+      font-weight: 400;
+    }
+
+
+    .three-col-text em {
+      font-style: normal;
+      color: var(--gold);
+    }
+
+
+    /* ── Three col pop-in ── */
+    .tc-pop {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .tc-pop.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .tc-stress {
+      color: var(--text);
+      font-style: normal;
+      font-weight: 400;
+    }
+
+
+    /* ── Transport final statement ── */
+    .transport-final {
+      width: 100%;
+      max-width: 100%;
+      padding: 100px 48px 80px;
+      text-align: center;
+      border-top: 1px solid var(--gold-line);
+      background: linear-gradient(to bottom, var(--bg), #0e0a06, var(--bg));
+    }
+
+    .transport-final-line {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(1.2rem, 2.8vw, 1.8rem);
+      line-height: 1.6;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .transport-final-end {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.1rem, 2.4vw, 1.5rem);
+      color: var(--gold);
+      line-height: 1.6;
+    }
+
+
+    .transport-final-mid {
+      font-family: var(--serif);
+      font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 20px;
+      text-transform: none;
+    }
+
+
+    /* ── Stakes three columns ── */
+    .stakes-three {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2px;
+      margin-top: 64px;
+    }
+
+    @media (max-width: 700px) {
+      .stakes-three { grid-template-columns: 1fr; }
+    }
+
+    .stakes-line {
+      padding: 36px 28px;
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,0.03);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .stakes-line-label {
+      font-family: var(--sans);
+      font-size: 0.58rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .stakes-line-text {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+      line-height: 1.75;
+      color: var(--muted);
+    }
+
+
+    .person-story {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 52px 48px 0;
+      text-align: center;
+    }
+
+    .person-story-text {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      line-height: 1.85;
+      color: var(--muted);
+    }
+
+
+    .transport-final-nine {
+      font-family: var(--sans);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-top: 32px;
+    }
+
+
+    /* ── Stakes section — museum blue ── */
+    .s-stakes-section {
+      background: #1a2332;
+      position: relative;
+    }
+
+
+
+    .s-stakes-section .section-label {
+      color: rgba(201,169,110,0.7);
+    }
+
+    .s-stakes-section .stakes-text {
+      color: rgba(232,228,223,0.9);
+    }
+
+    .s-stakes-section .stakes-text strong {
+      color: #ffffff;
+    }
+
+    .s-stakes-section .stakes-line {
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(255,255,255,0.06);
+    }
+
+    .s-stakes-section .stakes-line-text {
+      color: rgba(200,210,225,0.85);
+    }
+
+    .s-stakes-section .stakes-line-label {
+      color: rgba(201,169,110,0.9);
+    }
+
+    /* Fade back to black after stakes */
+    .s-stakes-section::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 80px;
+      background: linear-gradient(to top, var(--bg), #1a2332);
+    }
+
+
+    .voice-key-desc {
+      font-family: var(--sans);
+      font-size: 0.55rem;
+      letter-spacing: 0.08em;
+      color: var(--dim);
+      line-height: 1.6;
+      padding-top: 8px;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      margin-top: 6px;
+    }
+
+
+    /* ── Liminal transitional section ── */
+    .s-liminal {
+      padding: 160px 48px 180px;
+      text-align: center;
+      background: linear-gradient(to bottom, var(--bg) 0%, var(--bg) 15%, #0d141e 40%, #111a27 65%, #1a2332 100%);
+      position: relative;
+    }
+
+    .liminal-text {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1.1rem, 2.4vw, 1.6rem);
+      line-height: 1.7;
+      color: rgba(255,255,255,0.85);
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+
+    .stakes-thesis {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      line-height: 1.5;
+      color: #ffffff;
+      margin: 48px 0;
+      padding: 40px 0;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* ── Site Nav Overlay ── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0; z-index: 9999;
+      padding: 1.5rem 6vw;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      background: transparent;
+      transition: background 0.4s ease;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .site-nav.scrolled {
+      background: rgba(7,7,7,0.85);
+      backdrop-filter: blur(8px);
+    }
+    .site-nav-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.85rem;
+      color: rgba(232,228,223,0.5);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .site-nav-name:hover { color: rgba(232,228,223,0.85); }
+    .site-nav-back {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.72rem;
+      color: rgba(232,228,223,0.35);
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
+    }
+    .site-nav-back:hover { color: rgba(232,228,223,0.7); }
+    .site-nav-back.bright { color: #ffffff; }
+    .site-chapter-tag {
+      position: fixed;
+      top: 5rem;
+      left: 6vw;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(232,228,223,0.2);
+      z-index: 9998;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="site-nav" id="siteNav">
+    <a href="index.html" class="site-nav-back" id="backLink">← Back to Home</a>
+  </nav>
+
+<!-- ══════════════════════════════════════
+     SECTION 1 · PROBLEM
+══════════════════════════════════════ -->
+<section>
+  <div class="s-thesis">
+
+    <div class="thesis-eyebrow r">Insatiable Mind</div>
+
+    <div class="thesis-body">
+      <p class="thesis-p fade-scroll" id="fadeP1" style="color:#ffffff !important; opacity:1;">
+        You close a book. You walk out of a museum. You fly home from a tour. And you feel it slipping away. Not just the details. The feeling.
+      </p>
+
+      <p class="thesis-p fade-scroll" id="fadeP2" style="color:#ffffff !important; opacity:1;">
+        <em>Soon it feels like the encounter happened to someone else entirely.</em>
+      </p>
+
+      <div style="height: 30vh;"></div>
+
+      <p class="thesis-p r r-d2">
+        That's not a failure of memory. It's how the mind actually works.
+      </p>
+
+      <p class="thesis-p thesis-bright r r-d2">
+        We don't store encounters in isolation. We store them in connection.
+      </p>
+
+      <div class="connection-list" id="connList">
+        <div class="conn-item" id="conn1">To places.</div>
+        <div class="conn-item" id="conn2">To feelings.</div>
+        <div class="conn-item" id="conn3">To people.</div>
+        <div class="conn-item" id="conn4">To other ideas.</div>
+      </div>
+
+      <p class="thesis-p r r-d2">
+        Without those connections, the book, the exhibit, the detail of your trip, has no path back. It doesn't disappear. It just becomes unreachable.
+      </p>
+
+      <!-- Two buttons — both unlock audio and reveal the rest -->
+      <div class="thesis-buttons r r-d3" id="thesisButtons">
+        <button class="thesis-btn" onclick="unlockAndReveal()">
+          I've closed a book and felt it slip away.
+        </button>
+        <button class="thesis-btn" onclick="unlockAndReveal()">
+          I've left somewhere and felt the same.
+        </button>
+      </div>
+
+      <div class="thesis-resolution" id="thesisResolution">
+        <div style="height: 40vh;"></div>
+        <p class="thesis-p">
+          <strong><span class="thesis-brand">Insatiable Mind</span></strong> surfaces what you know, at the moment it becomes relevant, engineering connections you couldn't have planned, across books, paintings, and ideas you didn't know were in conversation. <span class="thesis-climax">For knowledge to stop being cognitive and become embodied. Lived. Permanent.</span>
+        </p>
+        <div class="scroll-cue" style="margin-top: 40px;">Scroll</div>
+      </div>
+
+    </div>
+
+    </div>
+</section>
+
+<div id="siteGate" style="display:none;">
+<div class="divider"></div>
+
+
+<!-- ══════════════════════════════════════
+     SECTION 2A · THE SYSTEM — SETUP
+══════════════════════════════════════ -->
+<section>
+  <div class="s-system">
+    <div class="section-label r">The System</div>
+    <p class="system-intro r r-d1">
+      A personal knowledge system, one that turns what you've read
+    </p>
+    <div class="bookcovers r r-d2">
+      <div class="book-cover-img"><img src="assets/book-cover-01.png" alt="The Body Keeps the Score"></div>
+      <div class="book-cover-img"><img src="assets/book-cover-02.jpg" alt="What We Can Know"></div>
+      <div class="book-cover-img"><img src="assets/book-cover-03.jpg" alt="Demon Copperhead"></div>
+      <div class="book-cover-img featured-cover-img"><img src="assets/book-cover-04.jpg" alt="The Extended Mind"></div>
+      <div class="book-cover-img"><img src="assets/book-cover-05.jpg" alt="The Bee Sting"></div>
+      <div class="book-cover-img"><img src="assets/book-cover-06.jpg" alt="Essays on Art and Science"></div>
+      <div class="book-cover-img"><img src="assets/book-cover-07.jpg" alt="Braving the Wilderness"></div>
+      <div class="book-cover-img"><img src="assets/book-cover-08.jpg" alt="Powerful · Patty McCord"></div>
+      <div class="book-cover-img"><img src="assets/book-cover-09.jpg" alt="The Big Short"></div>
+      <div class="book-cover-img"><img src="assets/book-cover-10.jpg" alt="The Overstory"></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════
+     SECTION 2B · LIVING LAYER OVER THE MET
+══════════════════════════════════════ -->
+<section class="s-layer-reveal">
+  <div class="layer-text-top r">
+    <span class="layer-dash">—</span> into a living layer over experience.
+  </div>
+  <div class="layer-stage">
+    <div class="layer-met">
+      <img src="assets/Metropolitan_Museum_of_Art_(The_Met)_comp.jpg" alt="The Metropolitan Museum of Art">
+      <div class="layer-met-fade"></div>
+      <div class="layer-books" id="layerBooks">
+        <!-- books injected by JS from the grid above -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════
+     SECTION 2C · IN THE WILD
+══════════════════════════════════════ -->
+<section>
+  <div class="s-system">
+    <div class="section-label r">In the Wild · The Metropolitan Museum of Art</div>
+    <p class="system-wild-text r r-d1">
+      A personal audio soundtrack, built from everything you've read, that accompanies you into a museum, a city, an afternoon walk. And speaks at the moment of encounter.
+    </p>
+    <div class="voice-key r r-d1" id="voiceKey">
+      <div class="voice-key-label">Four voices · All AI-generated</div>
+      <div class="voice-key-voices">
+        <span>The Museum</span>
+        <span class="vk-dot">·</span>
+        <span>Kandel</span>
+        <span class="vk-dot">·</span>
+        <span>The Library</span>
+        <span class="vk-dot">·</span>
+        <span>The Unexpected</span>
+      </div>
+    </div>
+    <div class="app-screens r r-d2">
+
+      <div class="app-phone" id="appPhone1" style="opacity:0; transition: opacity 0.8s ease;">
+        <img src="assets/appscreen1-revised.jpg" alt="The app — tour overview">
+        <div class="app-phone-label">The Tour</div>
+      </div>
+
+      <div class="app-phone">
+        <img src="assets/app_screen2.jpg" alt="The app — a stop with quotes">
+        <div class="app-phone-label">A Stop · In the Gallery</div>
+      </div>
+
+      <div class="app-phone" id="appPhone3" style="opacity:0; transition: opacity 0.8s ease;">
+        <img src="assets/app_screen3.jpg" alt="The app — the library of quotes">
+        <div class="app-phone-label">The Library</div>
+      </div>
+
+    </div>
+    <p class="app-proven r r-d2"><em>A soundtrack for experience.</em><br><br><em>Built first as a personal practice, to bring Eric Kandel's <span style="font-style:normal;">Essays on Art and Science</span> into the world and into the body. Proven at The Metropolitan Museum of Art.</em></p>
+
+    <!-- App audio — autoplay on scroll -->
+    <audio id="appAudio" src="assets/app audio.mp3" preload="auto"></audio>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════════════════
+     SECTION 2D · THE BRIDGE
+══════════════════════════════════════ -->
+<section class="s-bridge">
+  <p class="bridge-text r">Your Knowledge Meets The Moment.</p>
+  <p class="bridge-sub r r-d1">Ideas you've carried for years, suddenly finding each other<br>in the room you're standing in.</p>
+</section>
+
+<!-- ══════════════════════════════════════
+     SECTION 3 · THE ENCOUNTER
+══════════════════════════════════════ -->
+<section>
+
+  <!-- Gallery entrance -->
+  <div class="s-gallery">
+    <img src="assets/gallery-entrance.jpg" alt="Vermeer Gallery, The Met" loading="lazy">
+    <div class="gallery-overlay"></div>
+    <div class="gallery-caption">
+      <div class="gallery-label r">Gallery 632 · Floor 2 · Dutch Paintings, 17th Century</div>
+      <p class="gallery-text r r-d1">
+        Three paintings on a blue wall.<br>
+        One I've walked past before. But this time...
+      </p>
+    </div>
+  </div>
+
+  <!-- Narrator + Met voice -->
+  <!-- Two-column: painting left, text right -->
+  <div class="s-vermeer-split">
+
+    <div class="vermeer-left">
+      <div class="vermeer-img-wrap">
+        <img src=assets/vermeer-painting.jpg alt="A Maid Asleep · Vermeer · c. 1656–57">
+      </div>
+      <div class="vermeer-img-caption r">
+        <div class="painting-label-inline">Johannes Vermeer · A Maid Asleep · c. 1656–57</div>
+        <div class="painting-label-inline">The Metropolitan Museum of Art</div>
+        <p class="vermeer-img-note">Look into the doorway. A room beyond.<br>Empty now. It wasn't always.</p>
+      </div>
+    </div>
+
+    <div class="vermeer-right">
+      <div class="voice-block v-narrator r" id="vermeerNarratorBlock">
+        <div class="voice-tag">In the Gallery</div>
+        <p class="voice-text">I hear the museum narrator discuss A Maid Asleep...</p>
+        <audio id="vermeerAudio" src="assets/Museum_vermeer.mp3" preload="auto"></audio>
+      </div>
+      <div class="voice-block v-met r r-d1">
+        <div class="voice-tag">The Met</div>
+        <p class="voice-text">
+          Vermeer transfigured an ordinary scene into an investigation of light, color and texture. X radiographs indicate that he chose to remove a male figure he had originally included standing in the doorway — heightening the painting's ambiguity.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- Kandel — the hinge -->
+
+  <!-- Interrupt line -->
+  <div class="s-hinge">
+    <div class="hinge-inner r">
+      Here is where your personal knowledge transforms into experience.
+    </div>
+  </div>
+
+  <!-- Kandel two-column -->
+  <div class="s-kandel-split">
+
+    <div class="kandel-cover-col r">
+      <img src="assets/kandel-cover.jpg" alt="Essays on Art and Science · Eric Kandel" class="kandel-cover-img">
+      <div class="kandel-cover-label">Eric R. Kandel<br>Essays on Art and Science</div>
+    </div>
+
+    <div class="kandel-quotes-col">
+      <div class="voice-block v-kandel r">
+        <div class="voice-tag">Kandel · On Ambiguity</div>
+        <p class="voice-text">
+          "The more ambiguous a work of art, the more top-down processing we must do to resolve the ambiguities and assign the work meaning, utility and value."
+        </p>
+      </div>
+      <div class="voice-block v-kandel r r-d1">
+        <div class="voice-tag">Kandel · The Beholder's Share</div>
+        <p class="voice-text">
+          "The beholder's share — the knowledge, experience and memories a viewer brings to a work of art — can create very different conceptions of an ambiguous image."
+        </p>
+        <audio id="kandelAudio" src="assets/kandel-beholders share.mp3" preload="auto"></audio>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- McEwan — novelist walks in -->
+
+  <!-- Interrupt line -->
+  <div class="s-hinge">
+    <div class="hinge-inner r">
+      And then, the system sends a novelist in.
+    </div>
+  </div>
+
+  <!-- McEwan two-column — reversed: quotes left, cover right -->
+  <div class="s-mcewan-split">
+
+    <div class="mcewan-quotes-col">
+      <div class="voice-block v-narrator r">
+        <div class="voice-tag">From the Library</div>
+        <p class="voice-text" style="font-style:italic; font-size: clamp(1.2rem, 2.5vw, 1.7rem); line-height:1.6;">
+          "The poem has served history well<br>by remaining a blank sheet."
+        </p>
+        <audio id="mcewanAudio" src="assets/McEwan quote.mp3" preload="auto"></audio>
+      </div>
+
+    </div>
+
+    <div class="mcewan-cover-col">
+      <img src="assets/mcewan-cover.jpg" alt="What We Can Know · Ian McEwan" class="mcewan-cover-img">
+      <div class="mcewan-cover-label">Ian McEwan<br>What We Can Know</div>
+    </div>
+
+  </div>
+
+  <!-- The experience -->
+
+  <!-- Three columns -->
+  <div class="s-three-cols" id="threeColsSection">
+    <div class="three-col tc-pop" id="tcol1">
+      <div class="three-col-number">I</div>
+      <p class="three-col-text"><span class="tc-stress">A quote underlined in a novel</span>, but forgotten.</p>
+      <div class="three-col-source">Ian McEwan · What We Can Know</div>
+    </div>
+    <div class="three-col-divider tc-pop" id="tcoldiv1" style="opacity:0;"></div>
+    <div class="three-col tc-pop" id="tcol2">
+      <div class="three-col-number">II</div>
+      <p class="three-col-text">Drawn to the surface in front of <span class="tc-stress">a 1656 Dutch painting.</span></p>
+      <div class="three-col-source">Johannes Vermeer · A Maid Asleep · The Met</div>
+    </div>
+    <div class="three-col-divider tc-pop" id="tcoldiv2" style="opacity:0;"></div>
+    <div class="three-col tc-pop" id="tcol3">
+      <div class="three-col-number">III</div>
+      <p class="three-col-text">In conversation with <span class="tc-stress">a Nobel Prize–winning neuroscientist.</span></p>
+      <div class="three-col-source">Eric R. Kandel · Essays on Art and Science</div>
+    </div>
+  </div>
+
+  <!-- Flash interrupt -->
+  <div class="s-hinge">
+    <div class="hinge-inner r">
+      And in a flash, those three things become one visceral experience.
+    </div>
+  </div>
+
+  <!-- Video + Transport side by side -->
+  <div class="s-video-transport">
+
+    <div class="vt-video-col">
+      <video autoplay muted loop playsinline>
+        <source src="assets/vermeer clip_2.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="vt-text-col">
+      <div class="transport-items">
+        <div class="transport-item r r-d1">
+          <div class="transport-item-tag">In my head</div>
+          <p class="transport-item-text">I travel back to the landscape of McEwan's story.</p>
+        </div>
+
+        <div class="transport-item r r-d2">
+          <div class="transport-item-tag">In my body</div>
+          <p class="transport-item-text">I remember the physical act of underlining that passage.</p>
+        </div>
+
+        <div class="transport-item r r-d3">
+          <div class="transport-item-tag">In the gallery</div>
+          <p class="transport-item-text">I recognize in Vermeer's painting McEwan's "blank sheet." And the maid takes on breath, fueled by my own experiences of being young and alone in someone else's world.</p>
+        </div>
+
+        <div class="transport-item r r-d4">
+          <div class="transport-item-tag">In my mind</div>
+          <p class="transport-item-text">I am surprised. And moved.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section>
+  <div class="transport-final r">
+    <p class="transport-final-line">I have experienced what Kandel means when he describes the beholder's share.</p>
+    <p class="transport-final-mid">Across brain, body, and space.</p>
+    <p class="transport-final-end">And I will not forget this painting.</p>
+        <p class="transport-final-end">And I will not forget this concept.</p>
+        <p class="transport-final-end">And I will not forget this book.</p>
+        <p class="transport-final-nine">Nine more stops to go.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     TRANSITIONAL LIMINAL SECTION
+══════════════════════════════════════ -->
+<section class="s-liminal">
+  <p class="liminal-text r">The system recognized something I hadn't — that these two ideas were already in conversation. It just waited for me to walk into the room.</p>
+</section>
+
+<!-- ══════════════════════════════════════
+     SECTION 4 · THE STAKES
+══════════════════════════════════════ -->
+<section class="s-stakes-section">
+  <div class="s-stakes">
+
+    <div class="section-label r">What This Makes Possible</div>
+
+    <p class="stakes-text r r-d1">
+      The ten-stop Met Museum visit is the proof of concept. But the problem it solves: knowledge that lives unactivated, encounters that slip away unanchored, exists everywhere people encounter ideas worth remembering.
+    </p>
+
+    <p class="stakes-thesis r r-d2">AI surfaces the connections. Humans experience the meaning.</p>
+
+    <p class="stakes-text r r-d3">
+      Creating the ability to arrive at any encounter, a gallery, a performance, a city, a conversation, carrying everything you've read. And letting it speak.
+    </p>
+
+    <div class="stakes-three r r-d3">
+      <div class="stakes-line">
+        <div class="stakes-line-label">Personal</div>
+        <p class="stakes-line-text">A knowledge soundtrack for any encounter worth having. Your library, alive in the world.</p>
+      </div>
+      <div class="stakes-line">
+        <div class="stakes-line-label">Institutional</div>
+        <p class="stakes-line-text">A museum where every visitor hears a different tour, shaped by their own passions and experiences.</p>
+      </div>
+      <div class="stakes-line">
+        <div class="stakes-line-label">Knowledge Partnership</div>
+        <p class="stakes-line-text">A publisher's catalog meets a museum's collection, and every intersection becomes a guided moment.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+
+<!-- ══════════════════════════════════════
+     SECTION 5 · THE PERSON
+══════════════════════════════════════ -->
+<section>
+  <div class="s-person">
+
+    <div>
+      <p class="person-name r">Kathryn Jones</p>
+      <p class="person-title r r-d1">Digital Storytelling & Media Innovation · Creative Producer · AI-Powered Experience Architect</p>
+      <p class="person-bio r r-d2">
+        <strong>Executive producer, strategist, and builder</strong> working at the intersection of creativity, technology, and knowledge.
+        </p>
+    </div>
+
+    <div class="person-mantra r r-d2">
+      <div class="mantra-label">Mantra</div>
+      <p class="mantra-text">
+        "Some problems need a strategist. Some need a builder. Some need a producer. Some need all three."
+      </p>
+    </div>
+
+  </div>
+
+  <div class="person-story r">
+    <p class="person-story-text">Insatiable Mind began as a personal passion project, inspired by Annie Murphy Paul's <a href="https://www.amazon.com/Thinking-Outside-Brain-Annie-Murphy/dp/0544947665" target="_blank" style="color: var(--gold); text-decoration: underline; text-underline-offset: 3px;"><em>The Extended Mind: The Power of Thinking Outside the Brain</em></a>. Built out of the thrill of learning and the desire to retain what I've learned, to connect it to other things I've read, other places I've been, other ideas still forming. An antidote to the specific frustration of closing a book that changed how I think, and feeling it slip away before I've even left the chair.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+
+<!-- ══════════════════════════════════════
+     SECTION 6 · THE DOOR
+══════════════════════════════════════ -->
+<section>
+  <div class="s-closing">
+
+    <div class="closing-rule r"></div>
+
+    <p class="closing-name r r-d1">Kathryn Jones</p>
+    <p class="closing-sub r r-d1">Insatiable Mind · New York</p>
+
+    <div class="r r-d2">
+      <p class="closing-contact">Get in touch</p>
+      <a href="mailto:kathryn@projectbased.ai" class="closing-email">kathryn@projectbased.ai</a>
+    </div>
+
+    <div class="closing-credit r r-d3">
+      Insatiable Mind · insatiablemind.ai<br>
+      Proven at The Metropolitan Museum of Art · New York<br>
+      Voices generated with ElevenLabs
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     JS
+══════════════════════════════════════ -->
+<script>
+(function () {
+
+  // Layer books setup — deferred until gate is revealed
+  function initLayerBooks() {
+    const sourceCovers = document.querySelectorAll('.bookcovers .book-cover-img');
+    const layerBooks = document.getElementById('layerBooks');
+    if (layerBooks && sourceCovers.length && layerBooks.children.length === 0) {
+      sourceCovers.forEach(function(cover) {
+        layerBooks.appendChild(cover.cloneNode(true));
+      });
+    }
+    if (!layerBooks) return;
+    function checkLayerDrop() {
+      const metImg = document.querySelector('.layer-met');
+      if (!metImg) return;
+      const rect = metImg.getBoundingClientRect();
+      const vh = window.innerHeight;
+      // Fire when Met image is fully visible on screen
+      if (rect.top >= 0 && rect.bottom <= vh) {
+        layerBooks.classList.add('dropped');
+        window.removeEventListener('scroll', checkLayerDrop);
+      }
+    }
+    // Check immediately in case already in position
+    checkLayerDrop();
+    window.addEventListener('scroll', checkLayerDrop, { passive: true });
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.r, .r-slow').forEach(el => io.observe(el));
+
+  // Hero fires on load
+  const heroEls = document.querySelectorAll('.s-thesis .r');
+  heroEls.forEach((el, i) => {
+    setTimeout(() => el.classList.add('in'), 300 + i * 260);
+  });
+
+  // App audio player
+  window.toggleAppAudio = function() {
+    const audio = document.getElementById('appAudio');
+    const btn = document.getElementById('appPlayBtn');
+    const icon = document.getElementById('appPlayIcon');
+    const progress = document.getElementById('appProgress');
+
+    if (!audio) return;
+
+    if (audio.paused) {
+      audio.play();
+      icon.innerHTML = '<rect x="5" y="4" width="4" height="16" fill="currentColor"/><rect x="15" y="4" width="4" height="16" fill="currentColor"/>';
+    } else {
+      audio.pause();
+      icon.innerHTML = '<polygon points="6,4 20,12 6,20" fill="currentColor"/>';
+    }
+
+    audio.ontimeupdate = function() {
+      if (audio.duration) {
+        progress.style.width = (audio.currentTime / audio.duration * 100) + '%';
+      }
+    };
+
+    audio.onended = function() {
+      icon.innerHTML = '<polygon points="6,4 20,12 6,20" fill="currentColor"/>';
+      progress.style.width = '0%';
+    };
+  };
+
+
+  // Kandel cover — arrives huge, resolves into column
+  const kandelImg = document.querySelector('.kandel-cover-img');
+  const kandelLabel = document.querySelector('.kandel-cover-label');
+  const kandelQuotes = document.querySelector('.kandel-quotes-col');
+
+  if (kandelImg) {
+    const kandelObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          // First make it visible at large scale
+          kandelImg.style.opacity = '1';
+          // Then after a beat, trigger the resolve
+          setTimeout(() => {
+            kandelImg.classList.add('resolved');
+            if (kandelLabel) kandelLabel.classList.add('resolved');
+            if (kandelQuotes) kandelQuotes.classList.add('resolved');
+          }, 120);
+          kandelObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    kandelObserver.observe(kandelImg);
+  }
+
+
+  // McEwan cover — arrives huge from right, resolves into column
+  const mcewanImg = document.querySelector('.mcewan-cover-img');
+  const mcewanLabel = document.querySelector('.mcewan-cover-label');
+  const mcewanQuotes = document.querySelector('.mcewan-quotes-col');
+  const mcewanSection = document.querySelector('.s-mcewan-split');
+
+  if (mcewanImg) {
+    const mcewanObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          mcewanImg.style.opacity = '1';
+          setTimeout(() => {
+            mcewanImg.classList.add('resolved');
+            if (mcewanLabel) mcewanLabel.classList.add('resolved');
+            if (mcewanQuotes) mcewanQuotes.classList.add('resolved');
+            // Fire audio when cover lands
+            setTimeout(() => {
+              const mcewanAudioEl = document.getElementById('mcewanAudio');
+              if (mcewanAudioEl) playClip(mcewanAudioEl);
+            }, 800);
+          }, 120);
+          mcewanObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    mcewanObserver.observe(mcewanImg);
+  }
+
+  // Stop McEwan audio when section leaves
+  if (mcewanSection) {
+    const mcewanStopObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        const mcewanAudioEl = document.getElementById('mcewanAudio');
+        if (!e.isIntersecting && currentAudio === mcewanAudioEl) stopCurrentAudio();
+      });
+    }, { threshold: 0 });
+    if (mcewanSection) mcewanStopObs.observe(mcewanSection);
+  }
+
+
+  // ── Unified audio manager ──
+  // Each clip belongs to its section. Stops when section leaves view.
+  // Only one clip plays at a time.
+
+  let currentAudio = null;
+
+  function stopCurrentAudio() {
+    if (currentAudio && !currentAudio.paused) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+    }
+    currentAudio = null;
+  }
+
+  function playClip(audioEl) {
+    if (!audioEl) return;
+    stopCurrentAudio();
+    currentAudio = audioEl;
+    audioEl.volume = 0.9;
+    audioEl.play().catch(() => {});
+  }
+
+  function watchSection(sectionEl, audioEl, threshold) {
+    if (!sectionEl || !audioEl) return;
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          playClip(audioEl);
+        } else {
+          if (currentAudio === audioEl) stopCurrentAudio();
+        }
+      });
+    }, { threshold: threshold || 0.35 });
+    obs.observe(sectionEl);
+  }
+
+  // App audio — fires when voice key reaches top 20% of viewport
+  const appAudioEl2 = document.getElementById('appAudio');
+  const voiceKeyEl = document.getElementById('voiceKey');
+  if (appAudioEl2 && voiceKeyEl) {
+    let appAudioPlayed = false;
+    window.addEventListener('scroll', function() {
+      const rect = voiceKeyEl.getBoundingClientRect();
+      const vh = window.innerHeight;
+      if (!appAudioPlayed && rect.top <= vh * 0.2 && rect.bottom > 0) {
+        appAudioPlayed = true;
+        playClip(appAudioEl2);
+      }
+      if (rect.bottom < -100 && currentAudio === appAudioEl2) {
+        stopCurrentAudio();
+        appAudioPlayed = false;
+      }
+    }, { passive: true });
+  }
+
+  // Vermeer museum audio — fires when narrator block near top of viewport
+  const vermeerAudioEl = document.getElementById('vermeerAudio');
+  const vermeerBlock = document.getElementById('vermeerNarratorBlock');
+  if (vermeerAudioEl && vermeerBlock) {
+    let vermeerPlayed = false;
+    window.addEventListener('scroll', function() {
+      const rect = vermeerBlock.getBoundingClientRect();
+      const vh = window.innerHeight;
+      if (!vermeerPlayed && rect.top <= vh * 0.2 && rect.bottom > 0) {
+        vermeerPlayed = true;
+        playClip(vermeerAudioEl);
+      }
+      if (rect.bottom < -100 && currentAudio === vermeerAudioEl) {
+        stopCurrentAudio();
+        vermeerPlayed = false;
+      }
+    }, { passive: true });
+  }
+
+  // Kandel audio — triggered by cover resolve, stopped when section leaves
+  const kandelAudioEl = document.getElementById('kandelAudio');
+  const kandelSection = document.querySelector('.s-kandel-split');
+  if (kandelSection) {
+    const kandelStopObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting && currentAudio === kandelAudioEl) stopCurrentAudio();
+      });
+    }, { threshold: 0 });
+    kandelStopObs.observe(kandelSection);
+  }
+
+  // Patch kandel cover resolve to use unified player
+  const _kandelImg = document.querySelector('.kandel-cover-img');
+  const _kandelLabel = document.querySelector('.kandel-cover-label');
+  const _kandelQuotes = document.querySelector('.kandel-quotes-col');
+  if (_kandelImg) {
+    const kandelObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          _kandelImg.style.opacity = '1';
+          setTimeout(() => {
+            _kandelImg.classList.add('resolved');
+            if (_kandelLabel) _kandelLabel.classList.add('resolved');
+            if (_kandelQuotes) _kandelQuotes.classList.add('resolved');
+            setTimeout(() => playClip(kandelAudioEl), 800);
+          }, 120);
+          kandelObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    kandelObs.observe(_kandelImg);
+  }
+
+
+  // Thesis button — unlock audio + reveal the entire rest of the page
+  window.unlockAndReveal = function() {
+    // iOS audio unlock — silent buffer + prime each audio element
+    try {
+      var AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (AudioCtx) {
+        var ctx = new AudioCtx();
+        var buf = ctx.createBuffer(1, 1, 22050);
+        var src = ctx.createBufferSource();
+        src.buffer = buf;
+        src.connect(ctx.destination);
+        src.start(0);
+        ctx.resume().catch(function(){});
+      }
+    } catch(e) {}
+    // Prime each audio element silently — must happen inside user gesture
+    // Set volume to 0 first, play, pause instantly, restore volume
+    document.querySelectorAll('audio').forEach(function(a) {
+      var v = a.volume;
+      a.volume = 0;
+      a.load();
+      var p = a.play();
+      if (p) p.then(function() {
+        a.pause();
+        a.currentTime = 0;
+        a.volume = v;
+      }).catch(function() {
+        a.volume = v;
+      });
+    });
+    // Show the rest of the site
+    const gate = document.getElementById('siteGate');
+    if (gate) {
+      gate.style.display = 'block';
+      // Trigger reveal animations on newly visible elements
+      setTimeout(() => {
+        document.querySelectorAll('#siteGate .r, #siteGate .r-slow').forEach(el => {
+          io.observe(el);
+        });
+      }, 100);
+    }
+    // Reveal the Insatiable Mind paragraph
+    const resolution = document.getElementById('thesisResolution');
+    if (resolution) {
+      resolution.classList.add('revealed');
+      // Scroll to it after a brief delay so the reveal animation starts first
+      setTimeout(() => {
+        resolution.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 400);
+    }
+    // Fade buttons
+    const buttons = document.getElementById('thesisButtons');
+    if (buttons) {
+      buttons.style.transition = 'opacity 0.4s ease';
+      buttons.style.opacity = '0.35';
+      buttons.style.pointerEvents = 'none';
+    }
+    // Audio now unlocked — browser allows autoplay after user interaction
+    // Init layer books on gate reveal
+    setTimeout(initLayerBooks, 150);
+    setTimeout(initThreeCols, 200);
+    // Start connection list animation
+    document.querySelectorAll('.conn-item').forEach(function(el) {
+      el.classList.add('running');
+    });
+  };
+
+  // Radial spread — pure CSS class toggle triggered by scroll
+  function fireRadial() {
+    var el = document.getElementById('radialSpread');
+    if (!el || el.dataset.fired) return;
+    el.dataset.fired = 'true';
+    var dot = el.querySelector('.radial-dot');
+    var lines = el.querySelectorAll('.radial-line');
+    var items = el.querySelectorAll('.radial-item');
+    if (dot) dot.classList.add('visible');
+    lines.forEach(function(l, i) {
+      setTimeout(function() { l.classList.add('visible'); }, 200 + i * 150);
+    });
+    items.forEach(function(item, i) {
+      setTimeout(function() { item.classList.add('visible'); }, 400 + i * 200);
+    });
+  }
+
+  // Three cols — pop in sequence on scroll
+  function initThreeCols() {
+    var section = document.getElementById('threeColsSection');
+    if (!section) return;
+    function fireThreeCols() {
+      var seq = [
+        {id:'tcol1', delay:0},
+        {id:'tcoldiv1', delay:500},
+        {id:'tcol2', delay:600},
+        {id:'tcoldiv2', delay:1100},
+        {id:'tcol3', delay:1200},
+      ];
+      seq.forEach(function(item) {
+        setTimeout(function() {
+          var el = document.getElementById(item.id);
+          if (el) el.classList.add('visible');
+        }, item.delay);
+      });
+    }
+    var fired = false;
+    function onScroll() {
+      if (fired) return;
+      var rect = section.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.8) {
+        fired = true;
+        fireThreeCols();
+        window.removeEventListener('scroll', onScrollTC);
+      }
+    }
+    function onScrollTC() { onScroll(); }
+    // Check immediately in case already in view
+    onScroll();
+    window.addEventListener('scroll', onScrollTC, { passive: true });
+  }
+
+  function initChain() {
+    // Scroll backup — fires if user hasn't scrolled past radial yet
+    var el = document.getElementById('radialSpread');
+    if (!el) return;
+    function onScroll() {
+      var r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) {
+        fireRadial();
+        window.removeEventListener('scroll', onScroll);
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
+  // Three columns stagger on scroll
+  var threeColsEl = document.querySelector('.s-three-cols');
+  if (threeColsEl) {
+  }
+
+  // Fade-on-scroll for opening paragraphs
+  const fadeEls = document.querySelectorAll('.fade-scroll');
+  if (fadeEls.length) {
+    function updateFade() {
+      if (window.scrollY < 80) {
+        fadeEls.forEach(function(el) { el.style.opacity = '1'; });
+        return;
+      }
+      fadeEls.forEach(function(el) {
+        var rect = el.getBoundingClientRect();
+        var vh = window.innerHeight;
+        var fadeStart = vh * 0.75;
+        var fadeEnd = vh * 0.15;
+        var opacity;
+        if (rect.bottom >= fadeStart) {
+          opacity = 1;
+        } else if (rect.bottom <= fadeEnd) {
+          opacity = 0;
+        } else {
+          opacity = (rect.bottom - fadeEnd) / (fadeStart - fadeEnd);
+        }
+        el.style.opacity = opacity.toFixed(3);
+      });
+    }
+    window.addEventListener('scroll', updateFade, { passive: true });
+    // Force opacity 1 on load, never call updateFade() at init
+    fadeEls.forEach(function(el) { el.style.opacity = '1'; });
+  }
+
+
+  // Reveal phones 1 and 3 after app audio
+  function revealOtherPhones() {
+    var p1 = document.getElementById('appPhone1');
+    var p3 = document.getElementById('appPhone3');
+    if (p1) p1.style.opacity = '1';
+    if (p3) p3.style.opacity = '1';
+  }
+  var appAudioReveal = document.getElementById('appAudio');
+  if (appAudioReveal) {
+    appAudioReveal.addEventListener('ended', revealOtherPhones);
+    appAudioReveal.addEventListener('timeupdate', function() { if (this.currentTime > 2) revealOtherPhones(); });
+  }
+
+  // Site nav scroll behavior
+  var siteNav = document.getElementById('siteNav');
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 80) {
+      siteNav.classList.add('scrolled');
+    } else {
+      siteNav.classList.remove('scrolled');
+    }
+  }, { passive: true });
+
+  // Bright back link when person section is visible
+  var backLink = document.getElementById('backLink');
+  var personSection = document.querySelector('.s-person');
+  if (backLink && personSection) {
+    var personObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          backLink.classList.add('bright');
+        } else {
+          backLink.classList.remove('bright');
+        }
+      });
+    }, { threshold: 0.2 });
+    personObs.observe(personSection);
+  }
+
+})();
+</script>
+</body>
+</html>
