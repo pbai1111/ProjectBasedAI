@@ -1,0 +1,629 @@
+/* ============================================================
+   ProjectBased.AI — Shared Styles
+   Light-theme foundation for all pages
+   ============================================================ */
+
+:root {
+  --bg: #FAFAF8;
+  --bg-section: #F3F2EE;
+  --text: #1a1a1a;
+  --text-mid: #3a3a3a;
+  --text-muted: #7a7775;
+  --plum: #5A2650;
+  --plum-bright: #6E3363;
+  --plum-hover: #703566;
+  --plum-light: rgba(90,38,80,0.06);
+  --border: rgba(26,26,26,0.1);
+  --border-faint: rgba(26,26,26,0.05);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =================== NAV =================== */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0; z-index: 100;
+  padding: 1.5rem 6vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(250,250,248,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-faint);
+}
+
+.nav-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--plum);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+.nav-back {
+  font-weight: 400;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.nav-back:hover { color: var(--plum); }
+
+/* =================== PAGE HEADER =================== */
+.page-header {
+  padding: 16vh 6vw 4vh;
+  max-width: 900px;
+}
+
+.page-chapter {
+  font-weight: 400;
+  font-size: 0.68rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--plum);
+  margin-bottom: 1.5rem;
+}
+
+.page-title {
+  font-weight: 700;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  letter-spacing: -0.03em;
+  color: var(--text);
+  line-height: 1.1;
+}
+
+/* =================== TWO-COLUMN LAYOUT =================== */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5vw;
+  padding: 6vh 6vw 10vh;
+  align-items: start;
+}
+
+.col-left {
+  position: sticky;
+  top: 10vh;
+}
+
+.col-right {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* =================== STORY =================== */
+.story {
+  font-weight: 300;
+  font-size: clamp(0.95rem, 1.15vw, 1.08rem);
+  line-height: 1.85;
+  color: var(--text-mid);
+  margin-bottom: 2rem;
+}
+
+.story .highlight {
+  color: var(--text);
+  font-weight: 400;
+}
+
+.story p + p {
+  margin-top: 1.2rem;
+}
+
+/* =================== ERA TAG =================== */
+.era-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  margin-bottom: 3.5rem;
+}
+
+/* =================== CLIENTS =================== */
+.clients-block {
+  border-top: 1px solid var(--border);
+  padding-top: 2.5rem;
+}
+
+.clients-section {
+  margin-bottom: 2.5rem;
+}
+
+.clients-label {
+  font-weight: 500;
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--plum);
+  margin-bottom: 1rem;
+}
+
+.clients-list {
+  font-weight: 300;
+  font-size: 0.88rem;
+  line-height: 2;
+  color: var(--text-muted);
+}
+
+.clients-list .separator {
+  color: var(--border);
+  margin: 0 0.3rem;
+}
+
+.client-highlight {
+  color: var(--text-mid);
+  font-weight: 400;
+}
+
+.clients-note {
+  font-weight: 300;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-top: 0.5rem;
+  line-height: 1.5;
+}
+
+/* =================== CAPABILITIES =================== */
+.capabilities-block {
+  border-top: 1px solid var(--border);
+  padding-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.capabilities-label {
+  font-weight: 500;
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--plum);
+  margin-bottom: 1rem;
+}
+
+.capabilities-list {
+  font-weight: 300;
+  font-size: 0.88rem;
+  line-height: 2;
+  color: var(--text-muted);
+}
+
+.capabilities-list .separator {
+  color: var(--border);
+  margin: 0 0.3rem;
+}
+
+/* =================== TECH STACK =================== */
+.tech-block {
+  border-top: 1px solid var(--border);
+  padding-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.tech-label {
+  font-weight: 500;
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--plum);
+  margin-bottom: 1rem;
+}
+
+.tech-list {
+  font-weight: 300;
+  font-size: 0.88rem;
+  line-height: 2;
+  color: var(--text-muted);
+}
+
+.tech-list .separator {
+  color: var(--border);
+  margin: 0 0.3rem;
+}
+
+/* =================== LOGO GRID =================== */
+.logo-grid-label {
+  font-weight: 500;
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--plum);
+  margin-bottom: 1.5rem;
+}
+
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border-faint);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.logo-cell {
+  aspect-ratio: 3/2;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem;
+  transition: all 0.35s ease;
+}
+
+.logo-cell:hover { background: var(--plum-light); }
+
+.logo-cell img {
+  max-width: 80%;
+  max-height: 60%;
+  object-fit: contain;
+  filter: grayscale(100%) opacity(0.5);
+  transition: filter 0.35s ease;
+}
+
+.logo-cell:hover img { filter: grayscale(0%) opacity(1); }
+
+.logo-placeholder {
+  font-weight: 300;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.4;
+}
+
+/* =================== IMPACT =================== */
+.impact-section {
+  padding: 8vh 6vw;
+  background: var(--bg-section);
+  border-top: 1px solid var(--border);
+}
+
+.impact-label {
+  font-weight: 400;
+  font-size: 0.68rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 3rem;
+}
+
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem 4vw;
+}
+
+.impact-item {
+  border-left: 2px solid var(--plum);
+  padding-left: 1.5rem;
+}
+
+.impact-stat {
+  font-weight: 600;
+  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+  color: var(--text);
+  margin-bottom: 0.4rem;
+  letter-spacing: -0.01em;
+}
+
+.impact-desc {
+  font-weight: 300;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+/* =================== PRESS =================== */
+.press-row {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+  margin-top: 4rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--border-faint);
+  max-width: 900px;
+}
+
+.press-label-inline {
+  font-weight: 300;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.press-logos {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.press-logo {
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+  opacity: 0.5;
+}
+
+/* =================== THROUGHLINE =================== */
+.throughline-section {
+  padding: 8vh 6vw;
+  border-top: 1px solid var(--border);
+}
+
+.throughline-col {
+  max-width: 640px;
+}
+
+.throughline-text {
+  font-weight: 300;
+  font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+  line-height: 1.8;
+  color: var(--text-mid);
+  margin-bottom: 3rem;
+  max-width: 640px;
+}
+
+.throughline-text em {
+  font-style: italic;
+  color: var(--plum);
+}
+
+.next-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-weight: 500;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--plum);
+  text-decoration: none;
+  transition: gap 0.3s ease;
+}
+
+.next-link:hover { gap: 1.2rem; }
+
+/* =================== CREDENTIAL =================== */
+.credential-block {
+  background: var(--plum-light);
+  border-left: 3px solid var(--plum);
+  padding: 1.8rem 2rem;
+  border-radius: 4px;
+}
+
+.credential-label {
+  font-weight: 500;
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--plum);
+  margin-bottom: 0.8rem;
+}
+
+.credential-title {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text);
+  margin-bottom: 0.4rem;
+}
+
+.credential-source {
+  font-weight: 300;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* =================== VIDEO ITEMS =================== */
+.video-item {
+  aspect-ratio: 16/9;
+  background: #e8e5e0;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.video-item:hover {
+  border-color: var(--plum);
+  box-shadow: 0 4px 24px rgba(90,38,80,0.08);
+}
+
+.video-play {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--plum);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.8rem;
+  opacity: 0.8;
+  transition: opacity 0.35s ease;
+}
+
+.video-item:hover .video-play { opacity: 1; }
+
+.video-play::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 8px 0 8px 15px;
+  border-color: transparent transparent transparent white;
+  margin-left: 3px;
+}
+
+.video-label {
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: var(--text-mid);
+}
+
+.video-sub {
+  font-weight: 300;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 0.3rem;
+}
+
+.video-embed-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.video-embed-wrapper {
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.video-headline {
+  display: block;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--text);
+  text-decoration: none;
+  line-height: 1.4;
+  margin-top: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.video-headline:hover { color: var(--plum); }
+
+.video-headline-meta {
+  font-weight: 300;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-top: 0.2rem;
+}
+
+.video-headline-byline {
+  font-weight: 500;
+  color: var(--plum);
+}
+
+/* =================== WORK ITEMS =================== */
+.work-item {
+  background: #e8e5e0;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.35s ease;
+}
+
+.work-item:hover {
+  border-color: var(--plum);
+  box-shadow: 0 4px 24px rgba(90,38,80,0.08);
+}
+
+.work-thumb {
+  aspect-ratio: 16/9;
+  background: #dddad5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.work-thumb-text {
+  font-weight: 300;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.work-info { padding: 1.2rem 1.4rem; }
+
+.work-title {
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--text-mid);
+  margin-bottom: 0.3rem;
+}
+
+.work-type {
+  font-weight: 300;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.work-client {
+  font-weight: 400;
+  font-size: 0.7rem;
+  color: var(--plum);
+  margin-top: 0.4rem;
+  letter-spacing: 0.05em;
+}
+
+/* =================== CONTACT BAR =================== */
+.contact-bar {
+  padding: 4rem 6vw;
+  text-align: center;
+  background: var(--bg);
+  border-top: 1px solid var(--border-faint);
+}
+
+.contact-bar a {
+  font-weight: 400;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  color: var(--plum);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+}
+
+.contact-bar a:hover {
+  color: var(--plum-hover);
+  border-bottom-color: var(--plum-hover);
+}
+
+/* =================== RESPONSIVE =================== */
+@media (max-width: 768px) {
+  .two-col {
+    grid-template-columns: 1fr;
+    gap: 4vh;
+  }
+  .col-left {
+    position: static;
+  }
+  .impact-grid {
+    grid-template-columns: 1fr;
+  }
+  .press-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+  .logo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

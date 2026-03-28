@@ -5,105 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Production & Systems — Kathryn Jones</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 <style>
-  :root {
-    --bg: #FAFAF8;
-    --bg-section: #F3F2EE;
-    --text: #1a1a1a;
-    --text-mid: #3a3a3a;
-    --text-muted: #7a7775;
-    --plum: #5A2650;
-    --plum-bright: #6E3363;
-    --plum-hover: #703566;
-    --plum-light: rgba(90,38,80,0.06);
-    --border: rgba(26,26,26,0.1);
-    --border-faint: rgba(26,26,26,0.05);
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  .nav {
-    position: fixed;
-    top: 0; left: 0; right: 0; z-index: 100;
-    padding: 1.5rem 6vw;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(250,250,248,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border-faint);
-  }
-
-  .nav-name { font-weight: 600; font-size: 0.9rem; color: var(--plum); text-decoration: none; }
-  .nav-back { font-weight: 400; font-size: 0.75rem; color: var(--text-muted); text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.3s ease; }
-  .nav-back:hover { color: var(--plum); }
-
-  .page-header { padding: 16vh 6vw 4vh; max-width: 900px; }
-  .page-chapter { font-weight: 400; font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--plum); margin-bottom: 1.5rem; }
-  .page-title { font-weight: 700; font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: -0.03em; color: var(--text); line-height: 1.1; }
-
-  /* =================== TWO COLUMN =================== */
-  .two-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5vw;
-    padding: 6vh 6vw 10vh;
-    align-items: start;
-  }
-
-  /* LEFT: Story + Credential */
-  .col-left {
-    position: sticky;
-    top: 10vh;
-  }
-
-  .story { font-weight: 300; font-size: clamp(0.95rem, 1.15vw, 1.08rem); line-height: 1.85; color: var(--text-mid); margin-bottom: 2.5rem; }
-  .story .highlight { color: var(--text); font-weight: 400; }
-  .story p + p { margin-top: 1.2rem; }
-
-  .credential-block {
-    background: var(--plum-light);
-    border-left: 3px solid var(--plum);
-    padding: 1.8rem 2rem;
-    border-radius: 4px;
-  }
-
-  .credential-label {
-    font-weight: 500;
-    font-size: 0.6rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--plum);
-    margin-bottom: 0.8rem;
-  }
-
-  .credential-title {
-    font-weight: 600;
-    font-size: 1rem;
-    color: var(--text);
-    margin-bottom: 0.4rem;
-  }
-
-  .credential-source {
-    font-weight: 300;
-    font-size: 0.85rem;
-    color: var(--text-muted);
-  }
-
-  /* RIGHT: Approach + Cards */
-  .col-right {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
+  /* ai-systems.html — page-specific overrides */
+  .story { margin-bottom: 2.5rem; }
 
   .approach-block {
     margin-bottom: 1rem;
@@ -230,41 +135,7 @@
     margin-top: auto;
   }
 
-  /* =================== THROUGHLINE =================== */
-  .throughline-section {
-    padding: 8vh 6vw;
-    border-top: 1px solid var(--border);
-  }
-
-  .throughline-text {
-    font-weight: 300;
-    font-size: clamp(1.1rem, 1.5vw, 1.3rem);
-    line-height: 1.8;
-    color: var(--text-mid);
-    margin-bottom: 3rem;
-    max-width: 640px;
-  }
-
-  .throughline-text em { font-style: italic; color: var(--plum); }
-
-  .next-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.8rem;
-    font-weight: 500;
-    font-size: 0.8rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--plum);
-    text-decoration: none;
-    transition: gap 0.3s ease;
-  }
-
-  .next-link:hover { gap: 1.2rem; }
-
   @media (max-width: 768px) {
-    .two-col { grid-template-columns: 1fr; gap: 4vh; }
-    .col-left { position: static; }
     .case-card { height: auto; perspective: none; }
     .case-card-inner { transform-style: flat; }
     .case-card:hover .case-card-inner { transform: none; }
