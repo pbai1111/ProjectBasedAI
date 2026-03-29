@@ -9,7 +9,7 @@
 <style>
   /* =================== HERO =================== */
   .hero {
-    min-height: 100vh;
+    min-height: 88vh;
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
     padding: 6vh 6vw;
@@ -68,7 +68,6 @@
     justify-content: center;
     padding-left: 4vw;
     border-left: 2px solid var(--plum);
-    margin-bottom: 8vh;
   }
 
   .section-header {
@@ -164,14 +163,12 @@
   .chapter-item.future {
     border-bottom: none;
     background: linear-gradient(135deg, rgba(90,38,80,0.05) 0%, rgba(110,51,99,0.03) 100%);
-    border-left: 3px solid var(--plum);
-    padding-left: calc(1.2rem + 3px);
     margin-top: 0.3rem;
   }
 
   .chapter-item.future .chapter-title {
     color: var(--plum);
-    font-weight: 600;
+    font-weight: 400;
   }
 
   .chapter-item.future .future-tag {
@@ -394,34 +391,28 @@
   /* =================== SCROLL HINT =================== */
   .scroll-hint {
     position: absolute;
-    bottom: 4vh;
+    bottom: 3vh;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.6rem;
-    animation: pulse 3s ease-in-out infinite;
+    animation: bounce 2s ease-in-out infinite;
     z-index: 1;
   }
 
-  .scroll-hint span {
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--plum);
+  .scroll-hint .chevron {
+    width: 14px;
+    height: 14px;
+    border-right: 2px solid var(--plum);
+    border-bottom: 2px solid var(--plum);
+    transform: rotate(45deg);
+    opacity: 0.5;
   }
 
-  .scroll-hint .arrow {
-    width: 2px;
-    height: 32px;
-    background: linear-gradient(to bottom, var(--plum), transparent);
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
   }
 
   /* =================== RESPONSIVE =================== */
@@ -476,9 +467,52 @@
       margin-right: 0;
     }
   }
+
+  /* =================== SCROLL NAV =================== */
+  .scroll-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1.5rem 6vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(250,250,248,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-faint);
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .scroll-nav.visible {
+    transform: translateY(0);
+  }
 </style>
 </head>
 <body>
+
+  <nav class="scroll-nav" id="scrollNav">
+    <a href="index.html" class="nav-back" style="color:var(--plum); font-weight:600; font-size:0.9rem; letter-spacing:-0.01em;">Kathryn Jones</a>
+    <button class="nav-hamburger" onclick="document.getElementById('navOverlay').classList.add('open')" aria-label="Open menu">☰</button>
+  </nav>
+
+  <div class="nav-overlay" id="navOverlay">
+    <div class="nav-overlay-header">
+      <button class="nav-overlay-close" onclick="document.getElementById('navOverlay').classList.remove('open')" aria-label="Close menu">✕</button>
+    </div>
+    <div class="nav-overlay-content">
+      <p class="section-header" style="color:rgba(255,255,255,0.5);">15+ years leading teams at the intersection of technology and creativity</p>
+      <ul class="chapter-list">
+        <li class="chapter-item"><a href="theater.html"><div class="chapter-title">Theater & Immersive Arts</div></a></li>
+        <li class="chapter-item"><a href="agency.html"><div class="chapter-title">Digital Media Agency</div></a></li>
+        <li class="chapter-item"><a href="interactive.html"><div class="chapter-title">Live Interactive Production</div></a></li>
+      </ul>
+      <p class="section-header-ai" style="color:rgba(255,255,255,0.5);">Applied AI. Early and all-in.</p>
+      <ul class="chapter-list">
+        <li class="chapter-item"><a href="ai-systems.html"><div class="chapter-title">AI Video Production & Creative Workflows</div></a></li>
+        <li class="chapter-item"><a href="experiential-knowledge.html"><div class="chapter-title">Experiential Knowledge Design</div></a></li>
+      </ul>
+    </div>
+  </div>
 
   <section class="hero">
     <div class="hero-left">
@@ -517,8 +551,7 @@
     </div>
 
     <div class="scroll-hint">
-      <span>More</span>
-      <div class="arrow"></div>
+      <div class="chevron"></div>
     </div>
   </section>
 
@@ -677,6 +710,18 @@
     <a href="mailto:kathryn@projectbased.ai">kathryn@projectbased.ai</a>
     <p style="margin-top: 1.5rem; font-size: 0.7rem; color: var(--text-muted); letter-spacing: 0.08em;">&copy; <script>document.write(new Date().getFullYear())</script> Kathryn Jones</p>
   </div>
+
+  <script>
+    const scrollNav = document.getElementById('scrollNav');
+    const hero = document.querySelector('.hero');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > hero.offsetHeight * 0.8) {
+        scrollNav.classList.add('visible');
+      } else {
+        scrollNav.classList.remove('visible');
+      }
+    });
+  </script>
 
 </body>
 </html>
