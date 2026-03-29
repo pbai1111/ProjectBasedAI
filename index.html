@@ -198,91 +198,196 @@
     color: var(--plum-hover);
   }
 
-  /* =================== SCROLL SECTION =================== */
-  .scroll-section {
-    min-height: 100vh;
-    padding: 14vh 6vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  /* =================== TIMELINE =================== */
+  .timeline-header {
+    padding: 10vh 6vw 4vh;
+    max-width: 800px;
+    margin: 0 auto;
     text-align: center;
-    background: var(--bg-section);
-    position: relative;
+    border-top: 1px solid var(--border);
   }
 
-  .scroll-section::before {
+  .timeline-title {
+    font-weight: 700;
+    font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+    letter-spacing: -0.02em;
+    color: var(--text);
+    line-height: 1.3;
+    margin-bottom: 1.5rem;
+  }
+
+  .timeline-subtitle {
+    font-weight: 300;
+    font-size: clamp(0.9rem, 1.1vw, 1rem);
+    line-height: 1.8;
+    color: var(--text-muted);
+    max-width: 560px;
+    margin: 0 auto;
+    font-style: italic;
+  }
+
+  .timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 6vh auto;
+    padding: 0 6vw;
+  }
+
+  .timeline::before {
     content: '';
     position: absolute;
+    left: 50%;
     top: 0;
-    left: 6vw;
-    right: 6vw;
-    height: 1px;
-    background: var(--border);
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, transparent, var(--plum) 5%, var(--plum) 95%, transparent);
+    transform: translateX(-50%);
   }
 
-  .scroll-label {
-    font-weight: 400;
-    font-size: 0.7rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 3rem;
+  .tl-entry {
+    position: relative;
+    width: 50%;
+    padding: 0 3rem 4rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.6s ease forwards;
   }
 
-  .scroll-intro {
-    font-weight: 300;
-    font-size: clamp(1.25rem, 1.9vw, 1.7rem);
-    line-height: 1.8;
-    color: var(--text-mid);
-    max-width: 620px;
-    margin-bottom: 6rem;
+  .tl-entry:nth-child(1) { animation-delay: 0.1s; }
+  .tl-entry:nth-child(2) { animation-delay: 0.2s; }
+  .tl-entry:nth-child(3) { animation-delay: 0.3s; }
+  .tl-entry:nth-child(4) { animation-delay: 0.4s; }
+  .tl-entry:nth-child(5) { animation-delay: 0.5s; }
+  .tl-entry:nth-child(6) { animation-delay: 0.6s; }
+  .tl-entry:nth-child(7) { animation-delay: 0.7s; }
+  .tl-entry:nth-child(8) { animation-delay: 0.8s; }
+  .tl-entry:nth-child(9) { animation-delay: 0.9s; }
+  .tl-entry:nth-child(10) { animation-delay: 1.0s; }
+  .tl-entry:nth-child(11) { animation-delay: 1.1s; }
+  .tl-entry:nth-child(12) { animation-delay: 1.2s; }
+  .tl-entry:nth-child(13) { animation-delay: 1.3s; }
+  .tl-entry:nth-child(14) { animation-delay: 1.4s; }
+  .tl-entry:nth-child(15) { animation-delay: 1.5s; }
+
+  @keyframes fadeIn {
+    to { opacity: 1; transform: translateY(0); }
   }
 
-  .scroll-intro strong {
-    font-weight: 500;
-    color: var(--text);
+  .tl-left {
+    left: 0;
+    text-align: right;
+    padding-right: 3rem;
+    padding-left: 0;
   }
 
-  .scroll-intro em {
-    font-style: italic;
-    color: var(--plum);
-  }
-
-  .scroll-intro .break {
-    display: block;
-    margin-top: 1.5rem;
-  }
-
-  /* Triad */
-  .triad {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3vw;
-    max-width: 940px;
-    width: 100%;
-  }
-
-  .triad-item {
+  .tl-right {
+    left: 50%;
     text-align: left;
-    padding: 2.2rem 0 0;
-    border-top: 2px solid var(--text);
+    padding-left: 3rem;
+    padding-right: 0;
   }
 
-  .triad-label {
+  .tl-entry::before {
+    content: '';
+    position: absolute;
+    top: 0.35rem;
+    width: 12px;
+    height: 12px;
+    background: var(--bg);
+    border: 2px solid var(--plum);
+    border-radius: 50%;
+    z-index: 2;
+  }
+
+  .tl-left::before { right: -6px; }
+  .tl-right::before { left: -6px; }
+
+  .tl-entry.milestone::before {
+    background: var(--plum);
+    width: 14px;
+    height: 14px;
+  }
+
+  .tl-left.milestone::before { right: -7px; }
+  .tl-right.milestone::before { left: -7px; }
+
+  .tl-year {
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: var(--plum);
+    margin-bottom: 0.5rem;
+  }
+
+  .tl-headline {
     font-weight: 600;
-    font-size: 0.75rem;
+    font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+    color: var(--text);
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .tl-desc {
+    font-weight: 300;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+  }
+
+  .tl-desc .highlight {
+    color: var(--text-mid);
+    font-weight: 400;
+  }
+
+  .tl-entry.pandemic .tl-desc {
+    color: var(--text-mid);
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  .skills-section {
+    max-width: 800px;
+    margin: 4vh auto 10vh;
+    padding: 0 6vw;
+  }
+
+  .skills-block {
+    border-top: 2px solid var(--plum);
+    padding-top: 2.5rem;
+    text-align: center;
+  }
+
+  .skills-label {
+    font-weight: 600;
+    font-size: 0.7rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--plum);
-    margin-bottom: 1.1rem;
+    margin-bottom: 1.5rem;
   }
 
-  .triad-desc {
+  .skills-list {
     font-weight: 300;
     font-size: 1rem;
-    line-height: 1.75;
+    line-height: 2.2;
     color: var(--text-muted);
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
+  .skills-list .separator {
+    color: rgba(90,38,80,0.25);
+    margin: 0 0.3rem;
+  }
+
+  .skills-list .skill {
+    display: inline;
+    transition: color 0.3s ease;
+  }
+
+  .skills-list .skill:hover {
+    color: var(--plum);
   }
 
   /* =================== SCROLL HINT =================== */
@@ -332,9 +437,34 @@
       border-top: 2px solid var(--plum);
       padding-top: 4vh;
     }
-    .triad {
-      grid-template-columns: 1fr;
-      gap: 2.5rem;
+    .timeline::before {
+      left: 20px;
+    }
+    .tl-entry {
+      width: 100%;
+      padding-left: 3.5rem;
+      padding-right: 0;
+      text-align: left;
+    }
+    .tl-left {
+      left: 0;
+      text-align: left;
+      padding-right: 0;
+      padding-left: 3.5rem;
+    }
+    .tl-right {
+      left: 0;
+      padding-left: 3.5rem;
+    }
+    .tl-left::before,
+    .tl-right::before {
+      left: 14px;
+      right: auto;
+    }
+    .tl-left.milestone::before,
+    .tl-right.milestone::before {
+      left: 13px;
+      right: auto;
     }
     .chapter-item {
       margin-left: 0;
@@ -391,25 +521,153 @@
     </div>
   </section>
 
-  <section class="scroll-section">
-    <p class="scroll-label">Technology · Storytelling · Experience Design</p>
-    <p class="scroll-intro">
-      <strong>Different mediums. Same instinct.</strong>
-      <span class="break">I see connections between ideas, technologies, and human experiences that other people don't see yet. Then I build the systems to make those connections real. Then I design them into something people <em>actually want to experience</em>.</span>
-    </p>
+  <section class="timeline-header">
+    <h2 class="timeline-title">A history of seeing around corners — then jumping in and getting my hands dirty</h2>
+    <p class="timeline-subtitle">Every project below was bootstrapped. No funding. No investors. No safety net. Just the next skill I needed to learn, and the willingness to learn it.</p>
+  </section>
 
-    <div class="triad">
-      <div class="triad-item">
-        <div class="triad-label">Conceive</div>
-        <p class="triad-desc">I've understood since 2007 that content wants to be interactive. Every medium I've worked in, I saw the convergence before the industry did — and built it.</p>
-      </div>
-      <div class="triad-item">
-        <div class="triad-label">Build</div>
-        <p class="triad-desc">Full-stack development, AI systems, production pipelines. Solo-built, end to end.</p>
-      </div>
-      <div class="triad-item">
-        <div class="triad-label">Design</div>
-        <p class="triad-desc">The methodology to turn any of it into something a human being wants to interact with.</p>
+  <div class="timeline">
+
+    <div class="tl-entry tl-left milestone">
+      <div class="tl-year">2007</div>
+      <div class="tl-headline">"35" — The first live-streamed web series</div>
+      <div class="tl-desc">Livestream platforms had just launched. I saw immediately that this would transform the performing arts. So I created "35" — the first interactive multi-cam livestreamed web series. Covered by the <span class="highlight">New York Times, Wall Street Journal</span>, and blogs worldwide.</div>
+    </div>
+
+    <div class="tl-entry tl-right">
+      <div class="tl-year">2008</div>
+      <div class="tl-headline">First live web-based political telethon</div>
+      <div class="tl-desc">17,000+ viewers, trending globally. Before anyone had a playbook for this.</div>
+    </div>
+
+    <div class="tl-entry tl-left">
+      <div class="tl-year">2008</div>
+      <div class="tl-headline">Learned the business of online video</div>
+      <div class="tl-desc">Took a job at an early branded video startup to understand <span class="highlight">economics, marketing, and monetization</span> from the inside.</div>
+    </div>
+
+    <div class="tl-entry tl-right">
+      <div class="tl-year">2011</div>
+      <div class="tl-headline">"Better Left Unsaid" — First interactive live-streamed play</div>
+      <div class="tl-desc"><span class="highlight">Written by Joey Brenneman. 50,000 consecutive viewers.</span></div>
+    </div>
+
+    <div class="tl-entry tl-left milestone">
+      <div class="tl-year">2012</div>
+      <div class="tl-headline">Founded VirtualArtsTV</div>
+      <div class="tl-desc">Co-founded with Joey Brenneman and Erin Bigelow. The first company dedicated to live-streaming the performing arts with real-time audience interaction.</div>
+    </div>
+
+    <div class="tl-entry tl-right">
+      <div class="tl-year">2013</div>
+      <div class="tl-headline">WiredArts Fest</div>
+      <div class="tl-desc">VirtualArtsTV produced the first interactive live-streamed performing arts festival — with a companion website and app. 13 companies spanning theater, dance, and music. Covered by <span class="highlight">ABC, CNN and worldwide</span></div>
+    </div>
+
+    <div class="tl-entry tl-left">
+      <div class="tl-year">2013–2016</div>
+      <div class="tl-headline">100+ livestreams. Theater. Dance. Music. Celebrities. Hackathons.</div>
+      <div class="tl-desc">Produced and/or directed 100+ interactive livestreams for <span class="highlight">Apple, BMW, Amazon, DC Comics, Kickstarter</span> — alongside dozens of performing arts companies and artists.</div>
+    </div>
+
+    <div class="tl-entry tl-right milestone">
+      <div class="tl-year">2016</div>
+      <div class="tl-headline">Founded Collective Agency</div>
+      <div class="tl-desc">A team of creatives from across the US bringing every creative and technical tool we had to organizations whose missions mattered more than their budgets. <span class="highlight">400+ creatives. Fortune 500 clients. Campaigns that raised millions.</span></div>
+    </div>
+
+    <div class="tl-entry tl-left pandemic">
+      <div class="tl-year">2020</div>
+      <div class="tl-headline">The world discovered virtual events</div>
+      <div class="tl-desc">We'd been doing them for 13 years.</div>
+    </div>
+
+    <div class="tl-entry tl-right">
+      <div class="tl-year">2020</div>
+      <div class="tl-headline">Gaming software meets nonprofit fundraising</div>
+      <div class="tl-desc">Brought gaming engagement software into professional multi-camera productions — <span class="highlight">Biden Victory Fund,  MDA, ERA Coalition</span>. Turned passive audiences into active communities. They raised millions.</div>
+    </div>
+
+    <div class="tl-entry tl-left">
+      <div class="tl-year">2021–2025</div>
+      <div class="tl-headline">Essence Festival of Culture</div>
+      <div class="tl-desc"><span class="highlight">173 multi-camera livestreams</span> over three days across multiple stages. Four consecutive years with Wide Angle Productions.</div>
+    </div>
+
+    <div class="tl-entry tl-right milestone">
+      <div class="tl-year">2024</div>
+      <div class="tl-headline">MIT — Certificate in Applied Generative AI</div>
+      <div class="tl-desc">Formalized what I'd been doing for years. Began building AI workflow systems, automation pipelines, and knowledge tools.</div>
+    </div>
+
+    <div class="tl-entry tl-left">
+      <div class="tl-year">2024</div>
+      <div class="tl-headline">TCS New York City Marathon / NYRR</div>
+      <div class="tl-desc">Built AI-powered podcast analytics, transcript search engines, and production systems for <span class="highlight">one of the world's largest sporting events</span>.</div>
+    </div>
+
+    <div class="tl-entry tl-right">
+      <div class="tl-year">2025</div>
+      <div class="tl-headline">AI workflows for everything</div>
+      <div class="tl-desc">Built AI systems for <span class="highlight">analytics, operations, and content creation</span> — collapsing days of manual work into minutes across every domain I touched.</div>
+    </div>
+
+    <div class="tl-entry tl-left milestone">
+      <div class="tl-year">2026</div>
+      <div class="tl-headline">Experiential Knowledge Design</div>
+      <div class="tl-desc">Built PKES: a full-stack AI knowledge platform. Proof of concept was a fully automated <span class="highlight">75-minute museum audio tour at the Metropolitan Museum of Art</span>. The culmination of two decades of work.</div>
+    </div>
+
+  </div>
+
+  <section class="skills-section">
+    <div class="skills-block">
+      <p class="skills-label">Skills I taught myself along the way</p>
+      <div class="skills-list">
+        <span class="skill">Creative Direction</span><span class="separator">·</span>
+        <span class="skill">Brand Storytelling</span><span class="separator">·</span>
+        <span class="skill">Narrative Development</span><span class="separator">·</span>
+        <span class="skill">Immersive Storytelling</span><span class="separator">·</span>
+        <span class="skill">Event Design</span><span class="separator">·</span>
+        <span class="skill">Interactive Experience Design</span><span class="separator">·</span>
+        <span class="skill">Livestream Direction</span><span class="separator">·</span>
+        <span class="skill">Live Broadcast Production</span><span class="separator">·</span>
+        <span class="skill">Multi-Camera Production</span><span class="separator">·</span>
+        <span class="skill">Video Editing</span><span class="separator">·</span>
+        <span class="skill">Podcast Production</span><span class="separator">·</span>
+        <span class="skill">Streaming Infrastructure</span><span class="separator">·</span>
+        <span class="skill">Graphic Design</span><span class="separator">·</span>
+        <span class="skill">Photoshop</span><span class="separator">·</span>
+        <span class="skill">Premiere</span><span class="separator">·</span>
+        <span class="skill">Web Development</span><span class="separator">·</span>
+        <span class="skill">HTML</span><span class="separator">·</span>
+        <span class="skill">CSS</span><span class="separator">·</span>
+        <span class="skill">WordPress</span><span class="separator">·</span>
+        <span class="skill">Content Strategy</span><span class="separator">·</span>
+        <span class="skill">Digital Marketing</span><span class="separator">·</span>
+        <span class="skill">Social Marketing</span><span class="separator">·</span>
+        <span class="skill">Audience Development</span><span class="separator">·</span>
+        <span class="skill">Community Building</span><span class="separator">·</span>
+        <span class="skill">Campaign Strategy & Execution</span><span class="separator">·</span>
+        <span class="skill">Communications</span><span class="separator">·</span>
+        <span class="skill">Distribution</span><span class="separator">·</span>
+        <span class="skill">Business Development</span><span class="separator">·</span>
+        <span class="skill">Client Management</span><span class="separator">·</span>
+        <span class="skill">Team Leadership</span><span class="separator">·</span>
+        <span class="skill">Budget Oversight</span><span class="separator">·</span>
+        <span class="skill">Bookkeeping</span><span class="separator">·</span>
+        <span class="skill">Fundraising Strategy</span><span class="separator">·</span>
+        <span class="skill">Workflow Optimization</span><span class="separator">·</span>
+        <span class="skill">Data Analytics</span><span class="separator">·</span>
+        <span class="skill">Python</span><span class="separator">·</span>
+        <span class="skill">Flask</span><span class="separator">·</span>
+        <span class="skill">API Integration</span><span class="separator">·</span>
+        <span class="skill">Make.com</span><span class="separator">·</span>
+        <span class="skill">Prompt Engineering</span><span class="separator">·</span>
+        <span class="skill">LLM Integration</span><span class="separator">·</span>
+        <span class="skill">Generative AI</span><span class="separator">·</span>
+        <span class="skill">AI Workflow Automation</span><span class="separator">·</span>
+        <span class="skill">Systems Architecture</span>
       </div>
     </div>
   </section>
