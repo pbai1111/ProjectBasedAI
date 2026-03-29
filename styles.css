@@ -466,6 +466,7 @@ body {
   gap: 3rem;
   align-items: center;
   margin-top: 4rem;
+  margin-bottom: 4rem;
   padding-top: 3rem;
   border-top: 1px solid var(--border-faint);
   max-width: 900px;
@@ -488,11 +489,10 @@ body {
 }
 
 .press-logo {
-  font-weight: 600;
-  font-size: 0.8rem;
-  color: var(--text-muted);
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: var(--text);
   letter-spacing: 0.02em;
-  opacity: 0.5;
 }
 
 /* =================== THROUGHLINE =================== */
