@@ -27,7 +27,7 @@
     font-weight: 400;
     font-size: clamp(2rem, 3.5vw, 3rem);
     letter-spacing: -0.02em;
-    color: var(--plum);
+    color: #9a9a9a;
     line-height: 1.1;
     margin-bottom: 2rem;
   }
@@ -38,10 +38,14 @@
     font-weight: 700;
     font-size: clamp(2.8rem, 5vw, 4.5rem);
     line-height: 1.15;
-    color: var(--text);
     margin-bottom: 2.2rem;
     max-width: 600px;
     letter-spacing: -0.03em;
+    background: linear-gradient(to bottom, #7a7a7a 0%, #3a3a3a 40%, var(--plum) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    padding-bottom: 0.1em;
   }
 
   .throughline {
@@ -67,22 +71,22 @@
   }
 
   .section-header {
-    font-weight: 600;
-    font-size: 0.85rem;
+    font-weight: 800;
+    font-size: 0.95rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     line-height: 1.6;
-    color: #000000;
+    color: var(--plum);
     margin-bottom: 1.2rem;
   }
 
   .section-header-ai {
-    font-weight: 600;
-    font-size: 0.85rem;
+    font-weight: 800;
+    font-size: 0.88rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     line-height: 1.6;
-    color: #000000;
+    color: var(--plum);
     margin-top: 2.2rem;
     margin-bottom: 1.2rem;
   }
@@ -359,27 +363,22 @@
       <p class="section-header">15+ years leading teams at the intersection of technology and creativity</p>
       <ul class="chapter-list">
         <li class="chapter-item">
-          <div class="chapter-number">01</div>
           <div class="chapter-title"><a href="theater.html" style="color:inherit;text-decoration:none">Theater & Immersive Arts</a></div>
         </li>
         <li class="chapter-item">
-          <div class="chapter-number">02</div>
           <div class="chapter-title"><a href="agency.html" style="color:inherit;text-decoration:none">Digital Media Agency</a></div>
         </li>
         <li class="chapter-item">
-          <div class="chapter-number">03</div>
           <div class="chapter-title"><a href="interactive.html" style="color:inherit;text-decoration:none">Live Interactive Production</a></div>
         </li>
       </ul>
 
-      <p class="section-header-ai">Now AI-first across everything</p>
+      <p class="section-header-ai">Applied AI. Early and all-in.</p>
       <ul class="chapter-list chapter-list-ai">
         <li class="chapter-item">
-          <div class="chapter-number">04</div>
           <div class="chapter-title"><a href="ai-systems.html" style="color:inherit;text-decoration:none">Video Production & Creative Workflows</a></div>
         </li>
         <li class="chapter-item future">
-          <div class="chapter-number">05</div>
           <div class="chapter-title"><a href="experiential-knowledge.html" style="color:inherit;text-decoration:none">Experiential Knowledge Design <span class="future-tag">Current Focus</span></a></div>
         </li>
       </ul>
