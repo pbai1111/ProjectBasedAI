@@ -10,13 +10,35 @@
 <body>
 
   <nav class="nav">
-    <a href="index.html" class="nav-name">Kathryn Jones</a>
-    <a href="index.html" class="nav-back">← Back to Home</a>
+    <a href="index.html" class="nav-back">← Home</a>
+    <button class="nav-hamburger" onclick="document.getElementById('navOverlay').classList.add('open')" aria-label="Open menu">☰</button>
   </nav>
 
-  <section class="page-header">
-    <p class="page-chapter">03 — Where Technology Meets Creativity</p>
-    <h1 class="page-title">Live Interactive Production</h1>
+  <div class="nav-overlay" id="navOverlay">
+    <div class="nav-overlay-header">
+      <button class="nav-overlay-close" onclick="document.getElementById('navOverlay').classList.remove('open')" aria-label="Close menu">✕</button>
+    </div>
+    <div class="nav-overlay-content">
+      <p class="section-header">15+ years leading teams at the intersection of technology and creativity</p>
+      <ul class="chapter-list">
+        <li class="chapter-item"><a href="theater.html"><div class="chapter-number">01</div><div class="chapter-title">Theater & Immersive Arts</div></a></li>
+        <li class="chapter-item"><a href="agency.html"><div class="chapter-number">02</div><div class="chapter-title">Digital Media Agency</div></a></li>
+        <li class="chapter-item active"><a href="interactive.html"><div class="chapter-number">03</div><div class="chapter-title">Live Interactive Production</div></a></li>
+      </ul>
+      <p class="section-header-ai">Now AI-first across everything</p>
+      <ul class="chapter-list">
+        <li class="chapter-item"><a href="ai-systems.html"><div class="chapter-number">04</div><div class="chapter-title">AI Video Production & Creative Workflows</div></a></li>
+        <li class="chapter-item"><a href="experiential-knowledge.html"><div class="chapter-number">05</div><div class="chapter-title">Experiential Knowledge Design</div></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="page-header" style="max-width:none;">
+    <p class="page-chapter">03 — Leading Teams at the Intersection of Technology and Creativity</p>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:5vw; align-items:start;">
+      <h1 class="page-title">Live Interactive Production</h1>
+      <p class="throughline-text" style="margin-bottom:0; max-width:none;">By building gaming engagement software into professional multi-camera nonprofit productions, we turned passive audiences into dedicated communities. They raised millions.</p>
+    </div>
   </section>
 
   <section class="two-col">
@@ -25,40 +47,26 @@
         <div class="clients-section">
           <p class="clients-label">Selected Clients</p>
           <div class="clients-list">
-            <!-- PLACEHOLDER: Replace with your livestream/fundraiser clients -->
-            <span class="client-highlight">[Client Name]</span><span class="separator">·</span>
-            <span class="client-highlight">[Client Name]</span><span class="separator">·</span>
-            <span class="client-highlight">[Client Name]</span><span class="separator">·</span>
-            <span class="client-highlight">[Client Name]</span><span class="separator">·</span>
-            <span class="client-highlight">[Client Name]</span><span class="separator">·</span>
-            <span class="client-highlight">[Client Name]</span><span class="separator">·</span>
-            <span class="client-highlight">[Client Name]</span><span class="separator">·</span>
-            <span class="client-highlight">[Client Name]</span>
+            <span class="client-highlight">Biden Victory Fund</span><span class="separator">·</span>
+            <span class="client-highlight">Muscular Dystrophy Association</span><span class="separator">·</span>
+            <span class="client-highlight">The Women's March</span><span class="separator">·</span>
+            <span class="client-highlight">ERA Coalition</span><span class="separator">·</span>
+            <span class="client-highlight">AFL-CIO</span><span class="separator">·</span>
+            <span class="client-highlight">Victory Fund</span><span class="separator">·</span>
+            <span class="client-highlight">Family Equality</span><span class="separator">·</span>
+            <span class="client-highlight">Vote With Us</span><span class="separator">·</span>
+            <span class="client-highlight">March for our Lives</span><span class="separator">·</span>
+            <span class="client-highlight">Brick Education</span>
           </div>
         </div>
       </div>
 
-      <div class="tech-block" style="margin-bottom:2.5rem;">
-        <p class="tech-label">Platform Integration</p>
-        <div class="tech-list">
-          <span>Multi-Camera Zoom Production</span><span class="separator">·</span>
-          <span>YouTube Live</span><span class="separator">·</span>
-          <span>Facebook Live</span><span class="separator">·</span>
-          <span>CauseMatch</span><span class="separator">·</span>
-          <span>Make.com Automation</span><span class="separator">·</span>
-          <span>Twitch</span><span class="separator">·</span>
-          <span>Real-Time Donation Mechanics</span><span class="separator">·</span>
-          <span>Gaming Engagement Software</span>
-        </div>
-      </div>
-
       <div class="story" style="border-top: 1px solid rgba(26,26,26,0.1); padding-top: 2.5rem;">
-        <p><span class="highlight">Most virtual fundraisers were Zoom calls with a donation link.</span> I turned them into live, multi-camera productions — and raised millions doing it.</p>
-        <p>The innovation wasn't putting fundraisers on a gaming platform like Twitch — although I built those too, for MDA. It was the reverse: <span class="highlight">bringing gaming engagement software into professional multi-camera productions</span> on Zoom, YouTube, and Facebook. Real-time audience interaction. Integrated donation mechanics. Leaderboards, live thermometers, gamified giving — all stitched into broadcast-quality events that felt nothing like a webinar.</p>
-        <p>The work for Disney, Alicia Keys, the Biden Victory Fund, and dozens of national nonprofits all shared the same principle: <span class="highlight">a transactional ask becomes something entirely different when you design it as a communal, emotional experience.</span></p>
+        <p><span class="highlight">We turned virtual fundraisers into broadcast-quality, multi-camera productions</span> — complete with world-class event design, custom motion graphics, and gaming-style engagement mechanics that made audiences feel like participants, not spectators.</p>
+        <p>The innovation wasn't putting fundraisers on a gaming platform like Twitch — although we built those too, for MDA. It was the reverse: <span class="highlight">bringing real-time leaderboards, live thermometers, gamified giving, and integrated donation mechanics into professional productions</span> on Zoom, YouTube, and Facebook.</p>
+        <p>And after every event, we collected and analyzed the data — what drove donations, when audiences engaged, where they dropped off — so that <span class="highlight">every next fundraiser raised more than the last.</span></p>
+        <p>The work for Family Equality, The Biden Victory Fund, Brick Education, and dozens of national nonprofits all proved the same principle: <span class="highlight">a transactional ask becomes something entirely different when you design it as a communal, emotional experience.</span></p>
       </div>
-      <span class="era-tag">Collective Agency · Live Interactive Division</span>
-
     </div>
 
     <div class="col-right">
@@ -90,14 +98,14 @@
       </div>
       <div class="impact-item">
         <div class="impact-stat">Every integration built from scratch</div>
-        <div class="impact-desc">CauseMatch, Zoom, Make.com, YouTube, Facebook, Twitch — custom-wired for each event because no off-the-shelf solution existed</div>
+        <div class="impact-desc">Zoom, YouTube, Facebook, Twitch — custom-engineered for each event because no off-the-shelf solution existed</div>
       </div>
     </div>
   </section>
 
   <section class="throughline-section">
     <p class="throughline-text">
-      Live interactive production proved that the line between <em>technology</em> and <em>experience</em> isn't a gap — it's a design problem. Solve the integration, and a donation link becomes a standing ovation. The next chapter applied that same instinct to AI.
+      All of these events, built by hand. So rewarding but so much work. 10 hours a day. 15 hours some days.<br><br>Then AI changed what was possible.
     </p>
     <a href="ai-systems.html" class="next-link">Next: AI Production & Systems →</a>
   </section>

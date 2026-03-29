@@ -14,13 +14,35 @@
 <body>
 
   <nav class="nav">
-    <a href="index.html" class="nav-name">Kathryn Jones</a>
-    <a href="index.html" class="nav-back">← Back to Home</a>
+    <a href="index.html" class="nav-back">← Home</a>
+    <button class="nav-hamburger" onclick="document.getElementById('navOverlay').classList.add('open')" aria-label="Open menu">☰</button>
   </nav>
 
-  <section class="page-header">
-    <p class="page-chapter">02 — Where Technology Meets Creativity</p>
-    <h1 class="page-title">Digital Media Agency</h1>
+  <div class="nav-overlay" id="navOverlay">
+    <div class="nav-overlay-header">
+      <button class="nav-overlay-close" onclick="document.getElementById('navOverlay').classList.remove('open')" aria-label="Close menu">✕</button>
+    </div>
+    <div class="nav-overlay-content">
+      <p class="section-header">15+ years leading teams at the intersection of technology and creativity</p>
+      <ul class="chapter-list">
+        <li class="chapter-item"><a href="theater.html"><div class="chapter-number">01</div><div class="chapter-title">Theater & Immersive Arts</div></a></li>
+        <li class="chapter-item active"><a href="agency.html"><div class="chapter-number">02</div><div class="chapter-title">Digital Media Agency</div></a></li>
+        <li class="chapter-item"><a href="interactive.html"><div class="chapter-number">03</div><div class="chapter-title">Live Interactive Production</div></a></li>
+      </ul>
+      <p class="section-header-ai">Now AI-first across everything</p>
+      <ul class="chapter-list">
+        <li class="chapter-item"><a href="ai-systems.html"><div class="chapter-number">04</div><div class="chapter-title">AI Video Production & Creative Workflows</div></a></li>
+        <li class="chapter-item"><a href="experiential-knowledge.html"><div class="chapter-number">05</div><div class="chapter-title">Experiential Knowledge Design</div></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="page-header" style="max-width:none;">
+    <p class="page-chapter">02 — Leading Teams at the Intersection of Technology and Creativity</p>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:5vw; align-items:start;">
+      <h1 class="page-title">Digital Media Agency</h1>
+      <p class="throughline-text" style="margin-bottom:0; max-width:none;">A team of creatives from across the US bringing every creative and technical tool we had to organizations whose missions mattered more than their budgets.</p>
+    </div>
   </section>
 
   <section class="two-col">
@@ -50,23 +72,22 @@
     <div class="col-right">
       <p class="logo-grid-label">Selected Clients</p>
       <div class="logo-grid">
-        <!-- PLACEHOLDER: Replace each logo-cell's content with <img src="logos/client.svg" alt="Client Name"> -->
-        <div class="logo-cell"><span class="logo-placeholder">Logo</span></div>
-        <div class="logo-cell"><span class="logo-placeholder">Logo</span></div>
-        <div class="logo-cell"><span class="logo-placeholder">Logo</span></div>
-        <div class="logo-cell"><span class="logo-placeholder">Logo</span></div>
-        <div class="logo-cell"><span class="logo-placeholder">Logo</span></div>
-        <div class="logo-cell"><span class="logo-placeholder">Logo</span></div>
-        <div class="logo-cell"><span class="logo-placeholder">Logo</span></div>
-        <div class="logo-cell"><span class="logo-placeholder">Logo</span></div>
-        <div class="logo-cell"><span class="logo-placeholder">Logo</span></div>
-        <div class="logo-cell"><span class="logo-placeholder">Logo</span></div>
-        <div class="logo-cell"><span class="logo-placeholder">Logo</span></div>
-        <div class="logo-cell"><span class="logo-placeholder">Logo</span></div>
-        <div class="logo-cell"><span class="logo-placeholder">Logo</span></div>
-        <div class="logo-cell"><span class="logo-placeholder">Logo</span></div>
-        <div class="logo-cell"><span class="logo-placeholder">Logo</span></div>
-        <div class="logo-cell"><span class="logo-placeholder">Logo</span></div>
+        <div class="logo-cell"><img src="assets/CA Client logos/waltdisney.jpg" alt="Walt Disney"></div>
+        <div class="logo-cell"><img src="assets/CA Client logos/bidenvictory.png" alt="Biden Victory Fund"></div>
+        <div class="logo-cell"><img src="assets/CA Client logos/MDA_logo-860x574.jpg" alt="Muscular Dystrophy Association"></div>
+        <div class="logo-cell"><img src="assets/CA Client logos/DLAPiper.png" alt="DLA Piper"></div>
+        <div class="logo-cell"><img src="assets/CA Client logos/edward jones.png" alt="Edward Jones"></div>
+        <div class="logo-cell"><img src="assets/CA Client logos/600px-US_Democratic_Party_Logo.jpg" alt="Democratic Party"></div>
+        <div class="logo-cell"><img src="assets/CA Client logos/Women's March Logo.png" alt="Women's March"></div>
+        <div class="logo-cell"><img src="assets/CA Client logos/marchforourlives.png" alt="March for Our Lives"></div>
+        <div class="logo-cell"><img src="assets/CA Client logos/ERA logo.png" alt="ERA Coalition"></div>
+        <div class="logo-cell"><img src="assets/CA Client logos/Indivisible Logo.png" alt="Indivisible"></div>
+        <div class="logo-cell"><img src="assets/CA Client logos/LetAmericaVote Logo.png" alt="Let America Vote"></div>
+        <div class="logo-cell"><img src="assets/CA Client logos/Swingleft.png" alt="Swing Left"></div>
+        <div class="logo-cell"><img src="assets/CA Client logos/ny-womens-foundation-logo.png" alt="New York Women's Foundation"></div>
+        <div class="logo-cell"><img src="assets/CA Client logos/Bricklogo.jpeg" alt="Brick Education"></div>
+        <div class="logo-cell"><img src="assets/CA Client logos/pccc-logo.png" alt="PCCC"></div>
+        <div class="logo-cell"><img src="assets/CA Client logos/ReformAustin.jpg" alt="Reform Austin"></div>
       </div>
     </div>
   </section>
@@ -105,7 +126,7 @@
 
   <section class="throughline-section">
     <p class="throughline-text">
-      Running an agency for six years taught me that the best production work isn't just <em>content</em> — it's <em>experience design under deadline</em>. Every project was a system: audience, message, medium, moment. The next chapter took that thinking and pushed it further.
+      Mission-driven work kept asking the same question: how do you turn an audience into a community? The answer pushed us back to live, interactive production.
     </p>
     <a href="interactive.html" class="next-link">Next: Live Interactive Production →</a>
   </section>

@@ -16,14 +16,36 @@
 
   <!-- =================== NAV =================== -->
   <nav class="nav">
-    <a href="index.html" class="nav-name">Kathryn Jones</a>
-    <a href="index.html" class="nav-back">← Back to Home</a>
+    <a href="index.html" class="nav-back">← Home</a>
+    <button class="nav-hamburger" onclick="document.getElementById('navOverlay').classList.add('open')" aria-label="Open menu">☰</button>
   </nav>
 
+  <div class="nav-overlay" id="navOverlay">
+    <div class="nav-overlay-header">
+      <button class="nav-overlay-close" onclick="document.getElementById('navOverlay').classList.remove('open')" aria-label="Close menu">✕</button>
+    </div>
+    <div class="nav-overlay-content">
+      <p class="section-header">15+ years leading teams at the intersection of technology and creativity</p>
+      <ul class="chapter-list">
+        <li class="chapter-item active"><a href="theater.html"><div class="chapter-number">01</div><div class="chapter-title">Theater & Immersive Arts</div></a></li>
+        <li class="chapter-item"><a href="agency.html"><div class="chapter-number">02</div><div class="chapter-title">Digital Media Agency</div></a></li>
+        <li class="chapter-item"><a href="interactive.html"><div class="chapter-number">03</div><div class="chapter-title">Live Interactive Production</div></a></li>
+      </ul>
+      <p class="section-header-ai">Now AI-first across everything</p>
+      <ul class="chapter-list">
+        <li class="chapter-item"><a href="ai-systems.html"><div class="chapter-number">04</div><div class="chapter-title">AI Video Production & Creative Workflows</div></a></li>
+        <li class="chapter-item"><a href="experiential-knowledge.html"><div class="chapter-number">05</div><div class="chapter-title">Experiential Knowledge Design</div></a></li>
+      </ul>
+    </div>
+  </div>
+
   <!-- =================== PAGE HEADER =================== -->
-  <section class="page-header">
-    <p class="page-chapter">01 — Where Technology Meets Creativity</p>
-    <h1 class="page-title">Theater & Immersive Arts</h1>
+  <section class="page-header" style="max-width:none;">
+    <p class="page-chapter">01 — Leading Teams at the Intersection of Technology and Creativity</p>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:5vw; align-items:start;">
+      <h1 class="page-title">Theater & Immersive Arts</h1>
+      <p class="throughline-text" style="margin-bottom:0; max-width:none;">We built VirtualArtsTV on the conviction that audiences don't just want to watch — they want to <em>be an active part of the community.</em></p>
+    </div>
   </section>
 
   <!-- =================== TWO COLUMN =================== -->
@@ -35,12 +57,22 @@
         <div class="clients-section">
           <p class="clients-label">Artists & Cultural Partners</p>
           <div class="clients-list">
-            <span class="client-highlight">Alicia Keys</span><span class="separator">·</span>
-            <span class="client-highlight">Amanda Palmer</span><span class="separator">·</span>
+            <span class="client-name">Alicia Keys</span><span class="separator">·</span>
+            <span class="client-hame">Amanda Palmer</span><span class="separator">·</span>
+            <span class="client-name">Puffs Off-Broadway/Fathom Events</span><span class="separator">·</span>
+            <span class="client-name">Bedlam Theater Company</span><span class="separator">·</span>
+            <span class="client-name">The Flea Theater</span><span class="separator">·</span>
+            <span class="client-name">TRUTH The Musical</span><span class="separator">·</span>
+            <span class="client-name">The Lark Play Development Center</span><span class="separator">·</span>
+            <span class="client-name">The New York International Fringe Festival</span><span class="separator">·</span>
+            <span class="client-name">Patriot Brass Ensemble</span><span class="separator">·</span>
+            <span class="client-name">Associated Chamber Music Players</span><span class="separator">·</span>
+            <span class="client-name">SteeleDance</span><span class="separator">·</span>
+            <span class="client-name">Dance New Amsterdam</span><span class="separator">·</span>
             <span class="client-name">Exit 12 Dance Company</span><span class="separator">·</span>
-            <span class="client-name">White With Some Color</span><span class="separator">·</span>
-            <span class="client-name">Fathom Events</span>
-            <p class="clients-note">Plus dozens of independent theater, dance, and music companies across the U.S. and internationally</p>
+            <span class="client-name">SleepDance</span><span class="separator">·</span>
+            <span class="client-name">Major League Hackers</span>
+            <p class="clients-note">Plus dozens of independent theater, dance, and music companies</p>
           </div>
         </div>
 
@@ -71,21 +103,21 @@
     <div class="col-right">
       <div class="video-embed-block">
         <div class="video-embed-wrapper">
-          <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1177475721?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;title=0&amp;byline=0&amp;portrait=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="WiredArtsFest: Theater Gets a Tech Twist"></iframe></div>
+          <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1178039295?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="WiredArtsFest: Theater Gets a Tech Twist"></iframe></div>
         </div>
         <a href="https://abcnews.com/Technology/wiredarts-fest-theater-video-streaming-social-media-twist/story?id=18563597" target="_blank" rel="noopener" class="video-headline">WiredArts Fest: Theater With Video Streaming and a Social Media Twist</a>
         <div class="video-headline-meta">It's okay to tweet, post to Facebook and take photos at this theater. — <span class="video-headline-byline">Joanna Stern</span></div>
       </div>
       <script src="https://player.vimeo.com/api/player.js"></script>
       <div class="video-embed-block">
-        <div class="video-embed-wrapper">
-          <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1177517469?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;title=0&amp;byline=0&amp;portrait=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="VATV Rough Cut Trailer"></iframe></div>
+        <div class="video-embed-wrapper" style="border-bottom:none;border-radius:6px 6px 0 0;">
+          <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1178043699?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="VATV Rough Cut Sizzle"></iframe></div>
         </div>
-        <span class="video-headline">Ancient Rough Cut Sizzle - Alicia Keys, Amanda Palmer, David Bowie Tribute, Bedlam Theater Company, Flea Theater Company, Arc Theater, Major League Hackers, Apple Store.....</span>
+        <span class="video-headline" style="margin-top:0;"><strong>Ancient Rough Cut Sizzle</strong> <span style="font-weight:300;"> — Alicia Keys, Amanda Palmer, David Bowie Tribute, Bedlam Theater Company, Flea Theater Company, Arc Theater, Major League Hackers, Apple Store.....</span></span>
       </div>
       <div class="video-embed-block">
         <div class="video-embed-wrapper">
-          <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://www.youtube.com/embed/fv60-3ELmcc?modestbranding=1&rel=0&showinfo=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Education Program Trailer"></iframe></div>
+          <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1178039291?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="The Thrill Of Live Theater - In Your Classroom"></iframe></div>
         </div>
         <span class="video-headline">The Thrill of Interactive Live Theater in Your Classroom</span>
       </div>
@@ -116,7 +148,7 @@
     </div>
     <div class="throughline-col">
       <p class="throughline-text">
-        VirtualArtsTV proved that audiences don't just want to watch — they want to <em>participate</em>. Every medium I've worked in since has been built on that same principle.
+        Every medium I've worked in since has been built on this same principle.
       </p>
       <a href="agency.html" class="next-link">Next: Digital Media Agency →</a>
     </div>

@@ -61,6 +61,142 @@ body {
 
 .nav-back:hover { color: var(--plum); }
 
+.nav-hamburger {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.3s ease;
+  line-height: 1;
+  padding: 0;
+}
+
+.nav-hamburger:hover { color: var(--plum); }
+
+/* =================== NAV OVERLAY =================== */
+.nav-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 200;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 6vw 4rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.nav-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.nav-overlay-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 6vh;
+}
+
+.nav-overlay-close {
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.3s ease;
+  line-height: 1;
+  padding: 0;
+}
+
+.nav-overlay-close:hover { color: var(--plum); }
+
+.nav-overlay-content {
+  max-width: 560px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.nav-overlay .section-header {
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.6;
+  color: #000;
+  margin-bottom: 1.2rem;
+}
+
+.nav-overlay .section-header-ai {
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.6;
+  color: #000;
+  margin-top: 2.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.nav-overlay .chapter-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-overlay .chapter-item {
+  position: relative;
+  padding: 1.1rem 1.2rem;
+  border-bottom: 1px solid var(--border-faint);
+  border-radius: 4px;
+  transition: all 0.35s ease;
+}
+
+.nav-overlay .chapter-item a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.nav-overlay .chapter-number {
+  font-weight: 300;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  margin-bottom: 0.3rem;
+  transition: color 0.35s ease;
+}
+
+.nav-overlay .chapter-title {
+  font-weight: 400;
+  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+  color: var(--text-muted);
+  transition: all 0.35s ease;
+  letter-spacing: -0.01em;
+}
+
+.nav-overlay .chapter-item:hover {
+  background: var(--plum-light);
+}
+
+.nav-overlay .chapter-item:hover .chapter-title {
+  color: var(--text);
+}
+
+.nav-overlay .chapter-item:hover .chapter-number {
+  color: var(--plum);
+}
+
+.nav-overlay .chapter-item.active .chapter-title {
+  color: var(--plum);
+  font-weight: 600;
+}
+
+.nav-overlay .chapter-item.active .chapter-number {
+  color: var(--plum);
+}
+
 /* =================== PAGE HEADER =================== */
 .page-header {
   padding: 16vh 6vw 4vh;
@@ -254,26 +390,22 @@ body {
 }
 
 .logo-cell {
-  aspect-ratio: 3/2;
+  aspect-ratio: 1/1;
   background: var(--bg);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.2rem;
+  padding: 0.4rem;
   transition: all 0.35s ease;
 }
 
 .logo-cell:hover { background: var(--plum-light); }
 
 .logo-cell img {
-  max-width: 80%;
-  max-height: 60%;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
-  filter: grayscale(100%) opacity(0.5);
-  transition: filter 0.35s ease;
 }
-
-.logo-cell:hover img { filter: grayscale(0%) opacity(1); }
 
 .logo-placeholder {
   font-weight: 300;

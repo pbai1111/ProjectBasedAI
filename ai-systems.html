@@ -3,44 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Production & Systems — Kathryn Jones</title>
+<title>AI Video Production and Creative Workflows — Kathryn Jones</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
   /* ai-systems.html — page-specific overrides */
-  .story { margin-bottom: 2.5rem; }
 
-  .approach-block {
-    margin-bottom: 1rem;
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    padding: 4vh 6vw 10vh;
   }
 
-  .approach-label {
-    font-weight: 500;
-    font-size: 0.65rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--plum);
-    margin-bottom: 1rem;
-  }
-
-  .approach-text {
-    font-weight: 300;
-    font-size: 0.92rem;
-    line-height: 1.8;
-    color: var(--text-muted);
-    padding-bottom: 2rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .approach-text .highlight {
-    color: var(--text-mid);
-    font-weight: 400;
-  }
-
-  /* Flip cards */
   .case-card {
     perspective: 1000px;
-    height: 280px;
+    height: 320px;
   }
 
   .case-card-inner {
@@ -69,27 +47,45 @@
   }
 
   .case-card-front {
-    background: var(--bg);
-    border: 1px solid var(--border);
+    background: var(--plum);
     justify-content: center;
     gap: 1.2rem;
   }
 
   .case-card-back {
-    background: var(--plum);
+    background: var(--plum-light);
+    border: 1px solid var(--border);
     transform: rotateY(180deg);
     justify-content: center;
     gap: 1.5rem;
   }
 
   .case-card-title {
-    font-weight: 600;
-    font-size: 1rem;
-    color: var(--text);
-    letter-spacing: -0.01em;
+    font-weight: 800;
+    font-size: 2.2rem;
+    color: #fff;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
   }
 
-  .case-label {
+  /* Front card (plum bg) — white text */
+  .case-card-front .case-label {
+    font-weight: 600;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .case-card-front .case-text {
+    font-weight: 400;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.85);
+  }
+
+  /* Back card (light plum bg) — dark text */
+  .case-card-back .case-label {
     font-weight: 600;
     font-size: 0.68rem;
     letter-spacing: 0.18em;
@@ -97,26 +93,18 @@
     color: var(--plum);
   }
 
-  .case-text {
+  .case-card-back .case-text {
     font-weight: 400;
     font-size: 0.95rem;
     line-height: 1.7;
     color: var(--text-mid);
   }
 
-  .case-card-back .case-label {
-    color: rgba(255,255,255,0.5);
-  }
-
-  .case-card-back .case-text {
-    color: rgba(255,255,255,0.9);
-  }
-
   .case-card-back .case-result {
-    font-weight: 400;
+    font-weight: 600;
     font-size: 0.95rem;
     line-height: 1.7;
-    color: #fff;
+    color: var(--text);
   }
 
   .case-section {
@@ -130,12 +118,12 @@
     font-size: 0.65rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--text-muted);
-    opacity: 0.5;
+    color: rgba(255,255,255,0.4);
     margin-top: auto;
   }
 
   @media (max-width: 768px) {
+    .card-grid { grid-template-columns: 1fr; }
     .case-card { height: auto; perspective: none; }
     .case-card-inner { transform-style: flat; }
     .case-card:hover .case-card-inner { transform: none; }
@@ -150,165 +138,167 @@
 <body>
 
   <nav class="nav">
-    <a href="index.html" class="nav-name">Kathryn Jones</a>
-    <a href="index.html" class="nav-back">← Back to Home</a>
+    <a href="index.html" class="nav-back">← Home</a>
+    <button class="nav-hamburger" onclick="document.getElementById('navOverlay').classList.add('open')" aria-label="Open menu">☰</button>
   </nav>
 
-  <section class="page-header">
+  <div class="nav-overlay" id="navOverlay">
+    <div class="nav-overlay-header">
+      <button class="nav-overlay-close" onclick="document.getElementById('navOverlay').classList.remove('open')" aria-label="Close menu">✕</button>
+    </div>
+    <div class="nav-overlay-content">
+      <p class="section-header">15+ years leading teams at the intersection of technology and creativity</p>
+      <ul class="chapter-list">
+        <li class="chapter-item"><a href="theater.html"><div class="chapter-number">01</div><div class="chapter-title">Theater & Immersive Arts</div></a></li>
+        <li class="chapter-item"><a href="agency.html"><div class="chapter-number">02</div><div class="chapter-title">Digital Media Agency</div></a></li>
+        <li class="chapter-item"><a href="interactive.html"><div class="chapter-number">03</div><div class="chapter-title">Live Interactive Production</div></a></li>
+      </ul>
+      <p class="section-header-ai">Now AI-first across everything</p>
+      <ul class="chapter-list">
+        <li class="chapter-item active"><a href="ai-systems.html"><div class="chapter-number">04</div><div class="chapter-title">AI Video Production & Creative Workflows</div></a></li>
+        <li class="chapter-item"><a href="experiential-knowledge.html"><div class="chapter-number">05</div><div class="chapter-title">Experiential Knowledge Design</div></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="page-header" style="max-width:none;">
     <p class="page-chapter">04 — Where AI Meets Experience</p>
-    <h1 class="page-title">AI Production & Systems</h1>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:5vw; align-items:start;">
+      <h1 class="page-title">AI Video Production and Creative Workflows</h1>
+      <p class="throughline-text" style="margin-bottom:0; max-width:none;">Every one of these systems follows the same principle: <em>AI handles the labor so the human can focus on the meaning.</em></p>
+    </div>
   </section>
 
-  <section class="two-col">
+  <section style="padding:0 6vw 4vh;">
+    <div class="credential-block" style="max-width:480px;">
+      <p class="credential-label">Credential</p>
+      <div class="credential-title">Certificate in Applied Generative AI</div>
+      <div class="credential-source">Massachusetts Institute of Technology (MIT)</div>
+    </div>
+  </section>
 
-    <!-- LEFT: Story + Credential -->
-    <div class="col-left">
-      <div class="story">
-        <p><span class="highlight">AI isn't a new direction for me. It's a new tool for a career-long obsession:</span> building systems at the intersection of technology and creativity that turn manual, fragmented processes into something elegant, automated, and human.</p>
-        <p>I've spent nearly two decades finding the convergence between emerging technology and real-world experience — in theater, in live production, in digital media. AI is the most powerful version of that convergence yet. I build AI-native production pipelines, workflow automation systems, and analytical tools that don't just save time — they <span class="highlight">surface insights and connections that manual processes miss entirely.</span></p>
-      </div>
+  <section class="card-grid">
 
-      <div class="credential-block">
-        <p class="credential-label">Credential</p>
-        <div class="credential-title">Certificate in Applied Generative AI</div>
-        <div class="credential-source">Massachusetts Institute of Technology (MIT)</div>
+    <div class="case-card">
+      <div class="case-card-inner">
+        <div class="case-card-front">
+          <div class="case-card-title">AI Video Production</div>
+          <div class="case-section">
+            <span class="case-label">Problem</span>
+            <p class="case-text">Companies need video content that competes. Traditional production timelines are long and expensive.</p>
+          </div>
+          <span class="flip-hint">Hover for solution →</span>
+        </div>
+        <div class="case-card-back">
+          <div class="case-section">
+            <span class="case-label">Solution</span>
+            <p class="case-text">AI-native video production — from storyboard to final cut. A fundamentally different workflow that delivers broadcast-quality work at a fraction of the cost and timeline.</p>
+          </div>
+          <div class="case-section">
+            <span class="case-label">Result</span>
+            <p class="case-result">Broadcast-quality deliverables. Radically compressed timelines. Delivered across independent clients and as part of the <a href="https://www.sageworx.com/" target="_blank" rel="noopener" style="color:var(--plum); text-decoration:underline;">SGWX production team</a>.</p>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- RIGHT: Approach + Cards -->
-    <div class="col-right">
-
-      <div class="approach-block">
-        <p class="approach-label">The Approach</p>
-        <div class="approach-text">
-          Every system starts the same way: <span class="highlight">someone is losing time, insight, or quality to a manual process that doesn't need to be manual.</span> I identify the pattern, architect the AI solution, build it end to end, and deliver it as a production tool — not a prototype.
-        </div>
-      </div>
-
-      <div class="case-card">
-        <div class="case-card-inner">
-          <div class="case-card-front">
-            <div class="case-card-title">AI Video Production</div>
-            <div class="case-section">
-              <span class="case-label">Problem</span>
-              <p class="case-text">Companies need video content that competes. Traditional production timelines are long and expensive.</p>
-            </div>
-            <span class="flip-hint">Hover for solution →</span>
+    <div class="case-card">
+      <div class="case-card-inner">
+        <div class="case-card-front">
+          <div class="case-card-title">Live Event Operations</div>
+          <div class="case-section">
+            <span class="case-label">Problem</span>
+            <p class="case-text">Major international sporting event. Dozens of stakeholders. Staff spent days every year pulling data from old spreadsheets, rebuilding documents from scratch.</p>
           </div>
-          <div class="case-card-back">
-            <div class="case-section">
-              <span class="case-label">Solution</span>
-              <p class="case-text">AI-native video production — from storyboard to final cut. A fundamentally different workflow that delivers broadcast-quality work at a fraction of the cost and timeline.</p>
-            </div>
-            <div class="case-section">
-              <span class="case-label">Result</span>
-              <p class="case-result">Broadcast-quality deliverables. Radically compressed timelines. Delivered across independent clients and as part of a production team.</p>
-            </div>
+          <span class="flip-hint">Hover for solution →</span>
+        </div>
+        <div class="case-card-back">
+          <div class="case-section">
+            <span class="case-label">Solution</span>
+            <p class="case-text">Built an automated system that pulls historical data and generates ready-to-use briefing documents.</p>
+          </div>
+          <div class="case-section">
+            <span class="case-label">Result</span>
+            <p class="case-result">What took days now takes minutes. Errors eliminated. The team got their time back.</p>
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="case-card">
-        <div class="case-card-inner">
-          <div class="case-card-front">
-            <div class="case-card-title">Media Analytics Automation</div>
-            <div class="case-section">
-              <span class="case-label">Problem</span>
-              <p class="case-text">Performance data lived on multiple platforms. Formats were inconsistent. It took hours every week to manually pull and reconcile numbers.</p>
-            </div>
-            <span class="flip-hint">Hover for solution →</span>
+    <div class="case-card">
+      <div class="case-card-inner">
+        <div class="case-card-front">
+          <div class="case-card-title">Content Analytics</div>
+          <div class="case-section">
+            <span class="case-label">Problem</span>
+            <p class="case-text">Performance data lived on multiple platforms. Formats were inconsistent. It took hours every week to manually pull and reconcile numbers.</p>
           </div>
-          <div class="case-card-back">
-            <div class="case-section">
-              <span class="case-label">Solution</span>
-              <p class="case-text">Built an automated system that pulls data from all platforms, merges inconsistent formats, and generates performance insights automatically.</p>
-            </div>
-            <div class="case-section">
-              <span class="case-label">Result</span>
-              <p class="case-result">What took hours every week now runs on its own — and surfaces insights that manual reviews missed. Designed to scale.</p>
-            </div>
+          <span class="flip-hint">Hover for solution →</span>
+        </div>
+        <div class="case-card-back">
+          <div class="case-section">
+            <span class="case-label">Solution</span>
+            <p class="case-text">Built an automated system that pulls data from all platforms, merges inconsistent formats, and generates performance insights automatically.</p>
+          </div>
+          <div class="case-section">
+            <span class="case-label">Result</span>
+            <p class="case-result">What took hours every week now runs on its own — and surfaces insights that manual reviews missed. Designed to scale.</p>
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="case-card">
-        <div class="case-card-inner">
-          <div class="case-card-front">
-            <div class="case-card-title">Live Event Operations Automation</div>
-            <div class="case-section">
-              <span class="case-label">Problem</span>
-              <p class="case-text">Major international sporting event. Dozens of stakeholders. Staff spent days every year pulling data from old spreadsheets, rebuilding documents from scratch.</p>
-            </div>
-            <span class="flip-hint">Hover for solution →</span>
+    <div class="case-card">
+      <div class="case-card-inner">
+        <div class="case-card-front">
+          <div class="case-card-title">Content Strategy</div>
+          <div class="case-section">
+            <span class="case-label">Problem</span>
+            <p class="case-text">Downloads were in decline. Leadership needed a recovery plan.</p>
           </div>
-          <div class="case-card-back">
-            <div class="case-section">
-              <span class="case-label">Solution</span>
-              <p class="case-text">Built an automated system that pulls historical data and generates ready-to-use briefing documents.</p>
-            </div>
-            <div class="case-section">
-              <span class="case-label">Result</span>
-              <p class="case-result">What took days now takes minutes. Errors eliminated. The team got their time back.</p>
-            </div>
+          <span class="flip-hint">Hover for solution →</span>
+        </div>
+        <div class="case-card-back">
+          <div class="case-section">
+            <span class="case-label">Solution</span>
+            <p class="case-text">Used AI to analyze 2+ years of performance data — analysis that would have taken a team weeks. Discovered the real problem: the content had never built an organic audience. Reframed the entire strategy from recovery to first-time growth.</p>
+          </div>
+          <div class="case-section">
+            <span class="case-label">Result</span>
+            <p class="case-result">Delivered a 55-page deck with actionable recommendations. Changed the strategic direction entirely.</p>
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="case-card">
-        <div class="case-card-inner">
-          <div class="case-card-front">
-            <div class="case-card-title">Content Strategy Deep Dive</div>
-            <div class="case-section">
-              <span class="case-label">Problem</span>
-              <p class="case-text">Downloads were in decline. Leadership needed a recovery plan.</p>
-            </div>
-            <span class="flip-hint">Hover for solution →</span>
+    <div class="case-card">
+      <div class="case-card-inner">
+        <div class="case-card-front">
+          <div class="case-card-title">Creative Production</div>
+          <div class="case-section">
+            <span class="case-label">Problem</span>
+            <p class="case-text">55 transcripts to search. 120+ quotes to cut, shape, and structure into a 5-act story. Multiple tracks of music to source. One-person team.</p>
           </div>
-          <div class="case-card-back">
-            <div class="case-section">
-              <span class="case-label">Solution</span>
-              <p class="case-text">Used AI to analyze 2+ years of performance data — analysis that would have taken a team weeks. Discovered the real problem: the content had never built an organic audience. Reframed the entire strategy from recovery to first-time growth.</p>
-            </div>
-            <div class="case-section">
-              <span class="case-label">Result</span>
-              <p class="case-result">Delivered a 55-page deck with actionable recommendations. Changed the strategic direction entirely.</p>
-            </div>
+          <span class="flip-hint">Hover for solution →</span>
+        </div>
+        <div class="case-card-back">
+          <div class="case-section">
+            <span class="case-label">Solution</span>
+            <p class="case-text">Built AI tools that handled the tedious parts — transcript searching, organizing quotes into a paper edit, writing music prompts, building meta tags. What remained was the creative work: culling 120+ quotes into 26, shaping the narrative, editing the episode.</p>
+          </div>
+          <div class="case-section">
+            <span class="case-label">Result</span>
+            <p class="case-result">Delivered in a fraction of the usual timeline. AI handled the labor. The human made the art.</p>
           </div>
         </div>
       </div>
-
-      <div class="case-card">
-        <div class="case-card-inner">
-          <div class="case-card-front">
-            <div class="case-card-title">Creative Production Automation</div>
-            <div class="case-section">
-              <span class="case-label">Problem</span>
-              <p class="case-text">55 transcripts to search. 120+ quotes to cut, shape, and structure into a 5-act story. Multiple tracks of music to source. One-person team.</p>
-            </div>
-            <span class="flip-hint">Hover for solution →</span>
-          </div>
-          <div class="case-card-back">
-            <div class="case-section">
-              <span class="case-label">Solution</span>
-              <p class="case-text">Built AI tools that handled the tedious parts — transcript searching, organizing quotes into a paper edit, writing music prompts, building meta tags. What remained was the creative work: culling 120+ quotes into 26, shaping the narrative, editing the episode.</p>
-            </div>
-            <div class="case-section">
-              <span class="case-label">Result</span>
-              <p class="case-result">Delivered in a fraction of the usual timeline. AI handled the labor. The human made the art.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div>
 
   </section>
 
   <!-- =================== THROUGHLINE =================== -->
   <section class="throughline-section">
-    <p class="throughline-text">
-      Every one of these systems follows the same principle: <em>AI handles the labor so the human can focus on the meaning.</em> The final chapter takes that principle to its furthest conclusion yet.
-    </p>
+    <p class="throughline-text">The final chapter takes that principle to its furthest conclusion yet.</p>
     <a href="experiential-knowledge.html" class="next-link">Next: Experiential Knowledge Design →</a>
   </section>
 
