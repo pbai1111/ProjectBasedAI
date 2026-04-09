@@ -108,6 +108,18 @@
 - In Vercel project settings → Domains → Add `projectbased.ai`
 - Update DNS records as Vercel instructs
 
+### Clean URLs
+- `vercel.json` sets `cleanUrls: true` and `trailingSlash: false`
+- Pages are reachable at extensionless paths (e.g. `/experiential-knowledge`), which is what OG/social meta tags and external forwards rely on
+
+### insatiablemind.ai → experiential-knowledge
+- Domain registered at Network Solutions, but forwarding is handled by **Cloudflare** (free plan), not NS
+- Network Solutions nameservers point to Cloudflare (`stephane.ns.cloudflare.com`, `troy.ns.cloudflare.com`)
+- Cloudflare SSL/TLS mode: **Full**, "Always Use HTTPS" on
+- Cloudflare Redirect Rule ("Single Redirect") matches `http.host eq "insatiablemind.ai"` or `"www.insatiablemind.ai"` → 301 → `https://www.projectbased.ai/experiential-knowledge`
+- Why not Network Solutions forwarding: NS forwarding is HTTP-only; its shared cert does not cover `insatiablemind.ai`, so modern browsers upgrading to HTTPS hit `ERR_CERT_COMMON_NAME_INVALID`. Cloudflare terminates TLS with a valid edge cert and performs the redirect at the edge.
+- OG/Twitter image URLs in `experiential-knowledge.html` must point at `https://www.projectbased.ai/assets/...`, NOT `insatiablemind.ai/assets/...`, because the latter redirects to an HTML page and social platforms won't follow image-URL redirects
+
 ---
 
 ## Notes
