@@ -2868,12 +2868,27 @@
     currentAudio = null;
   }
 
-  function playClip(audioEl) {
+  let pendingPlayTimer = null;
+  function _doPlay(audioEl) {
     if (!audioEl) return;
     stopCurrentAudio();
     currentAudio = audioEl;
     audioEl.volume = 0.9;
     audioEl.play().catch(() => {});
+  }
+  function playClip(audioEl) {
+    if (!audioEl) return;
+    if (isMobile) {
+      // Debounce: any new request within 1s replaces the pending one.
+      // This prevents fast scrolling from stacking up Four Voices clips.
+      if (pendingPlayTimer) clearTimeout(pendingPlayTimer);
+      pendingPlayTimer = setTimeout(function() {
+        pendingPlayTimer = null;
+        _doPlay(audioEl);
+      }, MOBILE_DWELL_MS);
+    } else {
+      _doPlay(audioEl);
+    }
   }
 
   function watchSection(sectionEl, audioEl, threshold) {
@@ -3028,16 +3043,15 @@
     // Prime each audio element silently — must happen inside user gesture
     // Set volume to 0 first, play, pause instantly, restore volume
     document.querySelectorAll('audio').forEach(function(a) {
-      var v = a.volume;
-      a.volume = 0;
+      a.muted = true;
       a.load();
       var p = a.play();
       if (p) p.then(function() {
         a.pause();
         a.currentTime = 0;
-        a.volume = v;
+        a.muted = false;
       }).catch(function() {
-        a.volume = v;
+        a.muted = false;
       });
     });
     // Show the rest of the site
