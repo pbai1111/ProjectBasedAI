@@ -2768,6 +2768,7 @@
     if (!audio) return;
 
     if (audio.paused) {
+      audio.muted = false;
       audio.play();
       icon.innerHTML = '<rect x="5" y="4" width="4" height="16" fill="currentColor"/><rect x="15" y="4" width="4" height="16" fill="currentColor"/>';
     } else {
@@ -2874,6 +2875,7 @@
     if (!audioEl) return;
     stopCurrentAudio();
     currentAudio = audioEl;
+    audioEl.muted = false;
     audioEl.volume = 0.9;
     audioEl.play().catch(() => {});
   }
@@ -3043,6 +3045,10 @@
     } catch(e) {}
     // Prime each audio element silently — must happen inside user gesture
     // Set volume to 0 first, play, pause instantly, restore volume
+    // Prime each audio element inside the user gesture so iOS will let
+    // us play() them later. Keep them muted — playClip() unmutes the
+    // specific clip it wants to play. This guarantees no audible leakage
+    // during priming, regardless of when the play promises resolve.
     document.querySelectorAll('audio').forEach(function(a) {
       a.muted = true;
       a.load();
@@ -3050,10 +3056,8 @@
       if (p) p.then(function() {
         a.pause();
         a.currentTime = 0;
-        a.muted = false;
-      }).catch(function() {
-        a.muted = false;
-      });
+        // Stay muted — playClip will unmute when it's this clip's turn.
+      }).catch(function() {});
     });
     // Show the rest of the site
     const gate = document.getElementById('siteGate');
