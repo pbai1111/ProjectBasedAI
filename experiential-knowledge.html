@@ -447,7 +447,7 @@
     .painting-note {
       font-family: var(--serif);
       font-style: italic;
-      font-size: clamp(1rem, 2vw, 1.3rem);
+      font-size: clamp(1.0625rem, 2vw, 1.3rem);
       color: var(--muted);
       max-width: 500px;
     }
@@ -606,7 +606,7 @@
     .vp-title {
       font-family: var(--serif);
       font-style: italic;
-      font-size: clamp(0.9rem, 2vw, 1.2rem);
+      font-size: clamp(1rem, 2vw, 1.2rem);
       color: var(--muted);
       max-width: 360px;
       text-align: center;
@@ -663,7 +663,7 @@
     .return-line1 {
       font-family: var(--serif);
       font-style: italic;
-      font-size: clamp(1rem, 2.2vw, 1.4rem);
+      font-size: clamp(1.0625rem, 2.2vw, 1.4rem);
       color: var(--muted);
       margin-bottom: 14px;
     }
@@ -723,7 +723,7 @@
 
     .stakes-ex-what {
       font-family: var(--serif);
-      font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+      font-size: clamp(1.0625rem, 1.8vw, 1.15rem);
       line-height: 1.65;
       color: var(--muted);
     }
@@ -775,7 +775,7 @@
 
     .person-bio {
       font-family: var(--serif);
-      font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+      font-size: clamp(1.0625rem, 1.8vw, 1.15rem);
       line-height: 1.8;
       color: var(--muted);
     }
@@ -802,7 +802,7 @@
     .mantra-text {
       font-family: var(--serif);
       font-style: italic;
-      font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+      font-size: clamp(1.0625rem, 1.8vw, 1.15rem);
       line-height: 1.7;
       color: var(--muted);
     }
@@ -884,6 +884,7 @@
 
     @media (max-width: 640px) {
       .bookcovers { grid-template-columns: repeat(3, 1fr); }
+      .closing-sub { font-size: 1.0625rem; }
     }
 
     .book-cover-img {
@@ -974,7 +975,7 @@
       margin-top: 36px;
       font-family: var(--serif);
       font-style: italic;
-      font-size: clamp(0.95rem, 1.8vw, 1.2rem);
+      font-size: clamp(1.0625rem, 1.8vw, 1.2rem);
       color: var(--dim);
       max-width: 440px;
     }
@@ -993,7 +994,7 @@
     .system-wild-text {
       font-family: var(--serif);
       font-weight: 300;
-      font-size: clamp(1rem, 2.2vw, 1.4rem);
+      font-size: clamp(1.0625rem, 2.2vw, 1.4rem);
       line-height: 1.75;
       color: var(--muted);
       max-width: 560px;
@@ -1179,7 +1180,7 @@
     .app-proven {
       margin-top: 36px;
       font-family: var(--serif);
-      font-size: clamp(1rem, 2vw, 1.3rem);
+      font-size: clamp(1.0625rem, 2vw, 1.3rem);
       line-height: 1.7;
       color: var(--muted);
       text-align: center;
@@ -1243,7 +1244,7 @@
     .vermeer-img-note {
       font-family: var(--serif);
       font-style: italic;
-      font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+      font-size: clamp(1rem, 1.8vw, 1.1rem);
       line-height: 1.7;
       color: var(--muted);
       margin-top: 8px;
@@ -1532,7 +1533,7 @@
       color: var(--gold);
       border-bottom: none;
       padding-top: 32px;
-      font-size: clamp(1rem, 2vw, 1.3rem);
+      font-size: clamp(1.0625rem, 2vw, 1.3rem);
       letter-spacing: 0.03em;
     }
 
@@ -1584,7 +1585,7 @@
     .transport-item-text {
       font-family: var(--serif);
       font-weight: 300;
-      font-size: clamp(1rem, 2.2vw, 1.3rem);
+      font-size: clamp(1.0625rem, 2.2vw, 1.3rem);
       line-height: 1.78;
       color: var(--text);
     }
@@ -1592,7 +1593,7 @@
     .transport-close {
       font-family: var(--serif);
       font-style: italic;
-      font-size: clamp(1rem, 2vw, 1.3rem);
+      font-size: clamp(1.0625rem, 2vw, 1.3rem);
       color: var(--gold);
       letter-spacing: 0.03em;
       padding-left: 28px;
@@ -1695,7 +1696,7 @@
     .three-col-text {
       font-family: var(--serif);
       font-weight: 300;
-      font-size: clamp(1rem, 2vw, 1.3rem);
+      font-size: clamp(1.0625rem, 2vw, 1.3rem);
       line-height: 1.7;
       color: var(--muted);
     }
@@ -1780,7 +1781,7 @@
       font-family: var(--sans);
       font-weight: 400;
       font-style: normal;
-      font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+      font-size: clamp(1rem, 1.5vw, 1.05rem);
       letter-spacing: 0.02em;
       color: #f5f1ec;
       background: transparent;
@@ -1902,7 +1903,7 @@
       position: absolute;
       font-family: var(--serif);
       font-weight: 300;
-      font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+      font-size: clamp(1rem, 1.8vw, 1.1rem);
       color: var(--gold);
       opacity: 0;
       transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
@@ -2019,7 +2020,7 @@
 
     .transport-final-mid {
       font-family: var(--serif);
-      font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+      font-size: clamp(1rem, 1.8vw, 1.1rem);
       letter-spacing: 0.12em;
       color: var(--muted);
       margin-bottom: 20px;
@@ -2059,7 +2060,7 @@
     .stakes-line-text {
       font-family: var(--serif);
       font-weight: 300;
-      font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+      font-size: clamp(1.0625rem, 1.8vw, 1.15rem);
       line-height: 1.75;
       color: var(--muted);
     }
@@ -2075,7 +2076,7 @@
     .person-story-text {
       font-family: var(--serif);
       font-weight: 300;
-      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-size: clamp(1.0625rem, 2vw, 1.25rem);
       line-height: 1.85;
       color: var(--muted);
     }
