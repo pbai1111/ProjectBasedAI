@@ -2857,6 +2857,8 @@
   // Only one clip plays at a time.
 
   let currentAudio = null;
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  const MOBILE_DWELL_MS = 1000;
 
   function stopCurrentAudio() {
     if (currentAudio && !currentAudio.paused) {
@@ -2893,12 +2895,27 @@
   const voiceKeyEl = document.getElementById('voiceKey');
   if (appAudioEl2 && voiceKeyEl) {
     let appAudioPlayed = false;
+    let appDwellTimer = null;
     window.addEventListener('scroll', function() {
       const rect = voiceKeyEl.getBoundingClientRect();
       const vh = window.innerHeight;
-      if (!appAudioPlayed && rect.top <= vh * 0.2 && rect.bottom > 0) {
-        appAudioPlayed = true;
-        playClip(appAudioEl2);
+      const inZone = rect.top <= vh * 0.2 && rect.bottom > 0;
+      if (!appAudioPlayed && inZone) {
+        if (isMobile) {
+          if (!appDwellTimer) {
+            appDwellTimer = setTimeout(function() {
+              appAudioPlayed = true;
+              playClip(appAudioEl2);
+              appDwellTimer = null;
+            }, MOBILE_DWELL_MS);
+          }
+        } else {
+          appAudioPlayed = true;
+          playClip(appAudioEl2);
+        }
+      } else if (!inZone && appDwellTimer) {
+        clearTimeout(appDwellTimer);
+        appDwellTimer = null;
       }
       if (rect.bottom < -100 && currentAudio === appAudioEl2) {
         stopCurrentAudio();
@@ -2912,12 +2929,27 @@
   const vermeerBlock = document.getElementById('vermeerNarratorBlock');
   if (vermeerAudioEl && vermeerBlock) {
     let vermeerPlayed = false;
+    let vermeerDwellTimer = null;
     window.addEventListener('scroll', function() {
       const rect = vermeerBlock.getBoundingClientRect();
       const vh = window.innerHeight;
-      if (!vermeerPlayed && rect.top <= vh * 0.2 && rect.bottom > 0) {
-        vermeerPlayed = true;
-        playClip(vermeerAudioEl);
+      const inZone = rect.top <= vh * 0.2 && rect.bottom > 0;
+      if (!vermeerPlayed && inZone) {
+        if (isMobile) {
+          if (!vermeerDwellTimer) {
+            vermeerDwellTimer = setTimeout(function() {
+              vermeerPlayed = true;
+              playClip(vermeerAudioEl);
+              vermeerDwellTimer = null;
+            }, MOBILE_DWELL_MS);
+          }
+        } else {
+          vermeerPlayed = true;
+          playClip(vermeerAudioEl);
+        }
+      } else if (!inZone && vermeerDwellTimer) {
+        clearTimeout(vermeerDwellTimer);
+        vermeerDwellTimer = null;
       }
       if (rect.bottom < -100 && currentAudio === vermeerAudioEl) {
         stopCurrentAudio();
@@ -2943,17 +2975,34 @@
   const _kandelLabel = document.querySelector('.kandel-cover-label');
   const _kandelQuotes = document.querySelector('.kandel-quotes-col');
   if (_kandelImg) {
+    let kandelDwellTimer = null;
+    const fireKandel = () => {
+      _kandelImg.style.opacity = '1';
+      setTimeout(() => {
+        _kandelImg.classList.add('resolved');
+        if (_kandelLabel) _kandelLabel.classList.add('resolved');
+        if (_kandelQuotes) _kandelQuotes.classList.add('resolved');
+        setTimeout(() => playClip(kandelAudioEl), 800);
+      }, 120);
+    };
     const kandelObs = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
-          _kandelImg.style.opacity = '1';
-          setTimeout(() => {
-            _kandelImg.classList.add('resolved');
-            if (_kandelLabel) _kandelLabel.classList.add('resolved');
-            if (_kandelQuotes) _kandelQuotes.classList.add('resolved');
-            setTimeout(() => playClip(kandelAudioEl), 800);
-          }, 120);
-          kandelObs.unobserve(e.target);
+          if (isMobile) {
+            if (!kandelDwellTimer) {
+              kandelDwellTimer = setTimeout(() => {
+                fireKandel();
+                kandelDwellTimer = null;
+                kandelObs.unobserve(e.target);
+              }, MOBILE_DWELL_MS);
+            }
+          } else {
+            fireKandel();
+            kandelObs.unobserve(e.target);
+          }
+        } else if (kandelDwellTimer) {
+          clearTimeout(kandelDwellTimer);
+          kandelDwellTimer = null;
         }
       });
     }, { threshold: 0.15 });
